@@ -967,6 +967,425 @@
             border-color: rgba(120, 120, 120, 0.2) !important;
             color: var(--text-muted) !important;
         }
+
+        /* ═══ PREMIUM & ADDITIONAL ANIMATED THEMES ═══ */
+
+        /* 1. Aurora Borealis */
+        body.theme-aurora {
+            --telegram-blue: #00c9a7; --bg-dark: #06101a; --chat-bg: #0a1a28;
+            --card-bg: #0d2233; --bubble-bot: #0a1a28; --bubble-user: #0d2a40;
+            --text-main: #d0fff4; --success: #00e5c9; --gold: #e040fb;
+            --glass-border: rgba(0,201,167,0.15);
+        }
+        body.theme-aurora .chat-area { background: #06101a; }
+        body.theme-aurora .sidebar, body.theme-aurora .chat-header, body.theme-aurora .chat-input-area { background: #091520; }
+        body.theme-aurora .quiz-card-bubble { border-color: rgba(0,201,167,0.25); box-shadow: 0 4px 20px rgba(0,201,167,0.15); }
+        body.theme-aurora .quiz-opt-btn:hover:not(:disabled) { border-color: #00c9a7; box-shadow: 0 0 10px rgba(0,201,167,0.4); }
+
+        /* 2. Liquid Glass (Apple VisionOS) */
+        body.theme-liquid_glass {
+            --telegram-blue: #007aff; --bg-dark: #0d0f12; --chat-bg: rgba(255,255,255,0.03);
+            --card-bg: rgba(255,255,255,0.06); --bubble-bot: rgba(255,255,255,0.05); --bubble-user: rgba(0,122,255,0.2);
+            --text-main: #ffffff; --success: #34c759; --gold: #ff9500;
+            --glass-border: rgba(255,255,255,0.25);
+        }
+        body.theme-liquid_glass .chat-area { background: #0d0f12; }
+        body.theme-liquid_glass .sidebar, body.theme-liquid_glass .chat-header, body.theme-liquid_glass .chat-input-area { background: rgba(20, 24, 30, 0.7); backdrop-filter: blur(20px); }
+        body.theme-liquid_glass .quiz-card-bubble { border-color: rgba(255,255,255,0.2); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3); backdrop-filter: blur(15px); }
+        body.theme-liquid_glass .quiz-opt-btn:hover:not(:disabled) { border-color: #007aff; box-shadow: 0 0 15px rgba(0,122,255,0.5); background: rgba(255,255,255,0.1); }
+        body.theme-liquid_glass .message-bubble { backdrop-filter: blur(10px); }
+
+        /* 3. Animated Gradient Mesh */
+        body.theme-gradient_mesh {
+            --telegram-blue: #ec4899; --bg-dark: #090714; --chat-bg: #100d24;
+            --card-bg: #191438; --bubble-bot: #100d24; --bubble-user: #261e56;
+            --text-main: #f8f7fc; --success: #10b981; --gold: #f59e0b;
+            --glass-border: rgba(236,72,153,0.18);
+        }
+        body.theme-gradient_mesh .chat-area { background: #090714; }
+        body.theme-gradient_mesh .sidebar, body.theme-gradient_mesh .chat-header, body.theme-gradient_mesh .chat-input-area { background: #120e2e; }
+        body.theme-gradient_mesh .quiz-card-bubble { border-color: rgba(236,72,153,0.25); box-shadow: 0 4px 20px rgba(236,72,153,0.15); }
+        body.theme-gradient_mesh .quiz-opt-btn:hover:not(:disabled) { border-color: #ec4899; box-shadow: 0 0 10px rgba(236,72,153,0.4); }
+
+        /* 4. Deep Space Universe */
+        body.theme-deep_space {
+            --telegram-blue: #3b82f6; --bg-dark: #03030c; --chat-bg: #070717;
+            --card-bg: #0e0e2e; --bubble-bot: #070717; --bubble-user: #131346;
+            --text-main: #e0e7ff; --success: #10b981; --gold: #f59e0b;
+            --glass-border: rgba(59,130,246,0.15);
+        }
+        body.theme-deep_space .chat-area { background: #03030c; }
+        body.theme-deep_space .sidebar, body.theme-deep_space .chat-header, body.theme-deep_space .chat-input-area { background: #09091f; }
+        body.theme-deep_space .quiz-card-bubble { border-color: rgba(59,130,246,0.25); box-shadow: 0 4px 20px rgba(59,130,246,0.15); }
+        body.theme-deep_space .quiz-opt-btn:hover:not(:disabled) { border-color: #3b82f6; box-shadow: 0 0 10px rgba(59,130,246,0.4); }
+
+        /* 5. Sakura Garden */
+        body.theme-sakura {
+            --telegram-blue: #ffb7c5; --bg-dark: #1b0f15; --chat-bg: #281620;
+            --card-bg: #3b202e; --bubble-bot: #281620; --bubble-user: #4b2438;
+            --text-main: #fff0f3; --success: #a3e635; --gold: #fbbf24;
+            --glass-border: rgba(255,183,197,0.18);
+        }
+        body.theme-sakura .chat-area { background: #1b0f15; }
+        body.theme-sakura .sidebar, body.theme-sakura .chat-header, body.theme-sakura .chat-input-area { background: #26151e; }
+        body.theme-sakura .quiz-card-bubble { border-color: rgba(255,183,197,0.25); box-shadow: 0 4px 20px rgba(255,183,197,0.15); }
+        body.theme-sakura .quiz-opt-btn:hover:not(:disabled) { border-color: #ffb7c5; box-shadow: 0 0 10px rgba(255,183,197,0.4); }
+
+        /* 6. Electric Storm */
+        body.theme-electric_storm {
+            --telegram-blue: #00ffff; --bg-dark: #0a0c10; --chat-bg: #11141b;
+            --card-bg: #1b202a; --bubble-bot: #11141b; --bubble-user: #1b2a3c;
+            --text-main: #e2e8f0; --success: #22c55e; --gold: #eab308;
+            --glass-border: rgba(0,255,255,0.15);
+        }
+        body.theme-electric_storm .chat-area { background: #0a0c10; }
+        body.theme-electric_storm .sidebar, body.theme-electric_storm .chat-header, body.theme-electric_storm .chat-input-area { background: #12161e; }
+        body.theme-electric_storm .quiz-card-bubble { border-color: rgba(0,255,255,0.25); box-shadow: 0 4px 20px rgba(0,255,255,0.15); }
+        body.theme-electric_storm .quiz-opt-btn:hover:not(:disabled) { border-color: #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.4); }
+
+        /* 7. Lava Planet */
+        body.theme-lava {
+            --telegram-blue: #ff4500; --bg-dark: #100500; --chat-bg: #160800;
+            --card-bg: #200c00; --bubble-bot: #160800; --bubble-user: #2d1200;
+            --text-main: #fff0e0; --success: #ff8c00; --gold: #ffcc00;
+            --glass-border: rgba(255,69,0,0.18);
+        }
+        body.theme-lava .chat-area { background: #100500; }
+        body.theme-lava .sidebar, body.theme-lava .chat-header, body.theme-lava .chat-input-area { background: #1a0800; }
+        body.theme-lava .quiz-card-bubble { border-color: rgba(255,69,0,0.25); box-shadow: 0 4px 20px rgba(255,69,0,0.15); }
+        body.theme-lava .quiz-opt-btn:hover:not(:disabled) { border-color: #ff4500; box-shadow: 0 0 10px rgba(255,69,0,0.4); }
+
+        /* 8. Underwater Ocean */
+        body.theme-ocean {
+            --telegram-blue: #0099ff; --bg-dark: #00050f; --chat-bg: #000d1c;
+            --card-bg: #001828; --bubble-bot: #000d1c; --bubble-user: #00162e;
+            --text-main: #d0f0ff; --success: #00e5ff; --gold: #ffd700;
+            --glass-border: rgba(0,153,255,0.14);
+        }
+        body.theme-ocean .chat-area { background: #00050f; }
+        body.theme-ocean .sidebar, body.theme-ocean .chat-header, body.theme-ocean .chat-input-area { background: #001020; }
+        body.theme-ocean .quiz-card-bubble { border-color: rgba(0,153,255,0.25); box-shadow: 0 4px 20px rgba(0,153,255,0.15); }
+        body.theme-ocean .quiz-opt-btn:hover:not(:disabled) { border-color: #0099ff; box-shadow: 0 0 10px rgba(0,153,255,0.4); }
+
+        /* 9. Cyber City Rain */
+        body.theme-cyber_city {
+            --telegram-blue: #a855f7; --bg-dark: #08040d; --chat-bg: #10081a;
+            --card-bg: #1a0d2b; --bubble-bot: #10081a; --bubble-user: #240a3e;
+            --text-main: #f3e8ff; --success: #22c55e; --gold: #f59e0b;
+            --glass-border: rgba(168,85,247,0.18);
+        }
+        body.theme-cyber_city .chat-area { background: #08040d; }
+        body.theme-cyber_city .sidebar, body.theme-cyber_city .chat-header, body.theme-cyber_city .chat-input-area { background: #0f0719; }
+        body.theme-cyber_city .quiz-card-bubble { border-color: rgba(168,85,247,0.25); box-shadow: 0 4px 20px rgba(168,85,247,0.15); }
+        body.theme-cyber_city .quiz-opt-btn:hover:not(:disabled) { border-color: #a855f7; box-shadow: 0 0 10px rgba(168,85,247,0.4); }
+
+        /* 10. Moonlight Forest & Enchanted Forest */
+        body.theme-moonlight_forest, body.theme-forest {
+            --telegram-blue: #00a854; --bg-dark: #020d04; --chat-bg: #04120a;
+            --card-bg: #081a0e; --bubble-bot: #04120a; --bubble-user: #0c2014;
+            --text-main: #d0ffe0; --success: #78ff6a; --gold: #ffe04a;
+            --glass-border: rgba(0,168,84,0.15);
+        }
+        body.theme-moonlight_forest .chat-area, body.theme-forest .chat-area { background: #020d04; }
+        body.theme-moonlight_forest .sidebar, body.theme-moonlight_forest .chat-header, body.theme-moonlight_forest .chat-input-area,
+        body.theme-forest .sidebar, body.theme-forest .chat-header, body.theme-forest .chat-input-area { background: #04110a; }
+        body.theme-moonlight_forest .quiz-card-bubble, body.theme-forest .quiz-card-bubble { border-color: rgba(0,168,84,0.25); box-shadow: 0 4px 20px rgba(0,168,84,0.15); }
+        body.theme-moonlight_forest .quiz-opt-btn:hover:not(:disabled), body.theme-forest .quiz-opt-btn:hover:not(:disabled) { border-color: #00a854; box-shadow: 0 0 10px rgba(0,168,84,0.4); }
+
+        /* 11. Floating Clouds */
+        body.theme-clouds {
+            --telegram-blue: #0ea5e9; --bg-dark: #0b1a30; --chat-bg: #11284a;
+            --card-bg: #1a3b6d; --bubble-bot: #11284a; --bubble-user: #194a87;
+            --text-main: #f0f9ff; --success: #10b981; --gold: #f59e0b;
+            --glass-border: rgba(14,165,233,0.15);
+        }
+        body.theme-clouds .chat-area { background: #0b1a30; }
+        body.theme-clouds .sidebar, body.theme-clouds .chat-header, body.theme-clouds .chat-input-area { background: #0f2342; }
+        body.theme-clouds .quiz-card-bubble { border-color: rgba(14,165,233,0.25); box-shadow: 0 4px 20px rgba(14,165,233,0.15); }
+        body.theme-clouds .quiz-opt-btn:hover:not(:disabled) { border-color: #0ea5e9; box-shadow: 0 0 10px rgba(14,165,233,0.4); }
+
+        /* 12. Fireworks Festival */
+        body.theme-fireworks {
+            --telegram-blue: #ef4444; --bg-dark: #0c0612; --chat-bg: #160a22;
+            --card-bg: #230f36; --bubble-bot: #160a22; --bubble-user: #32124e;
+            --text-main: #fef2f2; --success: #10b981; --gold: #fbbf24;
+            --glass-border: rgba(239,68,68,0.18);
+        }
+        body.theme-fireworks .chat-area { background: #0c0612; }
+        body.theme-fireworks .sidebar, body.theme-fireworks .chat-header, body.theme-fireworks .chat-input-area { background: #13091e; }
+        body.theme-fireworks .quiz-card-bubble { border-color: rgba(239,68,68,0.25); box-shadow: 0 4px 20px rgba(239,68,68,0.15); }
+        body.theme-fireworks .quiz-opt-btn:hover:not(:disabled) { border-color: #ef4444; box-shadow: 0 0 10px rgba(239,68,68,0.4); }
+
+        /* 13. Shooting Stars */
+        body.theme-shooting_stars {
+            --telegram-blue: #f1f5f9; --bg-dark: #020617; --chat-bg: #0b1329;
+            --card-bg: #1e293b; --bubble-bot: #0b1329; --bubble-user: #1e294b;
+            --text-main: #f8fafc; --success: #3b82f6; --gold: #eab308;
+            --glass-border: rgba(255,255,255,0.1);
+        }
+        body.theme-shooting_stars .chat-area { background: #020617; }
+        body.theme-shooting_stars .sidebar, body.theme-shooting_stars .chat-header, body.theme-shooting_stars .chat-input-area { background: #070e28; }
+        body.theme-shooting_stars .quiz-card-bubble { border-color: rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(255,255,255,0.08); }
+        body.theme-shooting_stars .quiz-opt-btn:hover:not(:disabled) { border-color: #f1f5f9; box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+
+        /* 14. Cosmic Portal */
+        body.theme-cosmic_portal {
+            --telegram-blue: #d946ef; --bg-dark: #0e021a; --chat-bg: #1b0432;
+            --card-bg: #2d0654; --bubble-bot: #1b0432; --bubble-user: #400878;
+            --text-main: #fdf4ff; --success: #10b981; --gold: #fbbf24;
+            --glass-border: rgba(217,70,239,0.18);
+        }
+        body.theme-cosmic_portal .chat-area { background: #0e021a; }
+        body.theme-cosmic_portal .sidebar, body.theme-cosmic_portal .chat-header, body.theme-cosmic_portal .chat-input-area { background: #16032a; }
+        body.theme-cosmic_portal .quiz-card-bubble { border-color: rgba(217,70,239,0.25); box-shadow: 0 4px 20px rgba(217,70,239,0.15); }
+        body.theme-cosmic_portal .quiz-opt-btn:hover:not(:disabled) { border-color: #d946ef; box-shadow: 0 0 10px rgba(217,70,239,0.4); }
+
+        /* 15. Crystal Cave */
+        body.theme-crystal_cave {
+            --telegram-blue: #06b6d4; --bg-dark: #041018; --chat-bg: #081d2c;
+            --card-bg: #0e314a; --bubble-bot: #081d2c; --bubble-user: #0b3a5c;
+            --text-main: #ecfeff; --success: #10b981; --gold: #eab308;
+            --glass-border: rgba(6,182,212,0.18);
+        }
+        body.theme-crystal_cave .chat-area { background: #041018; }
+        body.theme-crystal_cave .sidebar, body.theme-crystal_cave .chat-header, body.theme-crystal_cave .chat-input-area { background: #061926; }
+        body.theme-crystal_cave .quiz-card-bubble { border-color: rgba(6,182,212,0.25); box-shadow: 0 4px 20px rgba(6,182,212,0.15); }
+        body.theme-crystal_cave .quiz-opt-btn:hover:not(:disabled) { border-color: #06b6d4; box-shadow: 0 0 10px rgba(6,182,212,0.4); }
+
+        /* 16. Dream Garden */
+        body.theme-dream_garden {
+            --telegram-blue: #f472b6; --bg-dark: #130912; --chat-bg: #231021;
+            --card-bg: #361633; --bubble-bot: #231021; --bubble-user: #4a1845;
+            --text-main: #fdf2f8; --success: #4fae5e; --gold: #fbbf24;
+            --glass-border: rgba(244,114,182,0.15);
+        }
+        body.theme-dream_garden .chat-area { background: #130912; }
+        body.theme-dream_garden .sidebar, body.theme-dream_garden .chat-header, body.theme-dream_garden .chat-input-area { background: #1c0e1b; }
+        body.theme-dream_garden .quiz-card-bubble { border-color: rgba(244,114,182,0.25); box-shadow: 0 4px 20px rgba(244,114,182,0.15); }
+        body.theme-dream_garden .quiz-opt-btn:hover:not(:disabled) { border-color: #f472b6; box-shadow: 0 0 10px rgba(244,114,182,0.4); }
+
+        /* 17. Gaming RGB */
+        body.theme-rgb {
+            --telegram-blue: #ff007f; --bg-dark: #070707; --chat-bg: #0f0f0f;
+            --card-bg: #171717; --bubble-bot: #0f0f0f; --bubble-user: #202020;
+            --text-main: #ffffff; --success: #00ff00; --gold: #ffff00;
+            --glass-border: rgba(255,0,127,0.2);
+        }
+        body.theme-rgb .chat-area { background: #070707; }
+        body.theme-rgb .sidebar, body.theme-rgb .chat-header, body.theme-rgb .chat-input-area { background: #0c0c0c; border: 1px solid #ff007f33; }
+        body.theme-rgb .quiz-card-bubble { border-color: rgba(255,0,127,0.3); box-shadow: 0 4px 20px rgba(255,0,127,0.2); }
+        body.theme-rgb .quiz-opt-btn:hover:not(:disabled) { border-color: #ff007f; box-shadow: 0 0 10px rgba(255,0,127,0.5); }
+
+        /* 18. Frozen Kingdom */
+        body.theme-frozen {
+            --telegram-blue: #a5f3fc; --bg-dark: #081420; --chat-bg: #0d243a;
+            --card-bg: #133857; --bubble-bot: #0d243a; --bubble-user: #124773;
+            --text-main: #f2feff; --success: #34d399; --gold: #fbbf24;
+            --glass-border: rgba(165,243,252,0.2);
+        }
+        body.theme-frozen .chat-area { background: #081420; }
+        body.theme-frozen .sidebar, body.theme-frozen .chat-header, body.theme-frozen .chat-input-area { background: #0c1e30; }
+        body.theme-frozen .quiz-card-bubble { border-color: rgba(165,243,252,0.25); box-shadow: 0 4px 20px rgba(165,243,252,0.15); }
+        body.theme-frozen .quiz-opt-btn:hover:not(:disabled) { border-color: #a5f3fc; box-shadow: 0 0 10px rgba(165,243,252,0.4); }
+
+        /* 19. Golden Sunrise */
+        body.theme-sunrise {
+            --telegram-blue: #f59e0b; --bg-dark: #1a0f05; --chat-bg: #2a1708;
+            --card-bg: #3d210b; --bubble-bot: #2a1708; --bubble-user: #4e2a0f;
+            --text-main: #fffbeb; --success: #10b981; --gold: #f59e0b;
+            --glass-border: rgba(245,158,11,0.18);
+        }
+        body.theme-sunrise .chat-area { background: #1a0f05; }
+        body.theme-sunrise .sidebar, body.theme-sunrise .chat-header, body.theme-sunrise .chat-input-area { background: #241507; }
+        body.theme-sunrise .quiz-card-bubble { border-color: rgba(245,158,11,0.25); box-shadow: 0 4px 20px rgba(245,158,11,0.15); }
+        body.theme-sunrise .quiz-opt-btn:hover:not(:disabled) { border-color: #f59e0b; box-shadow: 0 0 10px rgba(245,158,11,0.4); }
+
+        /* 20. Infinity Tunnel */
+        body.theme-infinity_tunnel {
+            --telegram-blue: #8b5cf6; --bg-dark: #03010a; --chat-bg: #0a041a;
+            --card-bg: #150833; --bubble-bot: #0a041a; --bubble-user: #20084d;
+            --text-main: #f5f3ff; --success: #06b6d4; --gold: #ec4899;
+            --glass-border: rgba(139,92,246,0.18);
+        }
+        body.theme-infinity_tunnel .chat-area { background: #03010a; }
+        body.theme-infinity_tunnel .sidebar, body.theme-infinity_tunnel .chat-header, body.theme-infinity_tunnel .chat-input-area { background: #08031a; }
+        body.theme-infinity_tunnel .quiz-card-bubble { border-color: rgba(139,92,246,0.25); box-shadow: 0 4px 20px rgba(139,92,246,0.15); }
+        body.theme-infinity_tunnel .quiz-opt-btn:hover:not(:disabled) { border-color: #8b5cf6; box-shadow: 0 0 10px rgba(139,92,246,0.4); }
+
+        /* 21. Neural Network */
+        body.theme-neural_network {
+            --telegram-blue: #10b981; --bg-dark: #020b08; --chat-bg: #051811;
+            --card-bg: #0a2c1f; --bubble-bot: #051811; --bubble-user: #0b3d2b;
+            --text-main: #ecfdf5; --success: #10b981; --gold: #f59e0b;
+            --glass-border: rgba(16,185,129,0.18);
+        }
+        body.theme-neural_network .chat-area { background: #020b08; }
+        body.theme-neural_network .sidebar, body.theme-neural_network .chat-header, body.theme-neural_network .chat-input-area { background: #03120c; }
+        body.theme-neural_network .quiz-card-bubble { border-color: rgba(16,185,129,0.25); box-shadow: 0 4px 20px rgba(16,185,129,0.15); }
+        body.theme-neural_network .quiz-opt-btn:hover:not(:disabled) { border-color: #10b981; box-shadow: 0 0 10px rgba(16,185,129,0.4); }
+
+        /* 22. Music Visualizer */
+        body.theme-music_visualizer {
+            --telegram-blue: #f43f5e; --bg-dark: #09050d; --chat-bg: #140a1d;
+            --card-bg: #220f32; --bubble-bot: #140a1d; --bubble-user: #32114c;
+            --text-main: #fff1f2; --success: #10b981; --gold: #fbbf24;
+            --glass-border: rgba(244,63,94,0.18);
+        }
+        body.theme-music_visualizer .chat-area { background: #09050d; }
+        body.theme-music_visualizer .sidebar, body.theme-music_visualizer .chat-header, body.theme-music_visualizer .chat-input-area { background: #0f0716; }
+        body.theme-music_visualizer .quiz-card-bubble { border-color: rgba(244,63,94,0.25); box-shadow: 0 4px 20px rgba(244,63,94,0.15); }
+        body.theme-music_visualizer .quiz-opt-btn:hover:not(:disabled) { border-color: #f43f5e; box-shadow: 0 0 10px rgba(244,63,94,0.4); }
+
+        /* 23. DNA Helix */
+        body.theme-dna {
+            --telegram-blue: #6366f1; --bg-dark: #030510; --chat-bg: #090f24;
+            --card-bg: #141d40; --bubble-bot: #090f24; --bubble-user: #1b295d;
+            --text-main: #e0e7ff; --success: #06b6d4; --gold: #f59e0b;
+            --glass-border: rgba(99,102,241,0.18);
+        }
+        body.theme-dna .chat-area { background: #030510; }
+        body.theme-dna .sidebar, body.theme-dna .chat-header, body.theme-dna .chat-input-area { background: #060a1d; }
+        body.theme-dna .quiz-card-bubble { border-color: rgba(99,102,241,0.25); box-shadow: 0 4px 20px rgba(99,102,241,0.15); }
+        body.theme-dna .quiz-opt-btn:hover:not(:disabled) { border-color: #6366f1; box-shadow: 0 0 10px rgba(99,102,241,0.4); }
+
+        /* 24. Hypnotic Rings */
+        body.theme-hypnotic_rings {
+            --telegram-blue: #a855f7; --bg-dark: #04020a; --chat-bg: #0b051b;
+            --card-bg: #160a34; --bubble-bot: #0b051b; --bubble-user: #240a50;
+            --text-main: #faf5ff; --success: #06b6d4; --gold: #ec4899;
+            --glass-border: rgba(168,85,247,0.18);
+        }
+        body.theme-hypnotic_rings .chat-area { background: #04020a; }
+        body.theme-hypnotic_rings .sidebar, body.theme-hypnotic_rings .chat-header, body.theme-hypnotic_rings .chat-input-area { background: #090416; }
+        body.theme-hypnotic_rings .quiz-card-bubble { border-color: rgba(168,85,247,0.25); box-shadow: 0 4px 20px rgba(168,85,247,0.15); }
+        body.theme-hypnotic_rings .quiz-opt-btn:hover:not(:disabled) { border-color: #a855f7; box-shadow: 0 0 10px rgba(168,85,247,0.4); }
+
+        /* 25. Rainbow Plasma */
+        body.theme-rainbow_plasma {
+            --telegram-blue: #14b8a6; --bg-dark: #0b040e; --chat-bg: #130919;
+            --card-bg: #200f2b; --bubble-bot: #130919; --bubble-user: #311444;
+            --text-main: #f0fdfa; --success: #22c55e; --gold: #f59e0b;
+            --glass-border: rgba(20,184,166,0.18);
+        }
+        body.theme-rainbow_plasma .chat-area { background: #0b040e; }
+        body.theme-rainbow_plasma .sidebar, body.theme-rainbow_plasma .chat-header, body.theme-rainbow_plasma .chat-input-area { background: #100615; }
+        body.theme-rainbow_plasma .quiz-card-bubble { border-color: rgba(20,184,166,0.25); box-shadow: 0 4px 20px rgba(20,184,166,0.15); }
+        body.theme-rainbow_plasma .quiz-opt-btn:hover:not(:disabled) { border-color: #14b8a6; box-shadow: 0 0 10px rgba(20,184,166,0.4); }
+
+        /* 26. Black Hole */
+        body.theme-black_hole {
+            --telegram-blue: #fb923c; --bg-dark: #010103; --chat-bg: #06060c;
+            --card-bg: #0e0e1a; --bubble-bot: #06060c; --bubble-user: #18182b;
+            --text-main: #fff7ed; --success: #f97316; --gold: #eab308;
+            --glass-border: rgba(251,146,60,0.12);
+        }
+        body.theme-black_hole .chat-area { background: #010103; }
+        body.theme-black_hole .sidebar, body.theme-black_hole .chat-header, body.theme-black_hole .chat-input-area { background: #030307; }
+        body.theme-black_hole .quiz-card-bubble { border-color: rgba(251,146,60,0.2); box-shadow: 0 4px 20px rgba(251,146,60,0.1); }
+        body.theme-black_hole .quiz-opt-btn:hover:not(:disabled) { border-color: #fb923c; box-shadow: 0 0 10px rgba(251,146,60,0.3); }
+
+        /* 27. Floating Islands */
+        body.theme-floating_islands {
+            --telegram-blue: #38bdf8; --bg-dark: #0a1c28; --chat-bg: #122c3d;
+            --card-bg: #1a3e56; --bubble-bot: #122c3d; --bubble-user: #1d4e6e;
+            --text-main: #f0f9ff; --success: #4fae5e; --gold: #fbbf24;
+            --glass-border: rgba(56,189,248,0.15);
+        }
+        body.theme-floating_islands .chat-area { background: #0a1c28; }
+        body.theme-floating_islands .sidebar, body.theme-floating_islands .chat-header, body.theme-floating_islands .chat-input-area { background: #0e2433; }
+        body.theme-floating_islands .quiz-card-bubble { border-color: rgba(56,189,248,0.25); box-shadow: 0 4px 20px rgba(56,189,248,0.15); }
+        body.theme-floating_islands .quiz-opt-btn:hover:not(:disabled) { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56,189,248,0.4); }
+
+        /* 28. Ink in Water */
+        body.theme-ink_water {
+            --telegram-blue: #a855f7; --bg-dark: #07020d; --chat-bg: #110620;
+            --card-bg: #1e0b37; --bubble-bot: #110620; --bubble-user: #2b0f4f;
+            --text-main: #faf5ff; --success: #06b6d4; --gold: #f43f5e;
+            --glass-border: rgba(168,85,247,0.18);
+        }
+        body.theme-ink_water .chat-area { background: #07020d; }
+        body.theme-ink_water .sidebar, body.theme-ink_water .chat-header, body.theme-ink_water .chat-input-area { background: #0b0314; }
+        body.theme-ink_water .quiz-card-bubble { border-color: rgba(168,85,247,0.25); box-shadow: 0 4px 20px rgba(168,85,247,0.15); }
+        body.theme-ink_water .quiz-opt-btn:hover:not(:disabled) { border-color: #a855f7; box-shadow: 0 0 10px rgba(168,85,247,0.4); }
+
+        /* 29. Magical Particles */
+        body.theme-magical_particles {
+            --telegram-blue: #c084fc; --bg-dark: #090412; --chat-bg: #160a28;
+            --card-bg: #230f3f; --bubble-bot: #160a28; --bubble-user: #311459;
+            --text-main: #faf5ff; --success: #38bdf8; --gold: #fbbf24;
+            --glass-border: rgba(192,132,252,0.15);
+        }
+        body.theme-magical_particles .chat-area { background: #090412; }
+        body.theme-magical_particles .sidebar, body.theme-magical_particles .chat-header, body.theme-magical_particles .chat-input-area { background: #0f071d; }
+        body.theme-magical_particles .quiz-card-bubble { border-color: rgba(192,132,252,0.25); box-shadow: 0 4px 20px rgba(192,132,252,0.15); }
+        body.theme-magical_particles .quiz-opt-btn:hover:not(:disabled) { border-color: #c084fc; box-shadow: 0 0 10px rgba(192,132,252,0.4); }
+
+        /* 30. Premium OLED Theme */
+        body.theme-premium_oled {
+            --telegram-blue: #ffffff; --bg-dark: #000000; --chat-bg: #000000;
+            --card-bg: #111111; --bubble-bot: #111111; --bubble-user: #222222;
+            --text-main: #ffffff; --success: #ffffff; --gold: #aaaaaa;
+            --glass-border: rgba(255,255,255,0.15);
+        }
+        body.theme-premium_oled .chat-area { background: #000000; }
+        body.theme-premium_oled .sidebar, body.theme-premium_oled .chat-header, body.theme-premium_oled .chat-input-area { background: #050505; border: 1px solid rgba(255,255,255,0.08); }
+        body.theme-premium_oled .quiz-card-bubble { border-color: rgba(255,255,255,0.2); box-shadow: 0 4px 20px rgba(255,255,255,0.1); }
+        body.theme-premium_oled .quiz-opt-btn:hover:not(:disabled) { border-color: #ffffff; box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+
+        /* 31. Candy Pop (themes.html) */
+        body.theme-candy {
+            --telegram-blue: #ff006e; --bg-dark: #0d0018; --chat-bg: #110020;
+            --card-bg: #1a0030; --bubble-bot: #110020; --bubble-user: #250040;
+            --text-main: #fff0ff; --success: #00e5ff; --gold: #ccff00;
+            --glass-border: rgba(255,0,110,0.18);
+        }
+        body.theme-candy .chat-area { background: #0d0018; }
+        body.theme-candy .sidebar, body.theme-candy .chat-header, body.theme-candy .chat-input-area { background: #140025; }
+        body.theme-candy .quiz-card-bubble { border-color: rgba(255,0,110,0.25); box-shadow: 0 4px 20px rgba(255,0,110,0.15); }
+        body.theme-candy .quiz-opt-btn:hover:not(:disabled) { border-color: #ff006e; box-shadow: 0 0 10px rgba(255,0,110,0.4); }
+
+        /* 32. Midnight Gold (themes.html) */
+        body.theme-midnight {
+            --telegram-blue: #c9a84c; --bg-dark: #08070c; --chat-bg: #0e0c16;
+            --card-bg: #161422; --bubble-bot: #0e0c16; --bubble-user: #1e1a30;
+            --text-main: #f5e8cc; --success: #5cb85c; --gold: #f5d77e;
+            --glass-border: rgba(201,168,76,0.15);
+        }
+        body.theme-midnight .chat-area { background: #08070c; }
+        body.theme-midnight .sidebar, body.theme-midnight .chat-header, body.theme-midnight .chat-input-area { background: #0e0d16; }
+        body.theme-midnight .quiz-card-bubble { border-color: rgba(201,168,76,0.25); box-shadow: 0 4px 20px rgba(201,168,76,0.15); }
+        body.theme-midnight .quiz-opt-btn:hover:not(:disabled) { border-color: #c9a84c; box-shadow: 0 0 10px rgba(201,168,76,0.4); }
+
+        /* 33. Synthwave (themes.html) */
+        body.theme-synthwave {
+            --telegram-blue: #ff2080; --bg-dark: #0a0010; --chat-bg: #0e0018;
+            --card-bg: #160022; --bubble-bot: #0e0018; --bubble-user: #20003a;
+            --text-main: #ffe0ff; --success: #00cfff; --gold: #ffcc00;
+            --glass-border: rgba(255,32,128,0.18);
+        }
+        body.theme-synthwave .chat-area { background: #0a0010; }
+        body.theme-synthwave .sidebar, body.theme-synthwave .chat-header, body.theme-synthwave .chat-input-area { background: #110018; }
+        body.theme-synthwave .quiz-card-bubble { border-color: rgba(255,32,128,0.25); box-shadow: 0 4px 20px rgba(255,32,128,0.15); }
+        body.theme-synthwave .quiz-opt-btn:hover:not(:disabled) { border-color: #ff2080; box-shadow: 0 0 10px rgba(255,32,128,0.4); }
+
+        /* 34. Sahara Dusk (themes.html) */
+        body.theme-desert {
+            --telegram-blue: #c8870a; --bg-dark: #0f0800; --chat-bg: #160c00;
+            --card-bg: #1e1200; --bubble-bot: #160c00; --bubble-user: #281800;
+            --text-main: #fff0d0; --success: #80c850; --gold: #ffa040;
+            --glass-border: rgba(200,135,10,0.18);
+        }
+        body.theme-desert .chat-area { background: #0f0800; }
+        body.theme-desert .sidebar, body.theme-desert .chat-header, body.theme-desert .chat-input-area { background: #170e00; }
+        body.theme-desert .quiz-card-bubble { border-color: rgba(200,135,10,0.25); box-shadow: 0 4px 20px rgba(200,135,10,0.15); }
+        body.theme-desert .quiz-opt-btn:hover:not(:disabled) { border-color: #c8870a; box-shadow: 0 0 10px rgba(200,135,10,0.4); }
+
+        /* Interactive tilt styling */
+        .message-bubble, .quiz-card-bubble, .stats-card, .sidebar-section-title {
+            transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+            transform-style: preserve-3d;
+        }
+
     </style>
 </head>
 <body>
@@ -1078,6 +1497,43 @@
                     <button class="menu-btn" onclick="sendMenuCommand('/vision')"><i class="fa-solid fa-file-pdf"></i> /vision</button>
                     <button class="menu-btn" onclick="sendMenuCommand('/sfg')"><i class="fa-solid fa-file-pdf"></i> /sfg</button>
                     <button class="menu-btn" onclick="sendMenuCommand('/pw')"><i class="fa-solid fa-file-pdf"></i> /pw</button>
+
+                    <div class="sidebar-section-title">✨ Premium Themes</div>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme aurora')"><i class="fa-solid fa-mountain-sun"></i> Aurora Borealis</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme liquid_glass')"><i class="fa-solid fa-droplet"></i> Liquid Glass</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme gradient_mesh')"><i class="fa-solid fa-square-rss"></i> Gradient Mesh</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme deep_space')"><i class="fa-solid fa-user-astronaut"></i> Deep Space</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme sakura')"><i class="fa-solid fa-spa"></i> Sakura Garden</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme electric_storm')"><i class="fa-solid fa-cloud-bolt"></i> Electric Storm</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme lava')"><i class="fa-solid fa-volcano"></i> Lava Flow</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme ocean')"><i class="fa-solid fa-fish"></i> Deep Ocean</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme cyber_city')"><i class="fa-solid fa-city"></i> Cyber City</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme forest')"><i class="fa-solid fa-spa"></i> Enchanted Forest</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme moonlight_forest')"><i class="fa-solid fa-tree"></i> Moonlight Forest</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme clouds')"><i class="fa-solid fa-cloud"></i> Floating Clouds</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme fireworks')"><i class="fa-solid fa-burst"></i> Fireworks</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme shooting_stars')"><i class="fa-solid fa-meteor"></i> Shooting Stars</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme cosmic_portal')"><i class="fa-solid fa-circle-notch"></i> Cosmic Portal</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme crystal_cave')"><i class="fa-solid fa-gem"></i> Crystal Cave</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme dream_garden')"><i class="fa-solid fa-seedling"></i> Dream Garden</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme rgb')"><i class="fa-solid fa-gamepad"></i> Gaming RGB</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme frozen')"><i class="fa-solid fa-snowflake"></i> Frozen Kingdom</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme sunrise')"><i class="fa-solid fa-sun"></i> Golden Sunrise</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme infinity_tunnel')"><i class="fa-solid fa-road"></i> Infinity Tunnel</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme neural_network')"><i class="fa-solid fa-network-wired"></i> Neural Network</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme music_visualizer')"><i class="fa-solid fa-wave-square"></i> Music Visualizer</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme dna')"><i class="fa-solid fa-dna"></i> DNA Helix</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme hypnotic_rings')"><i class="fa-solid fa-circle-dot"></i> Hypnotic Rings</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme rainbow_plasma')"><i class="fa-solid fa-wand-magic-sparkles"></i> Rainbow Plasma</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme black_hole')"><i class="fa-solid fa-circle"></i> Black Hole</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme floating_islands')"><i class="fa-solid fa-cloud-sun"></i> Floating Islands</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme ink_water')"><i class="fa-solid fa-fill-drip"></i> Ink in Water</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme magical_particles')"><i class="fa-solid fa-wand-magic"></i> Magical Particles</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme premium_oled')"><i class="fa-solid fa-moon"></i> Premium OLED</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme candy')"><i class="fa-solid fa-cookie"></i> Candy Pop</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme midnight')"><i class="fa-solid fa-clock"></i> Midnight Gold</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme synthwave')"><i class="fa-solid fa-guitar"></i> Synthwave</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme desert')"><i class="fa-solid fa-compass"></i> Sahara Dusk</button>
                 </div>
             </div>
             <div class="sidebar-footer">
@@ -3863,7 +4319,16 @@
                 }
 
                 case '/theme': {
-                    const themes = ['cyberpunk', 'neon', 'space', 'galaxy', 'anime', 'matrix', 'default'];
+                    const themes = [
+                        'cyberpunk', 'neon', 'space', 'galaxy', 'anime', 'matrix', 'default',
+                        'aurora', 'liquid_glass', 'gradient_mesh', 'deep_space', 'sakura',
+                        'electric_storm', 'lava', 'ocean', 'cyber_city', 'moonlight_forest', 'forest',
+                        'clouds', 'fireworks', 'shooting_stars', 'cosmic_portal', 'crystal_cave',
+                        'dream_garden', 'rgb', 'frozen', 'sunrise', 'infinity_tunnel',
+                        'neural_network', 'music_visualizer', 'dna', 'hypnotic_rings',
+                        'rainbow_plasma', 'black_hole', 'floating_islands', 'ink_water',
+                        'magical_particles', 'premium_oled', 'candy', 'midnight', 'synthwave', 'desert'
+                    ];
                     const t = param.toLowerCase();
                     if (!t || !themes.includes(t)) {
                         printMsg('bot', `🌈 Available themes: <b>${themes.join(', ')}</b><br>Usage: <code>/theme cyberpunk</code>`, true);
@@ -3873,7 +4338,7 @@
                     if (t !== 'default') document.body.classList.add('theme-' + t);
                     localStorage.setItem('ui_theme', t);
                     reinitParticles();
-                    printMsg('bot', `🌈 Theme switched to <b>${t.charAt(0).toUpperCase() + t.slice(1)}</b>!`, true);
+                    printMsg('bot', `🌈 Theme switched to <b>${t.charAt(0).toUpperCase() + t.slice(1).replace(/_/g, ' ')}</b>!`, true);
                     break;
                 }
 
@@ -8649,103 +9114,835 @@ function rs(){document.body.style.overflow='hidden';location.reload()}
     }
 
     // ══════════════════════════════════════════
-    // LIVE PARTICLE BACKGROUND
+    // INTERACTIVE WALLPAPER & CANVASES ENGINE
     // ══════════════════════════════════════════
     let particleAnimFrame = null;
     const particles = [];
     const PARTICLE_TYPES = ['star','gem','spark','energy'];
+    const mouseRipples = [];
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let targetMouseX = mouseX;
+    let targetMouseY = mouseY;
+    let wallpaperTime = 0;
 
-    function initParticles() {
+    const THEME_WALLPAPER_MAP = {
+        cyberpunk: 'grid',
+        neon: 'confetti',
+        space: 'stars',
+        galaxy: 'cosmic_portal',
+        anime: 'sakura',
+        matrix: 'matrix_rain',
+        default: 'default_particles',
+        aurora: 'aurora',
+        liquid_glass: 'liquid_glass',
+        gradient_mesh: 'gradient_mesh',
+        deep_space: 'deep_space',
+        sakura: 'sakura',
+        electric_storm: 'electric_storm',
+        lava: 'lava',
+        ocean: 'ocean',
+        cyber_city: 'cyber_city',
+        moonlight_forest: 'forest',
+        forest: 'forest',
+        clouds: 'clouds',
+        fireworks: 'fireworks',
+        shooting_stars: 'shooting_stars',
+        cosmic_portal: 'cosmic_portal',
+        crystal_cave: 'crystal_cave',
+        dream_garden: 'dream_garden',
+        rgb: 'rgb',
+        frozen: 'frozen',
+        sunrise: 'sunrise',
+        infinity_tunnel: 'infinity_tunnel',
+        neural_network: 'neural_network',
+        music_visualizer: 'music_visualizer',
+        dna: 'dna',
+        hypnotic_rings: 'hypnotic_rings',
+        rainbow_plasma: 'rainbow_plasma',
+        black_hole: 'black_hole',
+        floating_islands: 'floating_islands',
+        ink_water: 'ink_water',
+        magical_particles: 'magical_particles',
+        premium_oled: 'premium_oled',
+        candy: 'candy',
+        midnight: 'midnight',
+        synthwave: 'synthwave',
+        desert: 'desert'
+    };
+
+    function getActiveTheme() {
+        return localStorage.getItem('ui_theme') || 'default';
+    }
+
+    // Mouse Listeners
+    window.addEventListener('mousemove', (e) => {
+        targetMouseX = e.clientX;
+        targetMouseY = e.clientY;
+    });
+
+    window.addEventListener('click', (e) => {
+        const themeAccent = getComputedStyle(document.body).getPropertyValue('--telegram-blue').trim() || '#00ffe5';
+        mouseRipples.push({
+            x: e.clientX,
+            y: e.clientY,
+            r: 0,
+            maxR: 150 + Math.random() * 100,
+            color: themeAccent,
+            opacity: 1
+        });
+    });
+
+    // 3D Tilt Cards effect
+    document.addEventListener('mousemove', (e) => {
+        const card = e.target.closest('.message-bubble, .quiz-card-bubble, .stats-card');
+        if (card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = -(y / rect.height) * 15;
+            const rotateY = (x / rect.width) * 15;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            card.style.boxShadow = `0 15px 35px rgba(0,0,0,0.35), 0 0 15px var(--telegram-blue)`;
+        }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+        const card = e.target.closest('.message-bubble, .quiz-card-bubble, .stats-card');
+        if (card) {
+            card.style.transform = '';
+            card.style.boxShadow = '';
+        }
+    });
+
+    function initWallpaper() {
         const canvas = document.getElementById('particle-canvas');
-        if (!canvas) return;
+        if (!canvas) { setTimeout(initWallpaper, 200); return; }
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         particles.length = 0;
-        for (let i = 0; i < 40; i++) {
-            spawnParticle(canvas);
+
+        const theme = getActiveTheme();
+        const type = THEME_WALLPAPER_MAP[theme] || 'default_particles';
+        const w = canvas.width;
+        const h = canvas.height;
+
+        if (['lava', 'fire'].includes(type)) {
+            for (let i = 0; i < 65; i++) {
+                particles.push({
+                    x: Math.random() * w, y: h + Math.random() * h,
+                    vy: 0.8 + Math.random() * 1.5,
+                    life: Math.random(), size: 2 + Math.random() * 5,
+                    wobble: Math.random() * Math.PI * 2
+                });
+            }
         }
+        else if (['ocean', 'bubbles'].includes(type)) {
+            for (let i = 0; i < 35; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    vy: 0.3 + Math.random() * 0.6, size: 4 + Math.random() * 14,
+                    phase: Math.random() * Math.PI * 2, pulse: Math.random() * Math.PI * 2,
+                    r: [0, 80, 120, 160][Math.floor(Math.random() * 4)],
+                    g: [150, 180, 210, 240][Math.floor(Math.random() * 4)],
+                    b: 255
+                });
+            }
+        }
+        else if (['candy', 'confetti'].includes(type)) {
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.8, vy: 0.4 + Math.random() * 1.2,
+                    s: 3 + Math.random() * 6, rot: Math.random() * Math.PI * 2,
+                    rotV: (Math.random() - 0.5) * 0.08, ci: Math.floor(Math.random() * 6),
+                    shape: Math.floor(Math.random() * 3)
+                });
+            }
+        }
+        else if (['stars', 'deep_space', 'shooting_stars', 'premium_oled'].includes(type)) {
+            const num = type === 'premium_oled' ? 20 : 80;
+            for (let i = 0; i < num; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    a: 0.2 + Math.random() * 0.8, tw: Math.random() * Math.PI * 2,
+                    layer: Math.floor(Math.random() * 3)
+                });
+            }
+        }
+        else if (['forest', 'moonlight_forest'].includes(type)) {
+            for (let i = 0; i < 28; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    angle: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.05,
+                    speed: 0.4 + Math.random() * 0.8,
+                    pulseRate: 1.5 + Math.random() * 2,
+                    phase: Math.random() * Math.PI * 2,
+                    glow: 0.5, trail: []
+                });
+            }
+        }
+        else if (['desert', 'dust', 'sunrise'].includes(type)) {
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    vx: 0.1 + Math.random() * 0.3, vy: (Math.random() - 0.5) * 0.15,
+                    size: 0.8 + Math.random() * 2.5,
+                    a: 0.2 + Math.random() * 0.5,
+                    phase: Math.random() * Math.PI * 2,
+                    gold: Math.random() < 0.15
+                });
+            }
+        }
+        else if (['sakura'].includes(type)) {
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * w, y: -20 - Math.random() * h,
+                    size: 5 + Math.random() * 8,
+                    vy: 1 + Math.random() * 1.5,
+                    vx: 0.5 + Math.random() * 1,
+                    rot: Math.random() * Math.PI,
+                    rotSpeed: (Math.random() - 0.5) * 0.03
+                });
+            }
+        }
+        else if (['electric_storm'].includes(type)) {
+            for (let i = 0; i < 15; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h * 0.4,
+                    r: 80 + Math.random() * 60,
+                    vx: 0.1 + Math.random() * 0.3
+                });
+            }
+        }
+        else if (['cyber_city'].includes(type)) {
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    len: 10 + Math.random() * 15,
+                    vy: 8 + Math.random() * 6,
+                    vx: -1 - Math.random() * 0.5
+                });
+            }
+        }
+        else if (['clouds'].includes(type)) {
+            for (let i = 0; i < 8; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h * 0.5,
+                    r: 100 + Math.random() * 80,
+                    vx: 0.05 + Math.random() * 0.15
+                });
+            }
+        }
+        else if (['cosmic_portal'].includes(type)) {
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    angle: Math.random() * Math.PI * 2,
+                    dist: 50 + Math.random() * 250,
+                    speed: 0.01 + Math.random() * 0.02,
+                    size: 1 + Math.random() * 3,
+                    color: Math.random() > 0.5 ? '#d946ef' : '#8b5cf6'
+                });
+            }
+        }
+        else if (['crystal_cave'].includes(type)) {
+            for (let i = 0; i < 20; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: h - Math.random() * h * 0.3,
+                    w: 8 + Math.random() * 15,
+                    h: 30 + Math.random() * 60,
+                    color: Math.random() > 0.5 ? 'rgba(6,182,212,' : 'rgba(217,70,239,'
+                });
+            }
+        }
+        else if (['dream_garden'].includes(type)) {
+            for (let i = 0; i < 5; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 1.5, vy: -(0.5 + Math.random() * 1),
+                    phase: Math.random() * Math.PI, size: 4 + Math.random() * 4
+                });
+            }
+        }
+        else if (['frozen'].includes(type)) {
+            for (let i = 0; i < 60; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    r: 1.5 + Math.random() * 3,
+                    vy: 0.8 + Math.random() * 1.2,
+                    vx: (Math.random() - 0.5) * 0.4
+                });
+            }
+        }
+        else if (['infinity_tunnel'].includes(type)) {
+            for (let i = 0; i < 8; i++) {
+                particles.push({
+                    scale: i / 8,
+                    rot: Math.random() * Math.PI
+                });
+            }
+        }
+        else if (['neural_network', 'magical_particles'].includes(type)) {
+            for (let i = 0; i < 45; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.6, vy: (Math.random() - 0.5) * 0.6,
+                    size: 2 + Math.random() * 3
+                });
+            }
+        }
+        else if (['dna'].includes(type)) {
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    t: i / 40 * Math.PI * 4,
+                    offset: Math.random() * 10
+                });
+            }
+        }
+        else if (['liquid_glass'].includes(type)) {
+            for (let i = 0; i < 8; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    r: 40 + Math.random() * 60,
+                    vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4
+                });
+            }
+        }
+        else if (['gradient_mesh'].includes(type)) {
+            for (let i = 0; i < 4; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    r: 250 + Math.random() * 200,
+                    vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
+                    color: ['#007aff', '#ec4899', '#bf00ff', '#00cfff'][i]
+                });
+            }
+        }
+        else if (['black_hole'].includes(type)) {
+            for (let i = 0; i < 60; i++) {
+                particles.push({
+                    angle: Math.random() * Math.PI * 2,
+                    dist: 80 + Math.random() * 200,
+                    speed: 0.005 + Math.random() * 0.01
+                });
+            }
+        }
+        else if (['floating_islands'].includes(type)) {
+            for (let i = 0; i < 4; i++) {
+                particles.push({
+                    x: w * (0.2 + i * 0.2), y: h * (0.4 + Math.random() * 0.2),
+                    w: 60 + Math.random() * 80, h: 40 + Math.random() * 40
+                });
+            }
+        }
+        else if (['ink_water'].includes(type)) {
+            for (let i = 0; i < 8; i++) {
+                particles.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    r: 10, maxR: 80 + Math.random() * 80,
+                    color: ['rgba(0,150,255,', 'rgba(168,85,247,', 'rgba(244,63,94,'][Math.floor(Math.random()*3)],
+                    life: 1
+                });
+            }
+        }
+        else if (['matrix_rain'].includes(type)) {
+            const cols = Math.floor(w / 18);
+            for (let i = 0; i < cols; i++) {
+                particles.push({
+                    x: i * 18,
+                    y: Math.random() * -h,
+                    speed: 2 + Math.random() * 4,
+                    chars: Array.from({length: 15}, () => Math.random() > 0.5 ? '1' : '0')
+                });
+            }
+        }
+        else {
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: -(Math.random() * 0.45 + 0.1),
+                    char: ['★', '♦', '✨', '⚡'][i % 4],
+                    color: ['#f59e0b', '#2481cc', '#ec4899', '#4fae5e'][i % 4],
+                    size: Math.random() * 10 + 8,
+                    alpha: Math.random() * 0.45 + 0.15,
+                    life: Math.random() * 200 + 100,
+                    type: PARTICLE_TYPES[i % 4]
+                });
+            }
+        }
+
         if (particleAnimFrame) cancelAnimationFrame(particleAnimFrame);
-        animateParticles();
+        loopParticles();
     }
 
-    function spawnParticle(canvas) {
-        const types = ['star','gem','spark','energy'];
-        const type = types[Math.floor(Math.random() * types.length)];
-        const glyphs = { star: '&#10022;', gem: '&#9830;', spark: '&#10022;', energy: '&#9889;' };
-        particles.push({
-            x: Math.random() * (canvas || document.getElementById('particle-canvas')).width,
-            y: Math.random() * (canvas || document.getElementById('particle-canvas')).height,
-            vx: (Math.random() - 0.5) * 0.4,
-            vy: -(Math.random() * 0.5 + 0.1),
-            size: Math.random() * 10 + 8,
-            alpha: Math.random() * 0.5 + 0.2,
-            type: type,
-            glyph: glyphs[type],
-            life: Math.random() * 200 + 100,
-            maxLife: 300
-        });
-    }
-
-    function animateParticles() {
+    function loopParticles() {
         const canvas = document.getElementById('particle-canvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const colors = {
-            star: '#f59e0b', gem: '#2481cc', spark: '#ec4899', energy: '#4fae5e'
-        };
-        for (let i = particles.length - 1; i >= 0; i--) {
-            const p = particles[i];
-            p.x += p.vx; p.y += p.vy; p.life--;
-            const fade = p.life < 60 ? (p.life / 60) : 1;
-            ctx.globalAlpha = p.alpha * fade;
-            ctx.fillStyle = colors[p.type] || '#fff';
-            ctx.font = p.size + 'px serif';
-            ctx.fillText(p.type === 'star' ? '&#x2726;' : p.type === 'gem' ? '&#x25C6;' : p.type === 'spark' ? '&#x2728;' : '&#x26A1;', p.x, p.y);
-            if (p.life <= 0) {
-                particles.splice(i, 1);
-                spawnParticle(canvas);
+        const w = canvas.width;
+        const h = canvas.height;
+
+        ctx.clearRect(0, 0, w, h);
+        wallpaperTime += 0.016;
+
+        mouseX += (targetMouseX - mouseX) * 0.08;
+        mouseY += (targetMouseY - mouseY) * 0.08;
+
+        const dx = (targetMouseX - window.innerWidth / 2) * 0.015;
+        const dy = (targetMouseY - window.innerHeight / 2) * 0.015;
+        canvas.style.transform = `translate(${dx}px, ${dy}px) scale(1.02)`;
+
+        const theme = getActiveTheme();
+        const type = THEME_WALLPAPER_MAP[theme] || 'default_particles';
+
+        ctx.save();
+
+        if (type === 'aurora') {
+            for (let band = 0; band < 4; band++) {
+                const yBase = h * (0.25 + band * 0.15);
+                const colors = [
+                    ['rgba(0,201,167,', 'rgba(123,47,247,'],
+                    ['rgba(0,150,200,', 'rgba(224,64,251,'],
+                    ['rgba(0,230,180,', 'rgba(80,20,220,'],
+                    ['rgba(0,180,140,', 'rgba(160,0,240,']
+                ][band];
+                ctx.beginPath();
+                for (let x = 0; x <= w; x += 8) {
+                    const nx = x / w;
+                    const y = yBase +
+                        Math.sin(nx * 3 + wallpaperTime * 0.4 + band) * 50 +
+                        Math.sin(nx * 5 + wallpaperTime * 0.25 + band * 2) * 20;
+                    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+                const grd = ctx.createLinearGradient(0, yBase - 80, 0, yBase + 80);
+                grd.addColorStop(0, colors[0] + '0)');
+                grd.addColorStop(0.5, colors[0] + '0.2)');
+                grd.addColorStop(1, colors[1] + '0)');
+                ctx.fillStyle = grd; ctx.fill();
             }
-        }
-        ctx.globalAlpha = 1;
-        particleAnimFrame = requestAnimationFrame(animateParticles);
-    }
-
-    function reinitParticles() {
-        initParticles();
-    }
-
-    window.addEventListener('resize', () => {
-        const canvas = document.getElementById('particle-canvas');
-        if (canvas) { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    });
-
-    // ── Use Unicode via textContent instead of HTML entities ──
-    (function fixParticleGlyphs() {
-        // We'll use direct Unicode characters for particles
-        const canvas = document.getElementById('particle-canvas');
-        if (!canvas) { setTimeout(fixParticleGlyphs, 200); return; }
-        particles.length = 0;
-        const glyphMap = ['&#9733;', '&#9830;', '&#10024;', '&#9889;'];
-        for (let i = 0; i < 40; i++) {
-            const type = PARTICLE_TYPES[i % 4];
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.35,
-                vy: -(Math.random() * 0.45 + 0.1),
-                char: ['★', '♦', '✨', '⚡'][i % 4],
-                color: ['#f59e0b', '#2481cc', '#ec4899', '#4fae5e'][i % 4],
-                size: Math.random() * 10 + 8,
-                alpha: Math.random() * 0.45 + 0.15,
-                life: Math.random() * 200 + 100,
-                type
+            particles.forEach(p => {
+                const alpha = p.a * (0.3 + 0.7 * Math.sin(wallpaperTime * 2 + p.tw));
+                ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.layer === 2 ? 1.5 : 0.8, 0, Math.PI * 2); ctx.fill();
             });
         }
-        if (particleAnimFrame) cancelAnimationFrame(particleAnimFrame);
-        (function loopParticles() {
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        else if (type === 'lava') {
+            particles.forEach(p => {
+                p.y -= p.vy;
+                p.x += Math.sin(p.wobble + wallpaperTime * 2) * 0.4;
+                p.wobble += 0.05; p.life -= 0.01;
+                if (p.life <= 0) {
+                    p.x = Math.random() * w; p.y = h + 10;
+                    p.vy = 0.8 + Math.random() * 1.5;
+                    p.life = 0.8 + Math.random() * 0.4;
+                    p.size = 2 + Math.random() * 4;
+                    p.wobble = Math.random() * Math.PI * 2;
+                }
+                const a = p.life * 0.7;
+                ctx.fillStyle = `rgba(255,${Math.round(130 * p.life)},0,${a})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2); ctx.fill();
+            });
+        }
+        else if (type === 'ocean') {
+            particles.forEach(p => {
+                p.y -= p.vy * 0.4;
+                const dx = p.x - mouseX;
+                const dy = p.y - mouseY;
+                const dist = Math.hypot(dx, dy);
+                if (dist < 150) {
+                    p.x += (dx / dist) * 1.5;
+                    p.y += (dy / dist) * 0.8;
+                }
+                p.x += Math.sin(p.phase + wallpaperTime) * 0.3;
+                p.phase += 0.02; p.pulse += 0.04;
+                if (p.y < -20) { p.y = h + 10; p.x = Math.random() * w; }
+                const alpha = 0.1 + 0.15 * Math.sin(p.pulse);
+                const r = p.size + 2 * Math.sin(p.pulse);
+                ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(${p.r},${p.g},${p.b},${alpha + 0.25})`;
+                ctx.lineWidth = 1.2; ctx.stroke();
+                ctx.fillStyle = `rgba(${p.r},${p.g},${p.b},${alpha * 0.3})`; ctx.fill();
+            });
+        }
+        else if (type === 'candy') {
+            const colors = ['#ff006e', '#00e5ff', '#ccff00', '#ff9500', '#7b2ff7', '#ff3eec'];
+            particles.forEach(p => {
+                p.y += p.vy; p.x += p.vx; p.rot += p.rotV;
+                if (p.y > h + 20) { p.y = -10; p.x = Math.random() * w; }
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rot);
+                ctx.fillStyle = colors[p.ci % colors.length];
+                ctx.globalAlpha = 0.7;
+                if (p.shape === 0) { ctx.fillRect(-p.s, -p.s, p.s * 2, p.s * 2); }
+                else if (p.shape === 1) { ctx.beginPath(); ctx.arc(0, 0, p.s, 0, Math.PI * 2); ctx.fill(); }
+                else { ctx.beginPath(); ctx.moveTo(0, -p.s); ctx.lineTo(p.s, p.s); ctx.lineTo(-p.s, p.s); ctx.closePath(); ctx.fill(); }
+                ctx.restore();
+            });
+        }
+        else if (type === 'stars') {
+            particles.forEach(s => {
+                const speed = [0.08, 0.2, 0.4][s.layer];
+                const x = ((s.x + wallpaperTime * speed * 10) % w + w) % w;
+                const alpha = s.a * (0.6 + 0.4 * Math.sin(wallpaperTime * 1.5 + s.tw));
+                const r = [0.6, 1.2, 1.8][s.layer];
+                ctx.fillStyle = s.layer === 2 ? `rgba(201,168,76,${alpha})` : `rgba(255,255,255,${alpha})`;
+                ctx.beginPath(); ctx.arc(x, s.y, r, 0, Math.PI * 2); ctx.fill();
+            });
+        }
+        else if (type === 'forest') {
+            particles.forEach(p => {
+                p.angle += p.rotSpeed * (0.5 + 0.5 * Math.sin(wallpaperTime * 0.3 + p.phase));
+                p.x += Math.cos(p.angle) * p.speed;
+                p.y += Math.sin(p.angle) * p.speed;
+                if (p.x < -10) p.x = w + 10;
+                if (p.x > w + 10) p.x = -10;
+                if (p.y < -10) p.y = h + 10;
+                if (p.y > h + 10) p.y = -10;
+                p.glow = 0.4 + 0.6 * Math.sin(wallpaperTime * p.pulseRate + p.phase);
+                p.trail.unshift({ x: p.x, y: p.y });
+                if (p.trail.length > 8) p.trail.pop();
+                p.trail.forEach((pt, i) => {
+                    const a = (p.glow * (1 - i / 8)) * 0.4;
+                    ctx.fillStyle = `rgba(0,230,120,${a})`;
+                    const r = Math.max(0.5, 1.8 * (1 - i / 8));
+                    ctx.beginPath(); ctx.arc(pt.x, pt.y, r, 0, Math.PI * 2); ctx.fill();
+                });
+                ctx.fillStyle = `rgba(120,255,106,${p.glow * 0.85})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI * 2); ctx.fill();
+            });
+        }
+        else if (type === 'grid') {
+            const vp = { x: w / 2, y: h * 0.4 };
+            const offset = (wallpaperTime * 35) % 50;
+            for (let i = -10; i <= 10; i++) {
+                const gx = vp.x + i * (w / 12);
+                ctx.strokeStyle = `rgba(255,32,128,${Math.max(0.1, 0.5 - Math.abs(i) * 0.04)})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(gx, vp.y); ctx.lineTo(vp.x + i * w * 0.6, h); ctx.stroke();
+            }
+            for (let d = 0; d < 12; d++) {
+                const depth = (d + offset / 50) / 12;
+                const ty = vp.y + Math.pow(depth, 1.7) * (h - vp.y);
+                if (ty > h) continue;
+                ctx.strokeStyle = `rgba(191,0,255,${depth * 0.5})`;
+                ctx.lineWidth = 0.8;
+                ctx.beginPath(); ctx.moveTo(0, ty); ctx.lineTo(w, ty); ctx.stroke();
+            }
+            const sg = ctx.createRadialGradient(vp.x, vp.y, 0, vp.x, vp.y, 70);
+            sg.addColorStop(0, 'rgba(255,200,0,0.7)');
+            sg.addColorStop(0.5, 'rgba(255,50,128,0.4)');
+            sg.addColorStop(1, 'transparent');
+            ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(vp.x, vp.y, 70, 0, Math.PI * 2); ctx.fill();
+        }
+        else if (type === 'desert') {
+            particles.forEach(p => {
+                p.x += p.vx + Math.sin(wallpaperTime * 0.5 + p.phase) * 0.15;
+                p.y += p.vy;
+                if (p.x > w + 10) p.x = -10;
+                if (p.y > h + 10) p.y = -10;
+                const alpha = p.a * (0.6 + 0.4 * Math.sin(wallpaperTime * 1.2 + p.phase));
+                ctx.fillStyle = p.gold ? `rgba(255,160,64,${alpha * 0.8})` : `rgba(200,135,10,${alpha * 0.5})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+            });
+        }
+        else if (type === 'sakura') {
+            particles.forEach(p => {
+                p.y += p.vy;
+                p.x += p.vx + Math.sin(wallpaperTime + p.x * 0.01) * 0.3;
+                p.rot += p.rotSpeed;
+                if (p.y > h + 10 || p.x > w + 10) {
+                    p.y = -20;
+                    p.x = Math.random() * w * 0.8;
+                    p.vy = 1 + Math.random() * 1.5;
+                }
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rot);
+                ctx.fillStyle = 'rgba(255,183,197,0.75)';
+                ctx.beginPath();
+                ctx.ellipse(0, 0, p.size, p.size * 0.6, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+        }
+        else if (type === 'electric_storm') {
+            ctx.fillStyle = 'rgba(15,20,30,0.15)';
+            particles.forEach(c => {
+                c.x += c.vx;
+                if (c.x > w + c.r) c.x = -c.r;
+                ctx.beginPath(); ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2); ctx.fill();
+            });
+            if (Math.random() < 0.015) {
+                ctx.fillStyle = 'rgba(180,240,255,0.25)';
+                ctx.fillRect(0,0,w,h);
+                ctx.strokeStyle = '#b4f0ff';
+                ctx.lineWidth = 2 + Math.random() * 3;
+                ctx.beginPath();
+                let lx = Math.random() * w;
+                let ly = 0;
+                ctx.moveTo(lx, ly);
+                while (ly < h) {
+                    lx += (Math.random() - 0.5) * 45;
+                    ly += 30 + Math.random() * 40;
+                    ctx.lineTo(lx, ly);
+                }
+                ctx.stroke();
+            }
+        }
+        else if (type === 'cyber_city') {
+            ctx.strokeStyle = 'rgba(168,85,247,0.2)';
+            ctx.lineWidth = 1;
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p.x + p.vx * 0.5, p.y + p.len);
+                ctx.stroke();
+                p.x += p.vx; p.y += p.vy;
+                if (p.y > h) {
+                    p.y = -20;
+                    p.x = Math.random() * w;
+                }
+            });
+        }
+        else if (type === 'clouds') {
+            ctx.fillStyle = 'rgba(255,255,255,0.06)';
+            particles.forEach(c => {
+                c.x += c.vx;
+                if (c.x > w + c.r) c.x = -c.r;
+                ctx.beginPath(); ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2); ctx.fill();
+            });
+        }
+        else if (type === 'cosmic_portal') {
+            ctx.save();
+            ctx.translate(w/2, h/2);
+            particles.forEach(p => {
+                p.angle += p.speed;
+                const px = Math.cos(p.angle) * p.dist;
+                const py = Math.sin(p.angle) * p.dist;
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = 0.7;
+                ctx.beginPath(); ctx.arc(px, py, p.size, 0, Math.PI * 2); ctx.fill();
+            });
+            ctx.restore();
+        }
+        else if (type === 'crystal_cave') {
+            particles.forEach(p => {
+                ctx.fillStyle = p.color + '0.15)';
+                ctx.beginPath();
+                ctx.moveTo(p.x, h);
+                ctx.lineTo(p.x - p.w/2, h - p.h);
+                ctx.lineTo(p.x + p.w/2, h - p.h);
+                ctx.closePath();
+                ctx.fill();
+                ctx.strokeStyle = p.color + '0.4)';
+                ctx.stroke();
+            });
+        }
+        else if (type === 'dream_garden') {
+            particles.forEach(p => {
+                p.y += p.vy;
+                p.x += p.vx + Math.sin(wallpaperTime * 2 + p.phase) * 0.4;
+                if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+                if (p.x < -10 || p.x > w + 10) p.vx *= -1;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.fillStyle = 'rgba(244,114,182,0.6)';
+                ctx.beginPath();
+                ctx.ellipse(-p.size, 0, p.size * Math.abs(Math.sin(wallpaperTime * 8)), p.size, 0, 0, Math.PI * 2);
+                ctx.ellipse(p.size, 0, p.size * Math.abs(Math.sin(wallpaperTime * 8)), p.size, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+        }
+        else if (type === 'frozen') {
+            ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            particles.forEach(p => {
+                p.y += p.vy; p.x += p.vx;
+                if (p.y > h + 10) { p.y = -10; p.x = Math.random() * w; }
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+            });
+        }
+        else if (type === 'infinity_tunnel') {
+            ctx.save();
+            ctx.translate(w/2, h/2);
+            particles.forEach(p => {
+                p.scale += 0.005;
+                if (p.scale > 1) p.scale = 0;
+                p.rot += 0.002;
+                ctx.rotate(p.rot);
+                ctx.strokeStyle = `rgba(139,92,246,${p.scale * 0.4})`;
+                ctx.lineWidth = 2 * p.scale;
+                ctx.strokeRect(-w * 0.3 * p.scale, -h * 0.3 * p.scale, w * 0.6 * p.scale, h * 0.6 * p.scale);
+            });
+            ctx.restore();
+        }
+        else if (type === 'neural_network') {
+            particles.forEach(p => {
+                const dx = mouseX - p.x;
+                const dy = mouseY - p.y;
+                const dist = Math.hypot(dx, dy);
+                if (dist < 200) {
+                    p.x += (dx / dist) * 0.3;
+                    p.y += (dy / dist) * 0.3;
+                }
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > w) p.vx *= -1;
+                if (p.y < 0 || p.y > h) p.vy *= -1;
+
+                ctx.fillStyle = 'rgba(16,185,129,0.7)';
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+            });
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p1 = particles[i];
+                    const p2 = particles[j];
+                    const d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+                    if (d < 120) {
+                        ctx.strokeStyle = `rgba(16,185,129,${(1 - d / 120) * 0.25})`;
+                        ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+                    }
+                }
+            }
+        }
+        else if (type === 'music_visualizer') {
+            const bands = 24;
+            const barWidth = w / bands;
+            ctx.fillStyle = 'rgba(244,63,94,0.15)';
+            for (let i = 0; i < bands; i++) {
+                const amp = Math.sin(wallpaperTime * 2 + i * 0.3) * 60 + 80;
+                const distToMouse = Math.abs((i * barWidth + barWidth/2) - mouseX);
+                const mouseReact = Math.max(0, 150 - distToMouse) * 0.4;
+                const hVal = amp + mouseReact;
+                ctx.fillRect(i * barWidth, h - hVal, barWidth - 4, hVal);
+            }
+        }
+        else if (type === 'dna') {
+            ctx.save();
+            ctx.translate(w/2, h/2);
+            particles.forEach((p, idx) => {
+                p.t += 0.015;
+                const x1 = Math.sin(p.t) * 120;
+                const y1 = (idx - 20) * 15;
+                const x2 = Math.sin(p.t + Math.PI) * 120;
+                const y2 = (idx - 20) * 15;
+
+                ctx.strokeStyle = 'rgba(99,102,241,0.25)';
+                ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+
+                ctx.fillStyle = 'rgba(99,102,241,0.85)';
+                ctx.beginPath(); ctx.arc(x1, y1, 4, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle = 'rgba(6,182,212,0.85)';
+                ctx.beginPath(); ctx.arc(x2, y2, 4, 0, Math.PI * 2); ctx.fill();
+            });
+            ctx.restore();
+        }
+        else if (type === 'liquid_glass') {
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < -p.r || p.x > w + p.r) p.vx *= -1;
+                if (p.y < -p.r || p.y > h + p.r) p.vy *= -1;
+
+                const grad = ctx.createRadialGradient(p.x, p.y, p.r * 0.2, p.x, p.y, p.r);
+                grad.addColorStop(0, 'rgba(255, 255, 255, 0.08)');
+                grad.addColorStop(0.5, 'rgba(255, 255, 255, 0.03)');
+                grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                ctx.fillStyle = grad;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+                ctx.lineWidth = 0.8;
+                ctx.beginPath(); ctx.arc(p.x - p.r*0.2, p.y - p.r*0.2, p.r * 0.6, 0, Math.PI * 2); ctx.stroke();
+            });
+        }
+        else if (type === 'gradient_mesh') {
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > w) p.vx *= -1;
+                if (p.y < 0 || p.y > h) p.vy *= -1;
+
+                const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+                grad.addColorStop(0, p.color + '0.12)');
+                grad.addColorStop(1, p.color + '0)');
+                ctx.fillStyle = grad;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+            });
+        }
+        else if (type === 'black_hole') {
+            ctx.save();
+            ctx.translate(w/2, h/2);
+            ctx.fillStyle = '#010103';
+            ctx.beginPath(); ctx.arc(0, 0, 50, 0, Math.PI * 2); ctx.fill();
+
+            particles.forEach(p => {
+                p.angle += p.speed;
+                const px = Math.cos(p.angle) * p.dist;
+                const py = Math.sin(p.angle) * p.dist;
+
+                ctx.fillStyle = `rgba(251,146,60,${0.3 + 0.3 * Math.sin(p.angle)})`;
+                ctx.beginPath(); ctx.arc(px, py, 1.5, 0, Math.PI * 2); ctx.fill();
+            });
+            ctx.restore();
+        }
+        else if (type === 'ink_water') {
+            particles.forEach((p, idx) => {
+                p.r += 0.3;
+                p.life -= 0.003;
+                if (p.life <= 0) {
+                    p.x = Math.random() * w; p.y = Math.random() * h;
+                    p.r = 10; p.life = 1;
+                }
+                ctx.fillStyle = p.color + p.life * 0.1 + ')';
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+            });
+        }
+        else if (type === 'matrix_rain') {
+            ctx.font = '14px monospace';
+            particles.forEach(p => {
+                p.y += p.speed;
+                if (p.y > h) {
+                    p.y = -150;
+                    p.x = Math.random() * w;
+                }
+                p.chars.forEach((c, idx) => {
+                    const alpha = idx / 15;
+                    ctx.fillStyle = `rgba(0,255,65,${alpha * 0.85})`;
+                    ctx.fillText(c, p.x, p.y + idx * 14);
+                });
+            });
+        }
+        else if (type === 'magical_particles') {
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > w) p.vx *= -1;
+                if (p.y < 0 || p.y > h) p.vy *= -1;
+
+                ctx.fillStyle = 'rgba(192,132,252,0.6)';
+                ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI * 2); ctx.fill();
+
+                const distToMouse = Math.hypot(p.x - mouseX, p.y - mouseY);
+                if (distToMouse < 180) {
+                    ctx.strokeStyle = `rgba(192,132,252,${(1 - distToMouse/180) * 0.3})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouseX, mouseY); ctx.stroke();
+                }
+            });
+        }
+        else if (type === 'premium_oled') {
+            particles.forEach(p => {
+                const alpha = p.a * (0.2 + 0.8 * Math.sin(wallpaperTime * 1.5 + p.tw));
+                ctx.fillStyle = `rgba(255,255,255,${alpha * 0.6})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, 0.8, 0, Math.PI * 2); ctx.fill();
+            });
+        }
+        else {
             for (let i = particles.length - 1; i >= 0; i--) {
                 const p = particles[i];
                 p.x += p.vx; p.y += p.vy; p.life--;
@@ -8755,17 +9952,63 @@ function rs(){document.body.style.overflow='hidden';location.reload()}
                 ctx.font = p.size + 'px serif';
                 ctx.fillText(p.char, p.x, p.y);
                 if (p.life <= 0 || p.y < -20) {
-                    p.x = Math.random() * canvas.width;
-                    p.y = canvas.height + 10;
+                    p.x = Math.random() * w;
+                    p.y = h + 10;
                     p.life = Math.random() * 200 + 100;
                     p.vx = (Math.random() - 0.5) * 0.35;
                     p.vy = -(Math.random() * 0.45 + 0.1);
                 }
             }
-            ctx.globalAlpha = 1;
-            particleAnimFrame = requestAnimationFrame(loopParticles);
-        })();
-    })();
+        }
+
+        ctx.restore();
+
+        // ── Render Click Ripples ──
+        for (let i = mouseRipples.length - 1; i >= 0; i--) {
+            const r = mouseRipples[i];
+            r.r += 3;
+            r.opacity -= 0.015;
+            if (r.opacity <= 0 || r.r >= r.maxR) {
+                mouseRipples.splice(i, 1);
+            } else {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2);
+                ctx.strokeStyle = r.color;
+                ctx.globalAlpha = r.opacity * 0.35;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+
+        // ── Ambient spotlight glow behind cursor ──
+        ctx.save();
+        const lightGlow = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 160);
+        lightGlow.addColorStop(0, 'rgba(255,255,255,0.06)');
+        lightGlow.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = lightGlow;
+        ctx.beginPath(); ctx.arc(mouseX, mouseY, 160, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+
+        particleAnimFrame = requestAnimationFrame(loopParticles);
+    }
+
+    function initParticles() {
+        initWallpaper();
+    }
+
+    function reinitParticles() {
+        initWallpaper();
+    }
+
+    window.addEventListener('resize', () => {
+        const canvas = document.getElementById('particle-canvas');
+        if (canvas) { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    });
+
+    // Start Engine on startup
+    initWallpaper();
 
     </script>
 </body>
