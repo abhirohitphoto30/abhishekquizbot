@@ -7040,23 +7040,255 @@ function rs(){document.body.style.overflow='hidden';location.reload()}
 </html>`;
         }
 
+        function generateNewClassroomVideoHtml(quiz) {
+            function getTopicDetails(qId, questionText) {
+                const qLower = questionText.toLowerCase();
+                if (qLower.includes("opportunity cost")) {
+                    return { title: "The Theory of Opportunity Cost", intro: "the fundamental economic concept of foregone alternatives and how we measure choices." };
+                }
+                if (qLower.includes("gnp") || qLower.includes("gdp") || qLower.includes("national income")) {
+                    if (qLower.includes("deflator")) {
+                        return { title: "GDP Deflator vs. CPI", intro: "why the GDP deflator is a more comprehensive inflation measure than the Consumer Price Index." };
+                    }
+                    if (qLower.includes("domestic") || qLower.includes("territory")) {
+                        return { title: "National Accounting: Economic Territory", intro: "how we define a nation's domestic or economic territory for GDP calculations." };
+                    }
+                    if (qLower.includes("personal income")) {
+                        return { title: "National Income Accounts: Personal Income", intro: "how we derive the actual income received by households from national income." };
+                    }
+                    return { title: "Economic Growth and GDP Metrics", intro: "the core indicators we use to measure a nation's economic output and growth." };
+                }
+                if (qLower.includes("monopolistic")) {
+                    return { title: "Market Structures: Monopolistic Competition", intro: "markets where many sellers offer similar but differentiated products." };
+                }
+                if (qLower.includes("payment") && qLower.includes("bank")) {
+                    return { title: "Financial Inclusion: Payments Banks in India", intro: "the regulatory framework and operational limits of Payments Banks." };
+                }
+                if (qLower.includes("working capital")) {
+                    return { title: "Corporate Finance: Working Capital Management", intro: "the short-term financial resources a business needs for day-to-day operations." };
+                }
+                if (qLower.includes("kuznets")) {
+                    return { title: "Development Economics: The Kuznets Curve", intro: "the relationship between economic development and income inequality over time." };
+                }
+                if (qLower.includes("gender gap")) {
+                    return { title: "Socio-Economic Indicators: The Global Gender Gap Index", intro: "how the World Economic Forum measures gender disparities across nations." };
+                }
+                if (qLower.includes("opec")) {
+                    return { title: "Global Commodity Markets: The OPEC Cartel", intro: "the structure, membership, and policy coordination of oil-producing nations." };
+                }
+                if (qLower.includes("utility")) {
+                    return { title: "Consumer Behaviour: Marginal & Total Utility", intro: "how total utility behaves when marginal utility reaches zero." };
+                }
+                
+                const words = questionText.replace(/[^\w\s]/g, "").split(/\s+/).filter(w => w.length > 3);
+                const titleWords = words.slice(0, 3).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+                const generatedTitle = titleWords.length > 0 ? titleWords.join(" ") + " Concepts" : `Topic ${qId}`;
+                return {
+                    title: generatedTitle,
+                    intro: "critical academic and economic principles relating to this area of study."
+                };
+            }
+
+            function buildLectureDataset(parsed) {
+                const students = ["Rohan", "Ananya", "Vikram", "Sneha", "Arjun", "Pooja", "Aditya", "Meera", "Kabir", "Riya"];
+                return parsed.map((q, idx) => {
+                    const topic = getTopicDetails(q.id, q.question);
+                    const sentences = q.explanation.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
+                    
+                    const card1_front = topic.title;
+                    const card1_back = sentences[0] ? sentences[0] + "." : "The primary concept under discussion.";
+                    
+                    const card2_front = "Core Mechanism";
+                    const correct_statements = sentences.filter(s => /correct|incorrect|option|answer/i.test(s));
+                    const card2_back = correct_statements.length > 0 ? correct_statements.slice(0, 2).join(". ") + "." : (sentences[1] ? sentences[1] + "." : "Detailed mechanism.");
+                    
+                    const card3_front = "Key Takeaway";
+                    const card3_back = sentences[sentences.length - 1] ? sentences[sentences.length - 1] + "." : "Crucial point to remember.";
+
+                    const flashcards = [
+                        { front: card1_front, back: card1_back },
+                        { front: card2_front, back: card2_back },
+                        { front: card3_front, back: card3_back }
+                    ];
+
+                    const student_name = students[idx % students.length];
+                    const correct_letter = String.fromCharCode(65 + q.correct_index);
+
+                    const dialogue = [
+                        {
+                            speaker: "Teacher",
+                            text: `Hello class! Today we are going to learn about '${topic.title}'. Specifically, we will discuss ${topic.intro}`,
+                            action: "show_topic_intro"
+                        },
+                        {
+                            speaker: "Teacher",
+                            text: `Let's start by looking at our first flashcard: '${card1_front}'. This is the foundation of our topic.`,
+                            action: "show_card_1"
+                        },
+                        {
+                            speaker: "Teacher",
+                            text: `If we flip this card, we see the core definition: '${card1_back}' Let that sink in.`,
+                            action: "flip_card_1"
+                        },
+                        {
+                            speaker: student_name,
+                            text: `Ma'am, how does this concept apply when we are faced with a practical problem? Can you give us an example?`,
+                            action: "student_raise_hand"
+                        },
+                        {
+                            speaker: "Teacher",
+                            text: `Great question, ${student_name}! Let's look at this practice problem on our smartboard to apply what we just learned.`,
+                            action: "show_question"
+                        },
+                        {
+                            speaker: "Teacher",
+                            text: `To solve this, let's pull up our second flashcard: '${card2_front}'. Let's open it.`,
+                            action: "show_card_2"
+                        },
+                        {
+                            speaker: "Teacher",
+                            text: `Flipped: '${card2_back}' This explains why option ${correct_letter} is the correct answer.`,
+                            action: "flip_card_2"
+                        },
+                        {
+                            speaker: "Teacher",
+                            text: `Finally, let's look at our third card: '${card3_front}'. This is the most important takeaway for your exams.`,
+                            action: "show_card_3"
+                        },
+                        {
+                            speaker: "Teacher",
+                            text: `Flipped: '${card3_back}' Keep this in mind when revising. Let's move on to the next topic!`,
+                            action: "flip_card_3"
+                        }
+                    ];
+
+                    let visual_aid = "none";
+                    let visual_data = {};
+                    const q_lower = q.question.toLowerCase();
+                    if (q_lower.includes("supply") || q_lower.includes("demand")) {
+                        visual_aid = "supply_demand_shift";
+                        visual_data = { title: "Demand & Supply Curve Shift" };
+                    } else if (q_lower.includes("working capital")) {
+                        visual_aid = "working_capital_formula";
+                        visual_data = {
+                            title: "Working Capital Formula",
+                            formula: "Working Capital = Current Assets - Current Liabilities",
+                            assets: ["Bills Receivable", "Debtors", "Cash at Bank", "Finished Goods Inventory", "Raw Materials"]
+                        }
+                    } else if (q_lower.includes("kuznets")) {
+                        visual_aid = "kuznets_curve";
+                        visual_data = { title: "The Kuznets Curve" };
+                    } else if (q_lower.includes("production possibility") || q_lower.includes("ppf")) {
+                        visual_aid = "ppf_curve";
+                        visual_data = { title: "Production Possibility Frontier (PPF)" };
+                    } else if (q_lower.includes("deflator")) {
+                        visual_aid = "gdp_deflator_table";
+                        visual_data = {
+                            title: "GDP Deflator vs CPI",
+                            headers: ["Feature", "GDP Deflator", "CPI"],
+                            rows: [
+                                ["Basket", "Changes yearly (all domestic)", "Fixed basket (consumer)"],
+                                ["Imports", "Excluded", "Included"],
+                                ["Formula", "(Nominal GDP / Real GDP) * 100", "(Cost current / Cost base) * 100"]
+                            ]
+                        }
+                    } else if (q_lower.includes("opec")) {
+                        visual_aid = "opec_members_map";
+                        visual_data = {
+                            title: "OPEC Members",
+                            members: ["Algeria", "Congo", "Equatorial Guinea", "Gabon", "Iran", "Iraq", "Kuwait", "Libya", "Nigeria", "Saudi Arabia", "UAE", "Venezuela"],
+                            ex_members: ["Angola (left 2024)", "Ecuador", "Qatar", "Indonesia"]
+                        }
+                    } else if (q_lower.includes("opportunity cost")) {
+                        visual_aid = "opportunity_cost_diagram";
+                        visual_data = { title: "Opportunity Cost" };
+                    } else if (q_lower.includes("payment banks")) {
+                        visual_aid = "payments_bank_rules";
+                        visual_data = {
+                            title: "Payments Bank Guidelines",
+                            do: ["Accept demand deposits up to ₹2 Lakhs", "Issue ATM/Debit Cards", "Offer utility bill payments"],
+                            dont: ["Issue Credit Cards", "Extend loans or lending", "Accept NRI deposits"]
+                        }
+                    }
+
+                    return {
+                        id: q.id,
+                        topic_title: topic.title,
+                        question: q.question,
+                        options: q.options,
+                        correct_index: q.correct_index,
+                        explanation: q.explanation,
+                        dialogue: dialogue,
+                        flashcards: flashcards,
+                        visual_aid: visual_aid,
+                        visual_data: visual_data
+                    };
+                });
+            }
+
+            const parsedQuestions = quiz.questions.map((q, idx) => {
+                let correctIndex = q.options.findIndex(o => o.isCorrect);
+                if (correctIndex === -1) correctIndex = 0;
+                
+                return {
+                    id: idx + 1,
+                    question: q.question,
+                    options: q.options.map(o => o.text),
+                    correct_index: correctIndex,
+                    explanation: q.explanation || "Detailed explanation of the topic."
+                };
+            });
+
+            const lectureDataset = buildLectureDataset(parsedQuestions);
+            const datasetJSON = JSON.stringify(lectureDataset, null, 2);
+
+            const templateEl = document.getElementById("new-video-template");
+            if (!templateEl) {
+                throw new Error("New Classroom template element not found in the DOM!");
+            }
+            const templateText = templateEl.value;
+            return templateText.replace("__QUESTIONS_DATA__", datasetJSON);
+        }
+
         function generateAndDownloadVideo(quiz) {
             try {
+                // 1. Generate and download OLD video
                 const dataList = compileQuizToClassroomData(quiz);
                 const htmlContent = generateClassroomHtml(quiz, dataList);
                 const blob = new Blob([htmlContent], { type: 'text/html' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `${quiz.name.replace(/\s+/g, '_')}_classroom.html`;
+                a.download = `${quiz.name.replace(/\s+/g, '_')}_classroom_old.html`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                printMsg('bot', `✅ Classroom Video HTML booklet downloaded successfully for <b>${quiz.name}</b>.`, true);
+
+                // 2. Generate and download NEW video after a short delay to prevent browser block
+                setTimeout(() => {
+                    try {
+                        const newHtmlContent = generateNewClassroomVideoHtml(quiz);
+                        const newBlob = new Blob([newHtmlContent], { type: 'text/html' });
+                        const newUrl = URL.createObjectURL(newBlob);
+                        const newA = document.createElement('a');
+                        newA.href = newUrl;
+                        newA.download = `${quiz.name.replace(/\s+/g, '_')}_classroom_new.html`;
+                        document.body.appendChild(newA);
+                        newA.click();
+                        document.body.removeChild(newA);
+                        URL.revokeObjectURL(newUrl);
+                        
+                        printMsg('bot', `🎬 <b>Classroom Videos generated successfully!</b><br>1. Old Video: <code>${quiz.name.replace(/\s+/g, '_')}_classroom_old.html</code><br>2. New Video: <code>${quiz.name.replace(/\s+/g, '_')}_classroom_new.html</code>`, true);
+                    } catch (err) {
+                        console.error(err);
+                        printMsg('bot', `❌ Failed to download New Classroom Video: ` + err.message);
+                    }
+                }, 250);
+
             } catch(e) {
                 console.error(e);
-                printMsg('bot', `❌ Failed to download Classroom Video: ` + e.message);
+                printMsg('bot', `❌ Failed to download Classroom Videos: ` + e.message);
             }
         }
 
@@ -7074,13 +7306,600 @@ function rs(){document.body.style.overflow='hidden';location.reload()}
 
         function generateAndDownloadFlashcard(quiz) {
             try {
+                // 1. Generate and download traditional PDF flashcards
                 const preparedQs = prepareQuestionsForMindmapAndFlashcards(quiz);
                 const doc = generateFlashcards(quiz.name, preparedQs);
                 doc.save(`${quiz.name.replace(/\s+/g, '_')}_flashcards.pdf`);
                 printMsg('bot', `✅ Flashcards PDF downloaded successfully for <b>${quiz.name}</b>.`, true);
+
+                // 2. Generate and download new Premium Interactive HTML flashcards
+                generatePremiumHtmlFlashcards(quiz);
             } catch(e) {
                 console.error(e);
-                printMsg('bot', `❌ Failed to download Flashcards PDF: ` + e.message);
+                printMsg('bot', `❌ Failed to download Flashcards: ` + e.message);
+            }
+        }
+
+        function generatePremiumHtmlFlashcards(quiz) {
+            try {
+                // Helpers for categorization, metadata extraction and keypoint summaries
+                function autoCategorize(qText, expText) {
+                    const combined = (qText + " " + expText).toLowerCase();
+                    if (combined.includes("preamble") || combined.includes("objectives resolution")) return "preamble";
+                    if (combined.includes("constituent assembly") || combined.includes("drafting committee") || combined.includes("assembly")) return "assembly";
+                    if (combined.includes("secular") || combined.includes("secularism")) return "secularism";
+                    if (combined.includes("amend") || combined.includes("amendment") || combined.includes("article 368") || combined.includes("86th")) return "amendment";
+                    if (combined.includes("parliamentary") || combined.includes("cabinet") || combined.includes("democracy") || combined.includes("vote") || combined.includes("franchise") || combined.includes("elections")) return "democracy";
+                    if (combined.includes("union of states") || combined.includes("federation") || combined.includes("territory") || combined.includes("boundary") || combined.includes("boundaries") || combined.includes("article 1") || combined.includes("article 2") || combined.includes("article 3") || combined.includes("article 4") || combined.includes("federal")) return "union";
+                    if (combined.includes("presidential") || combined.includes("monarchy") || combined.includes("theocracy") || combined.includes("oligarchy") || combined.includes("aristocracy") || combined.includes("technocracy") || combined.includes("confederation") || combined.includes("unitary")) return "forms";
+                    if (combined.includes("act of 1919") || combined.includes("act of 1935") || combined.includes("charter act") || combined.includes("councils act") || combined.includes("regulating act") || combined.includes("historical") || combined.includes("east india company")) return "history";
+                    return "doctrine";
+                }
+
+                function extractMeta(card) {
+                    const combined = (card.questionText + " " + card.explanation).toLowerCase();
+                    if (combined.includes("42nd constitutional amendment") && combined.includes("preamble")) {
+                        return { title: "The 42nd Amendment & Preamble", hook: "How three new ideals entered India's preamble in 1976" };
+                    }
+                    if (combined.includes("constituent assembly") && combined.includes("sovereign")) {
+                        return { title: "Sovereignty of the Assembly", hook: "Was the Constituent Assembly a truly sovereign body?" };
+                    }
+                    if (combined.includes("basic structure")) {
+                        return { title: "The Basic Structure Doctrine", hook: "What elements make up the unamendable core of the Constitution?" };
+                    }
+                    
+                    let title = "Concept Card " + card.id;
+                    let hook = "Important concept from your practice set";
+                    
+                    const topicMatch = card.questionText.match(/regarding\s+(?:the\s+)?([^.?:,]{5,35})/i) ||
+                                       card.questionText.match(/with\s+reference\s+to\s+(?:the\s+)?([^.?:,]{5,35})/i) ||
+                                       card.questionText.match(/context\s+of\s+(?:the\s+)?([^.?:,]{5,35})/i);
+                                       
+                    if (topicMatch && topicMatch[1]) {
+                        title = topicMatch[1].trim();
+                        title = title.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+                    } else {
+                        let words = card.questionText.split(/\s+/).filter(w => w.length > 0).map(w => w.replace(/[^a-zA-Z]/g, ''));
+                        let startIndex = 0;
+                        const skipWords = ["which", "what", "how", "why", "who", "consider", "the", "following", "statements", "regarding", "with", "reference", "to", "of"];
+                        while (startIndex < words.length && skipWords.includes(words[startIndex].toLowerCase())) {
+                            startIndex++;
+                        }
+                        let slice = words.slice(startIndex, startIndex + 4);
+                        if (slice.length > 0) {
+                            title = slice.map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+                        }
+                    }
+                    title = title.replace(/^(?:And|Or|But|Is|Are|Was|Were)\s+/i, '').trim();
+                    if (title.length > 32) title = title.substring(0, 29) + "...";
+                    
+                    let firstSentence = card.questionText.split(/[.!?]/)[0].trim();
+                    hook = firstSentence.length > 80 ? firstSentence.substring(0, 77) + "..." : firstSentence;
+                    
+                    return { title: title || ("Concept " + card.id), hook };
+                }
+
+                function extractKeyPoint(explanation) {
+                    if (!explanation) return "Detailed explanation on reverse.";
+                    const sentences = explanation.split(/(?<=[.!?])\s+(?=[A-Z])/);
+                    let key = sentences[0].trim();
+                    if (key.length < 45 && sentences.length > 1) {
+                        key += " " + sentences[1].trim();
+                    }
+                    key = key.replace(/\s+/g, ' ');
+                    return key.length > 130 ? key.substring(0, 127) + "..." : key;
+                }
+
+                // Map quiz.questions to premium CARDS array structure
+                const cardsData = quiz.questions.map((q, idx) => {
+                    const choices = q.options.map(o => ({ text: o.text, isCorrect: o.isCorrect }));
+                    const correctOpt = q.options.find(o => o.isCorrect);
+                    const correctAnswer = correctOpt ? correctOpt.text : (q.options[0] ? q.options[0].text : "");
+                    const explanation = q.explanation || "No explanation provided.";
+                    const questionText = q.question;
+                    
+                    const card = {
+                        id: idx + 1,
+                        sourceId: idx + 1,
+                        questionText: questionText,
+                        choices: choices,
+                        correctAnswer: correctAnswer,
+                        explanation: explanation,
+                        cat: autoCategorize(questionText, explanation)
+                    };
+                    
+                    const meta = extractMeta(card);
+                    card.title = meta.title;
+                    card.hook = meta.hook;
+                    card.key = extractKeyPoint(explanation);
+                    
+                    return card;
+                });
+
+                const activeCatsCount = new Set(cardsData.map(c => c.cat)).size;
+
+                // Built-in CSS Styles from premium generator
+                const cssStyles = `
+  :root{
+    --ink:#1B2233; --ink-soft:#4A5273; --ink-faint:#7B8197;
+    --paper:#FBF6EC; --paper-soft:#F1E9D8; --paper-deep:#E9DFC8;
+    --line: rgba(27,34,51,0.14); --line-soft: rgba(27,34,51,0.08);
+    --gold:#B8862E; --oxblood:#7A2E2E; --green:#3F6650; --teal:#2C6E73;
+    --rust:#9C5234; --olive:#6E7A3D; --sepia:#7C6A4D; --steel:#3E5C76; --plum:#6B4C7A;
+    --shadow: 0 1px 2px rgba(27,34,51,0.04), 0 8px 24px rgba(27,34,51,0.08);
+    --shadow-lg: 0 4px 8px rgba(27,34,51,0.06), 0 24px 48px rgba(27,34,51,0.16);
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; min-height: 100vh; display: flex; flex-direction: column; }
+  body{
+    background: var(--paper);
+    background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(184,134,46,0.10), transparent), repeating-linear-gradient(0deg, rgba(27,34,51,0.012) 0px, rgba(27,34,51,0.012) 1px, transparent 1px, transparent 3px);
+    color: var(--ink); font-family: 'Source Sans 3', system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing: 0.06em; }
+  .hero{ position: relative; overflow: hidden; padding: 60px clamp(20px,5vw,64px) 40px; max-width: 1400px; margin: 0 auto; width: 100%; border-bottom: 1px solid var(--line); }
+  .hero-seal{ position:absolute; top: -180px; right: -160px; width: 560px; height: 560px; opacity: 0.07; pointer-events: none; }
+  .eyebrow{ font-size: 12px; text-transform: uppercase; color: var(--oxblood); font-weight: 600; margin: 0 0 18px; display:flex; align-items:center; gap: 10px; }
+  .eyebrow::before{ content:""; width: 28px; height: 1px; background: var(--oxblood); display:inline-block; }
+  .hero h1{ font-family:'Fraunces', serif; font-weight: 600; font-size: clamp(34px, 5.2vw, 54px); line-height: 1.1; margin: 0 0 18px; max-width: 20ch; letter-spacing: -0.01em; }
+  .hero h1 em{ font-style: italic; color: var(--oxblood); font-weight: 500; }
+  .hero p.lede{ font-size: 17px; line-height: 1.6; color: var(--ink-soft); max-width: 70ch; margin: 0 0 28px; }
+  .hero-stats{ display:flex; gap: clamp(24px, 4vw, 56px); flex-wrap: wrap; }
+  .stat .num{ font-family:'Fraunces', serif; font-size: 30px; font-weight: 600; color: var(--ink); line-height: 1; }
+  .stat .label{ font-size: 12.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 6px; }
+  .controls{ position: sticky; top: 0; z-index: 30; background: rgba(251,246,236,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding: 16px clamp(20px,5vw,64px); width: 100%; }
+  .controls-row{ max-width: 1400px; margin: 0 auto; display:flex; align-items:center; gap: 16px; flex-wrap: wrap; }
+  .search-wrap{ position: relative; flex: 1 1 220px; max-width: 320px; }
+  .search-wrap svg{ position:absolute; left:12px; top:50%; transform:translateY(-50%); width:16px; height:16px; color: var(--ink-faint); }
+  #searchInput{ width:100%; padding: 10px 14px 10px 36px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font-family: inherit; font-size: 14px; outline: none; }
+  #searchInput:focus{ border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,46,0.15); }
+  .pills{ display:flex; gap: 8px; flex-wrap: wrap; flex: 1 1 auto; }
+  .pill{ border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft); border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all .15s ease; white-space: nowrap; display:flex; align-items:center; gap:6px; }
+  .pill .dot{ width:7px; height:7px; border-radius:50%; background: var(--cat-color, var(--ink-faint)); }
+  .pill.active{ background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pill.active .dot{ background: var(--paper); }
+  .controls-right{ display:flex; align-items:center; gap: 14px; margin-left: auto; }
+  .progress-wrap{ display:flex; flex-direction:column; gap:5px; min-width: 130px; }
+  .progress-text{ font-size: 11.5px; color: var(--ink-faint); text-transform:uppercase; letter-spacing:0.04em; }
+  .progress-track{ width: 100%; height: 5px; border-radius: 99px; background: var(--paper-deep); overflow: hidden; }
+  .progress-fill{ height:100%; border-radius:99px; background: linear-gradient(90deg, var(--gold), var(--oxblood)); width:0%; transition: width .4s ease; }
+  .icon-btn{ border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft); border-radius: 999px; padding: 9px 16px; font-size: 13px; font-weight: 600; cursor: pointer; display:flex; align-items:center; gap:7px; transition: all .15s; font-family: inherit; }
+  .icon-btn:hover{ background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .icon-btn svg{ width:14px; height:14px; }
+  .deck-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 26px; padding: 40px clamp(20px,5vw,64px) 100px; max-width: 1400px; margin: 0 auto; width: 100%; flex: 1; }
+  .empty-state{ grid-column: 1/-1; text-align:center; padding: 80px 20px; color: var(--ink-faint); }
+  .card{ perspective: 1800px; height: 380px; }
+  .card.hidden-card{ display:none; }
+  .card-inner{ position: relative; width:100%; height:100%; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.45,.15,.2,1); cursor: pointer; }
+  .card.flipped .card-inner{ transform: rotateY(180deg); }
+  .card-face{ position:absolute; inset:0; backface-visibility: hidden; border-radius: 18px; border: 1px solid var(--line); display:flex; flex-direction: column; box-shadow: var(--shadow); overflow:hidden; }
+  .card-front{ background: radial-gradient(circle at 88% 12%, rgba(0,0,0,0.035), transparent 45%), var(--paper); padding: 22px 24px; }
+  .card-front::before{ content:""; position:absolute; right: -40px; bottom: -40px; width: 180px; height:180px; border: 1px solid var(--cat-color); border-radius: 50%; opacity: 0.10; pointer-events: none; }
+  .card-front::after{ content:""; position:absolute; right: -10px; bottom: -10px; width: 120px; height:120px; border: 1px solid var(--cat-color); border-radius: 50%; opacity: 0.10; pointer-events: none; }
+  .card-back{ background: var(--paper-soft); transform: rotateY(180deg); padding: 20px 22px 16px; }
+  .card-top{ display:flex; align-items:center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+  .cat-tag{ display:flex; align-items:center; gap:7px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--cat-color); }
+  .cat-tag .icon{ width: 22px; height:22px; border-radius: 50%; background: color-mix(in srgb, var(--cat-color) 14%, transparent); display:flex; align-items:center; justify-content:center; }
+  .cat-tag .icon svg{ width:13px; height:13px; color: var(--cat-color); }
+  .expand-btn{ background: transparent; border: none; color: var(--ink-faint); cursor:pointer; width: 26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .expand-btn svg{ width:13px; height:13px; }
+  .card-front h3{ font-family:'Fraunces', serif; font-weight: 600; font-size: 20px; line-height: 1.25; margin: 0 0 12px 0; color: var(--ink); }
+  .front-scroll, .back-scroll{ flex:1; overflow-y: auto; padding-right: 6px; margin-right: -6px; }
+  .front-scroll::-webkit-scrollbar, .back-scroll::-webkit-scrollbar{ width: 4px; }
+  .front-scroll::-webkit-scrollbar-thumb, .back-scroll::-webkit-scrollbar-thumb{ background: var(--paper-deep); border-radius: 99px; }
+  .card-front .question-text{ font-size: 14px; line-height: 1.5; color: var(--ink); margin: 0 0 14px 0; white-space: pre-wrap; }
+  .choices-list { list-style: none; padding: 0; margin: 0 0 12px 0; }
+  .choices-list li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 13px; line-height: 1.4; color: var(--ink-soft); }
+  .choice-letter { display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 4px; background: var(--paper-deep); color: var(--ink); font-size: 10px; font-weight: 700; flex-shrink: 0; }
+  .choice-text { flex: 1; }
+  .flip-hint{ font-size: 11px; color: var(--ink-faint); display:flex; align-items:center; gap:6px; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid var(--line-soft); padding-top: 10px; }
+  .flip-hint svg{ width:12px; height:12px; }
+  .card-back h4{ font-family:'Fraunces', serif; font-size: 16px; font-weight: 600; margin: 0 0 10px 0; color: var(--ink); line-height: 1.3; }
+  .correct-answer-box { background: rgba(63, 102, 80, 0.08); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 10px 12px; margin-bottom: 12px; }
+  .ca-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green); display: block; margin-bottom: 4px; }
+  .correct-answer-box p { font-size: 13.5px; color: var(--ink); margin: 0; font-weight: 600; line-height: 1.4; }
+  .back-scroll p{ font-size: 13px; line-height: 1.55; color: var(--ink-soft); margin: 0 0 10px; }
+  .keypoint{ border-left: 3px solid var(--cat-color); background: color-mix(in srgb, var(--cat-color) 8%, var(--paper)); border-radius: 0 8px 8px 0; padding: 9px 12px; margin-top: 4px; }
+  .keypoint .kp-label{ font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--cat-color); display:block; margin-bottom: 4px; }
+  .keypoint p{ font-size: 12.5px; color: var(--ink); margin: 0; line-height: 1.45; font-weight: 500; }
+  .flip-back-hint{ font-size: 11px; color: var(--ink-faint); text-align:center; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.04em; border-top: 1px solid var(--line-soft); padding-top: 8px; }
+  .focus-overlay{ position: fixed; inset:0; background: rgba(27,34,51,0.82); backdrop-filter: blur(5px); z-index: 100; display:flex; align-items:center; justify-content:center; padding: 24px; opacity:0; pointer-events:none; transition: opacity .25s ease; }
+  .focus-overlay.open{ opacity:1; pointer-events:all; }
+  .focus-topbar{ position:absolute; top:24px; left:0; right:0; display:flex; align-items:center; justify-content:center; color: var(--paper); font-family:'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.05em; }
+  .focus-close{ position:absolute; top:20px; right:24px; background: rgba(251,246,236,0.12); border: 1px solid rgba(251,246,236,0.25); color: var(--paper); width:36px; height:36px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .focus-close svg{ width:16px; height:16px; }
+  .focus-nav{ background: rgba(251,246,236,0.12); border: 1px solid rgba(251,246,236,0.25); color: var(--paper); width:44px; height:44px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition: background .15s, opacity .15s; flex-shrink:0; }
+  .focus-nav:disabled{ opacity: 0.3; cursor:default; }
+  .focus-nav svg{ width:18px; height:18px; }
+  .focus-stage{ display:flex; align-items:center; gap: 22px; max-width: 920px; width:100%; }
+  .focus-card{ perspective: 2000px; width: 100%; max-width: 580px; height: min(82vh, 560px); margin: 0 auto; }
+  .focus-card .card-face{ box-shadow: var(--shadow-lg); }
+  .focus-card .card-front h3{ font-size: 24px; }
+  .focus-card .card-front{ padding: 30px 34px; }
+  .focus-card .card-back{ padding: 26px 30px 20px; }
+  .focus-card .card-front .question-text{ font-size: 15px; }
+  .focus-card .choices-list li { font-size: 14.5px; }
+  .focus-card .back-scroll p{ font-size: 14px; line-height: 1.6; }
+  .focus-card .card-back h4{ font-size: 18px; }
+  .focus-card .keypoint p{ font-size: 13px; }
+  .focus-card .correct-answer-box p { font-size: 14.5px; }
+  footer{ text-align:center; padding: 40px 20px 40px; color: var(--ink-faint); font-size: 12.5px; border-top: 1px solid var(--line-soft); margin-top: auto; }
+  @media (max-width: 720px){
+    .controls-row{ flex-direction:column; align-items: stretch; }
+    .search-wrap{ max-width: none; }
+    .controls-right{ margin-left:0; justify-content: space-between; width:100%; }
+    .pills{ overflow-x:auto; padding-bottom: 4px; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+    .card{ height: 400px; }
+    .focus-card{ height: min(78vh, 500px); }
+    .focus-nav{ width:38px; height:38px; }
+  }
+`;
+
+                const categoriesData = {
+                    preamble:    { name: "Preamble & Philosophy",      color: "var(--gold)",    icon: "quill" },
+                    assembly:    { name: "Constituent Assembly",        color: "var(--oxblood)",icon: "gavel" },
+                    forms:       { name: "Forms of Government",         color: "var(--green)",  icon: "globe" },
+                    democracy:   { name: "Democracy & Parliament",      color: "var(--teal)",   icon: "columns" },
+                    amendment:   { name: "Constitutional Amendment",     color: "var(--rust)",   icon: "pencil" },
+                    union:       { name: "Union & Federal Structure",    color: "var(--olive)",  icon: "union" },
+                    secularism:  { name: "Secularism",                   color: "var(--plum)",   icon: "venn" },
+                    history:     { name: "Historical Evolution",         color: "var(--sepia)",  icon: "hourglass" },
+                    doctrine:    { name: "Doctrines & Concepts",         color: "var(--steel)",  icon: "scale" },
+                };
+
+                const iconsData = {
+                    quill: `<path d="M4 20l4.2-1.1L19.3 7.8a1.4 1.4 0 0 0 0-2l-1.1-1.1a1.4 1.4 0 0 0-2 0L5.1 15.8 4 20z"/><path d="M13.5 6.5l4 4"/>`,
+                    gavel: `<path d="M9 4l6 6"/><path d="M3.5 13.5l6-6 6 6-6 6z"/><path d="M3 21h8"/>`,
+                    globe: `<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/>`,
+                    columns: `<path d="M3 10l9-6 9 6"/><path d="M4 21h16"/><path d="M5 21V10M9.5 21V10M14.5 21V10M19 21V10"/>`,
+                    pencil: `<path d="M4 20h4l11-11-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/>`,
+                    union: `<rect x="3" y="3" width="11" height="11" rx="2.2"/><rect x="10" y="10" width="11" height="11" rx="2.2"/>`,
+                    hourglass: `<path d="M6.5 3h11"/><path d="M6.5 21h11"/><path d="M7.5 3c0 5.2 5 6 5 9s-5 3.8-5 9"/><path d="M16.5 3c0 5.2-5 6-5 9s5 3.8 5 9"/>`,
+                    scale: `<path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 6h6l-3-6z"/><path d="M19 7l-3 6h6l-3-6z"/><path d="M8 21h8"/>`,
+                    venn: `<circle cx="9.5" cy="12" r="6"/><circle cx="14.5" cy="12" r="6"/>`,
+                };
+
+                let template = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__TITLE_PLAIN__ — Study Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+__CSS_STYLES__
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-seal">
+    <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.6">
+      <circle cx="100" cy="100" r="92"/>
+      <circle cx="100" cy="100" r="70"/>
+      <circle cx="100" cy="100" r="6"/>
+      <g id="spokes"></g>
+    </svg>
+  </div>
+  <p class="eyebrow">Study Deck</p>
+  <h1>__TITLE__</h1>
+  <p class="lede">__DESC__</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="num" id="statCards">__CARD_COUNT__</div><div class="label">Total Cards</div></div>
+    <div class="stat"><div class="num" id="statCategories">__CAT_COUNT__</div><div class="label">Categories</div></div>
+    <div class="stat"><div class="num" id="statUnreviewed">__CARD_COUNT__</div><div class="label">Unreviewed</div></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="controls-row">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="searchInput" type="text" placeholder="Search cards..." autocomplete="off">
+    </div>
+    <div class="pills" id="pillsRow"></div>
+    <div class="controls-right">
+      <div class="progress-wrap">
+        <span class="progress-text"><span id="progressCount">0</span> / <span id="progressTotal">__CARD_COUNT__</span> reviewed</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <button class="icon-btn" id="shuffleBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>
+        Shuffle
+      </button>
+    </div>
+  </div>
+</div>
+
+<main class="deck-grid" id="deckGrid"></main>
+
+<footer>
+  <div style="margin-bottom: 8px;">Generated Flashcard Study Deck &bull; Fully Offline</div>
+</footer>
+
+<div class="focus-overlay" id="focusOverlay">
+  <div class="focus-topbar"><span class="mono" id="focusCounter">0 / 0</span></div>
+  <button class="focus-close" id="focusClose" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="focus-stage">
+    <button class="focus-nav" id="focusPrev" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="focus-card" id="focusCardSlot"></div>
+    <button class="focus-nav" id="focusNext" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+const CARDS = __CARDS_DATA__;
+const CATEGORIES = __CATEGORIES_DATA__;
+const ICONS = __ICONS_DATA__;
+const reviewed = new Set();
+let activeCat = 'all';
+let activeSearch = '';
+
+function iconSvg(name){
+  return \`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">\${ICONS[name] || ICONS.scale}</svg>\`;
+}
+
+__CARD_FACE_HTML_JS__
+__RENDER_GRID_JS__
+__RENDER_PILLS_JS__
+__APPLY_FILTERS_JS__
+__UPDATE_PROGRESS_JS__
+
+/* search */
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  activeSearch = e.target.value.trim().toLowerCase();
+  applyFilters();
+});
+
+/* shuffle */
+document.getElementById('shuffleBtn').addEventListener('click', () => {
+  const children = [...deckGrid.children].filter(c => c.classList.contains('card'));
+  for (let i = children.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [children[i], children[j]] = [children[j], children[i]];
+  }
+  children.forEach(c => deckGrid.appendChild(c));
+});
+
+/* ===================== FOCUS MODE ===================== */
+const focusOverlay = document.getElementById('focusOverlay');
+const focusCardSlot = document.getElementById('focusCardSlot');
+const focusCounter = document.getElementById('focusCounter');
+let focusList = [];
+let focusIndex = 0;
+
+function currentVisibleIds(){
+  return CARDS.filter(c => {
+    const matchesCat = activeCat === 'all' || c.cat === activeCat;
+    const haystack = (c.title + ' ' + c.questionText + ' ' + c.explanation).toLowerCase();
+    return matchesCat && haystack.includes(activeSearch);
+  }).map(c => c.id);
+}
+
+__OPEN_FOCUS_JS__
+__RENDER_FOCUS_CARD_JS__
+
+document.getElementById('focusPrev').addEventListener('click', () => {
+  if (focusIndex > 0) { focusIndex--; renderFocusCard(); }
+});
+document.getElementById('focusNext').addEventListener('click', () => {
+  if (focusIndex < focusList.length - 1) { focusIndex++; renderFocusCard(); }
+});
+document.getElementById('focusClose').addEventListener('click', closeFocus);
+focusOverlay.addEventListener('click', (e) => {
+  if (e.target === focusOverlay) closeFocus();
+});
+function closeFocus(){ focusOverlay.classList.remove('open'); }
+
+document.addEventListener('keydown', (e) => {
+  if (!focusOverlay.classList.contains('open')) return;
+  if (e.key === 'Escape') closeFocus();
+  if (e.key === 'ArrowLeft' && focusIndex > 0) { focusIndex--; renderFocusCard(); }
+  if (e.key === 'ArrowRight' && focusIndex < focusList.length - 1) { focusIndex++; renderFocusCard(); }
+  if (e.key === ' ' || e.key === 'Enter') {
+    e.preventDefault();
+    const el = document.getElementById('focusCardEl');
+    el.classList.toggle('flipped');
+    const c = CARDS.find(x => x.id === focusList[focusIndex]);
+    if (el.classList.contains('flipped')) { reviewed.add(c.id); updateProgress(); }
+  }
+});
+
+/* decorative seal spokes */
+(function drawSpokes(){
+  const g = document.getElementById('spokes');
+  if (!g) return;
+  let html = '';
+  for (let i = 0; i < 24; i++){
+    const angle = (i * 15) * Math.PI / 180;
+    const x1 = 100 + 14 * Math.cos(angle), y1 = 100 + 14 * Math.sin(angle);
+    const x2 = 100 + 70 * Math.cos(angle), y2 = 100 + 70 * Math.sin(angle);
+    html += \`<line x1="\${x1.toFixed(2)}" y1="\${y1.toFixed(2)}" x2="\${x2.toFixed(2)}" y2="\${y2.toFixed(2)}"/>\`;
+  }
+  g.innerHTML = html;
+})();
+
+// Initialize
+renderPills();
+renderGrid();
+updateProgress();
+<\/script>
+</body>
+</html>`;
+
+                // Sub-functions to inject as strings
+                const cardFaceHtmlStr = `function cardFaceHTML(c, isFocus){
+  const cat = CATEGORIES[c.cat] || CATEGORIES.doctrine;
+  let choicesHTML = '';
+  if (c.choices && c.choices.length > 0) {
+    choicesHTML = '<ul class="choices-list">';
+    c.choices.forEach((choice, idx) => {
+      const letter = String.fromCharCode(65 + idx);
+      choicesHTML += '<li><span class="choice-letter">' + letter + '</span><span class="choice-text">' + choice.text + '</span></li>';
+    });
+    choicesHTML += '</ul>';
+  }
+  const paragraphs = c.explanation.split(/\\n\\n+/).map(t => '<p>' + t + '</p>').join('');
+  return '<div class="card-face card-front"><div class="card-top"><span class="cat-tag"><span class="icon">' + iconSvg(cat.icon) + '</span>' + cat.name + '</span>' + (isFocus ? '' : '<button class="expand-btn" data-expand="' + c.id + '" aria-label="Open Focus Mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>') + '</div><h3>' + c.title + '</h3><div class="front-scroll"><p class="question-text">' + c.questionText + '</p>' + choicesHTML + '</div><div class="flip-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 12v6h6"/></svg> Tap to reveal correct answer</div></div><div class="card-face card-back"><span class="cat-tag"><span class="icon">' + iconSvg(cat.icon) + '</span>' + cat.name + '</span><h4>' + c.title + '</h4><div class="back-scroll"><div class="correct-answer-box"><span class="ca-label">Correct Answer</span><p><strong>✅ ' + c.correctAnswer + '</strong></p></div>' + paragraphs + '<div class="keypoint"><span class="kp-label">Key takeaway</span><p>' + c.key + '</p></div></div><div class="flip-back-hint">Tap to flip back</div></div>';
+}`;
+
+                const renderGridStr = `function renderGrid(){
+  const deckGrid = document.getElementById('deckGrid');
+  deckGrid.innerHTML = '';
+  if (CARDS.length === 0) {
+    deckGrid.innerHTML = '<div class="empty-state"><div class="em-icon">&#128196;</div><div>No questions loaded.</div></div>';
+    return;
+  }
+  CARDS.forEach(c => {
+    const cat = CATEGORIES[c.cat] || CATEGORIES.doctrine;
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.id = 'card-' + c.id;
+    el.style.setProperty('--cat-color', cat.color);
+    el.innerHTML = '<div class="card-inner">' + cardFaceHTML(c, false) + '</div>';
+    el.querySelector('.card-inner').addEventListener('click', (e) => {
+      if (e.target.closest('[data-expand]')) return;
+      el.classList.toggle('flipped');
+      if (el.classList.contains('flipped')) { reviewed.add(c.id); updateProgress(); }
+    });
+    el.querySelector('[data-expand]').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openFocus(c.id);
+    });
+    deckGrid.appendChild(el);
+  });
+  applyFilters();
+}`;
+
+                const renderPillsStr = `function renderPills(){
+  const pillsRow = document.getElementById('pillsRow');
+  pillsRow.innerHTML = '';
+  if (CARDS.length === 0) return;
+  const counts = { all: CARDS.length };
+  CARDS.forEach(c => counts[c.cat] = (counts[c.cat]||0)+1);
+  const allPill = document.createElement('button');
+  allPill.className = 'pill active';
+  allPill.dataset.cat = 'all';
+  allPill.innerHTML = '<span class="dot" style="background:var(--ink-faint)"></span>All <span class="mono">(' + counts.all + ')</span>';
+  pillsRow.appendChild(allPill);
+  Object.keys(CATEGORIES).forEach(key => {
+    if (counts[key]) {
+      const cat = CATEGORIES[key];
+      const btn = document.createElement('button');
+      btn.className = 'pill';
+      btn.dataset.cat = key;
+      btn.style.setProperty('--cat-color', cat.color);
+      btn.innerHTML = '<span class="dot"></span>' + cat.name + ' <span class="mono">(' + counts[key] + ')</span>';
+      pillsRow.appendChild(btn);
+    }
+  });
+  pillsRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.pill');
+    if (!btn) return;
+    activeCat = btn.dataset.cat;
+    [...pillsRow.children].forEach(p => p.classList.toggle('active', p === btn));
+    applyFilters();
+  });
+}`;
+
+                const applyFiltersStr = `function applyFilters(){
+  let visibleCount = 0;
+  CARDS.forEach(c => {
+    const el = document.getElementById('card-' + c.id);
+    if (!el) return;
+    const matchesCat = activeCat === 'all' || c.cat === activeCat;
+    const catObj = CATEGORIES[c.cat] || CATEGORIES.doctrine;
+    const haystack = (c.title + ' ' + c.questionText + ' ' + c.explanation + ' ' + catObj.name).toLowerCase();
+    const matchesSearch = haystack.includes(activeSearch);
+    const show = matchesCat && matchesSearch;
+    el.classList.toggle('hidden-card', !show);
+    if (show) visibleCount++;
+  });
+  const deckGrid = document.getElementById('deckGrid');
+  let existingEmpty = deckGrid.querySelector('.empty-state');
+  if (visibleCount === 0 && CARDS.length > 0) {
+    if (!existingEmpty) {
+      const div = document.createElement('div');
+      div.className = 'empty-state';
+      div.innerHTML = '<div class="em-icon">&#10059;</div><div>No cards match that search.</div>';
+      deckGrid.appendChild(div);
+    }
+  } else if (existingEmpty) {
+    existingEmpty.remove();
+  }
+}`;
+
+                const updateProgressStr = `function updateProgress(){
+  document.getElementById('progressCount').textContent = reviewed.size;
+  document.getElementById('progressTotal').textContent = CARDS.length;
+  const fillPercent = CARDS.length > 0 ? (reviewed.size / CARDS.length * 100) : 0;
+  document.getElementById('progressFill').style.width = fillPercent + '%';
+  const unreviewedEl = document.getElementById('statUnreviewed');
+  if (unreviewedEl) unreviewedEl.textContent = CARDS.length - reviewed.size;
+}`;
+
+                const openFocusStr = `function openFocus(cardId){
+  focusList = currentVisibleIds();
+  focusIndex = focusList.indexOf(cardId);
+  if (focusIndex === -1) focusIndex = 0;
+  renderFocusCard();
+  focusOverlay.classList.add('open');
+}`;
+
+                const renderFocusCardStr = `function renderFocusCard(){
+  const c = CARDS.find(x => x.id === focusList[focusIndex]);
+  const cat = CATEGORIES[c.cat] || CATEGORIES.doctrine;
+  focusCardSlot.innerHTML = '<div class="card" id="focusCardEl" style="--cat-color:' + cat.color + '; height:100%;"><div class="card-inner">' + cardFaceHTML(c, true) + '</div></div>';
+  focusCounter.textContent = (focusIndex+1) + ' / ' + focusList.length;
+  document.getElementById('focusCardEl').querySelector('.card-inner').addEventListener('click', () => {
+    const el = document.getElementById('focusCardEl');
+    el.classList.toggle('flipped');
+    if (el.classList.contains('flipped')) { reviewed.add(c.id); updateProgress(); }
+  });
+  document.getElementById('focusPrev').disabled = focusIndex === 0;
+  document.getElementById('focusNext').disabled = focusIndex === focusList.length - 1;
+}`;
+
+                // Replace all placeholders
+                template = template
+                    .replace('__TITLE_PLAIN__', quiz.name.replace(/<[^>]*>/g, ''))
+                    .replace('__TITLE__', quiz.name)
+                    .replace('__DESC__', `Premium interactive study deck generated for the quiz "${quiz.name}". Features 3D card flips, filters, search, progress tracking, and full offline capability.`)
+                    .replace('__CSS_STYLES__', cssStyles)
+                    .replace(/__CARD_COUNT__/g, cardsData.length.toString())
+                    .replace('__CAT_COUNT__', activeCatsCount.toString())
+                    .replace('__CARDS_DATA__', JSON.stringify(cardsData))
+                    .replace('__CATEGORIES_DATA__', JSON.stringify(categoriesData))
+                    .replace('__ICONS_DATA__', JSON.stringify(iconsData))
+                    .replace('__CARD_FACE_HTML_JS__', cardFaceHtmlStr)
+                    .replace('__RENDER_GRID_JS__', renderGridStr)
+                    .replace('__RENDER_PILLS_JS__', renderPillsStr)
+                    .replace('__APPLY_FILTERS_JS__', applyFiltersStr)
+                    .replace('__UPDATE_PROGRESS_JS__', updateProgressStr)
+                    .replace('__OPEN_FOCUS_JS__', openFocusStr)
+                    .replace('__RENDER_FOCUS_CARD_JS__', renderFocusCardStr);
+
+                // Download the generated HTML file
+                const blob = new Blob([template], { type: 'text/html;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${quiz.name.replace(/\s+/g, '_')}_premium_flashcards.html`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                printMsg('bot', `✨ Premium Interactive Flashcards HTML downloaded successfully for <b>${quiz.name}</b>.`, true);
+            } catch(err) {
+                console.error("Error generating premium flashcards HTML: ", err);
+                printMsg('bot', `❌ Failed to download Premium Flashcards HTML: ` + err.message);
             }
         }
 
@@ -12189,6 +13008,509 @@ window.keepAliveInterval = setInterval(() => {
 }, 7000);
 
     </script>
+
+    <!-- New Classroom Video Player Template -->
+    <textarea id="new-video-template" style="display:none;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Economics Classroom Video</title>
+    <style>
+        :root {
+            --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --bg-app: #0f172a;
+            --bg-player: #020617;
+            --bg-sidebar: #1e293b;
+            --bg-card: #334155;
+            --border-color: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --primary: #e11d48;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --classroom-wall: #1e293b;
+            --classroom-floor: #0f172a;
+            --board-frame: #475569;
+            --blackboard-bg: #1e293b;
+            --smartboard-bezel: #1e1b4b;
+            --smartboard-screen: #020617;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-primary); background-color: var(--bg-app); color: var(--text-primary); overflow-x: hidden; padding: 20px; }
+        .player-layout { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 360px; gap: 20px; }
+        @media (max-width: 1100px) { .player-layout { grid-template-columns: 1fr; } }
+        .player-column { display: flex; flex-direction: column; gap: 16px; }
+        .sidebar { background-color: var(--bg-sidebar); border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; height: 650px; }
+        .sidebar-header { padding: 16px; border-bottom: 1px solid var(--border-color); }
+        .sidebar-header h3 { font-size: 16px; font-weight: 600; }
+        .playlist-items { flex: 1; overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+        .playlist-item { display: flex; padding: 10px; border-radius: 8px; cursor: pointer; transition: background-color 0.2s; align-items: center; gap: 12px; background: none; border: none; color: var(--text-secondary); text-align: left; width: 100%; }
+        .playlist-item:hover { background-color: rgba(255, 255, 255, 0.05); color: #ffffff; }
+        .playlist-item.active { background-color: rgba(225, 29, 72, 0.15); color: var(--primary); font-weight: 600; }
+        .playlist-item-num { font-size: 12px; font-weight: bold; color: var(--text-muted); min-width: 20px; }
+        .playlist-item.active .playlist-item-num { color: var(--primary); }
+        .playlist-item-title { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .video-container { position: relative; width: 100%; aspect-ratio: 16/9; background-color: var(--bg-player); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
+        .classroom-stage { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+        .classroom-wall { position: absolute; top: 0; left: 0; width: 100%; height: 75%; background-color: var(--classroom-wall); border-bottom: 10px solid #475569; z-index: 1; }
+        .blackboard { position: absolute; top: 10%; right: 4%; width: 24%; height: 55%; background-color: #0f172a; border: 6px solid #78350f; border-radius: 4px; padding: 10px; color: rgba(255,255,255,0.8); font-family: monospace; font-size: 8px; line-height: 1.5; z-index: 2; }
+        .blackboard h4 { text-align: center; color: #fbbf24; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 4px; margin-bottom: 6px; }
+        .smart-board-container { position: absolute; top: 6%; left: 38%; width: 34%; height: 68%; z-index: 2; display: flex; flex-direction: column; align-items: center; }
+        .smart-board { width: 100%; height: 94%; background-color: #1e1b4b; border-radius: 8px; padding: 6px; border: 2px solid #312e81; }
+        .smart-board-inner { width: 100%; height: 100%; background-color: var(--smartboard-screen); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
+        .sb-header { height: 20px; background-color: #1e1b4b; padding: 0 8px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #312e81; }
+        .sb-title { font-size: 8px; color: #a5b4fc; font-weight: 600; }
+        .sb-content { flex: 1; position: relative; color: #ffffff; overflow: hidden; padding: 10px; }
+        .sb-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 10px; display: flex; flex-direction: column; justify-content: center; transition: opacity 0.3s; opacity: 1; }
+        .sb-screen.hidden { opacity: 0; pointer-events: none; }
+        .sb-topic-intro { text-align: center; display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center; }
+        .sb-topic-badge { font-size: 8px; background-color: var(--primary-light); color: #991b1b; padding: 2px 8px; border-radius: 10px; font-weight: bold; text-transform: uppercase; }
+        .sb-topic-title { font-size: 14px; font-weight: 800; color: #fbbf24; }
+        .sb-topic-desc { font-size: 9.5px; color: var(--text-secondary); max-width: 90%; line-height: 1.4; }
+        .sb-question-header h3 { font-size: 10px; font-weight: 600; line-height: 1.4; color: #f8fafc; margin-bottom: 8px; }
+        .sb-options-grid { display: grid; grid-template-columns: 1fr; gap: 4px; }
+        .sb-option-btn { width: 100%; padding: 5px 8px; background-color: #1e293b; border: 1px solid #334155; border-radius: 4px; color: #cbd5e1; text-align: left; font-size: 8.5px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+        .sb-option-btn.correct { background-color: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #34d399; }
+        .opt-letter { display: inline-flex; width: 14px; height: 14px; background-color: #334155; border-radius: 50%; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; }
+        .sb-option-btn.correct .opt-letter { background-color: #10b981; color: #ffffff; }
+        .sb-flashcard-container { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; perspective: 1000px; }
+        .sb-flashcard { width: 90%; height: 90%; position: relative; transform-style: preserve-3d; transition: transform 0.6s; }
+        .sb-flashcard.flipped { transform: rotateY(180deg); }
+        .sb-fc-front, .sb-fc-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid #fbbf24; }
+        .sb-fc-front { background: linear-gradient(135deg, #1e1b4b, #311042); color: #ffffff; }
+        .sb-fc-back { background: linear-gradient(135deg, #fef3c7, #fffbeb); color: #1e293b; transform: rotateY(180deg); overflow-y: auto; }
+        .sb-fc-tag { font-size: 8px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: #fbbf24; }
+        .sb-fc-back .sb-fc-tag { color: #b45309; }
+        .sb-fc-title { font-size: 12px; font-weight: 700; text-align: center; }
+        .sb-fc-desc { font-size: 9px; line-height: 1.4; text-align: center; font-weight: 500; }
+        .teacher-container { position: absolute; bottom: 12%; left: 73%; width: 18%; height: 65%; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+        .teacher-avatar { width: 100%; height: 75%; transform-origin: bottom center; animation: teacher-idle 4s infinite ease-in-out; }
+        @keyframes teacher-idle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+        .speech-bubble { position: absolute; background-color: #ffffff; color: #1e293b; padding: 8px 12px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 10; font-size: 10px; line-height: 1.4; border: 1px solid #e2e8f0; max-width: 180px; transition: opacity 0.3s; opacity: 1; }
+        .speech-bubble.hidden { opacity: 0; pointer-events: none; }
+        .speaker-name { font-weight: 700; color: var(--primary); margin-bottom: 2px; font-size: 8px; text-transform: uppercase; }
+        .speech-arrow { position: absolute; width: 0; height: 0; border-style: solid; }
+        .teacher-bubble { bottom: 80%; right: 10%; width: 180px; }
+        .teacher-bubble .speech-arrow { bottom: -8px; right: 15px; border-width: 8px 8px 0 0; border-color: #ffffff transparent transparent transparent; }
+        .speaking #teacher-mouth { animation: mouth-talk 0.2s infinite alternate; }
+        @keyframes mouth-talk { 0% { d: path("M92,122 Q100,122 108,122"); } 100% { d: path("M92,120 Q100,126 108,120"); } }
+        .gesturing #teacher-hand-card { animation: arm-gesture 1.5s infinite ease-in-out alternate; }
+        @keyframes arm-gesture { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
+        .students-container { position: absolute; bottom: 0; left: 0; width: 100%; height: 28%; z-index: 4; display: flex; justify-content: space-around; padding: 0 12%; }
+        .student-desk { width: 20%; height: 100%; position: relative; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+        .student-desk::after { content: ''; position: absolute; bottom: 0; width: 120%; height: 18px; background-color: #b45309; border-top: 4px solid #d97706; border-radius: 3px; z-index: 5; }
+        .student-avatar { width: 50px; height: 70px; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+        .student-avatar .head { width: 22px; height: 22px; background-color: #fbc3a6; border-radius: 50%; margin-bottom: -4px; position: relative; z-index: 3; }
+        .student-avatar .shoulders { width: 38px; height: 25px; background-color: #3b82f6; border-radius: 12px 12px 0 0; z-index: 2; }
+        #student-rohan .shoulders { background-color: #ef4444; }
+        #student-ananya .shoulders { background-color: #10b981; }
+        #student-vikram .shoulders { background-color: #f59e0b; }
+        .hair-back { position: absolute; top: 8px; width: 26px; height: 18px; background-color: #1a1a1a; z-index: 1; }
+        .hair-boy { border-radius: 8px 8px 0 0; }
+        .hair-boy2 { background-color: #78350f; border-radius: 6px 6px 0 0; }
+        .hair-girl { background-color: #451a03; height: 30px; border-radius: 10px 10px 6px 6px; }
+        .raised-hand { position: absolute; bottom: 30px; right: -10px; width: 18px; height: 45px; z-index: 10; display: flex; flex-direction: column; align-items: center; animation: hand-bounce 0.8s infinite alternate; }
+        @keyframes hand-bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-6px); } }
+        .raised-hand::before { content: ''; width: 6px; height: 30px; background-color: #fbc3a6; border-radius: 3px; }
+        .hand-card { width: 18px; height: 18px; background-color: #38bdf8; color: #ffffff; border-radius: 3px; font-weight: bold; font-size: 10px; display: flex; align-items: center; justify-content: center; position: absolute; top: -10px; }
+        .student-bubble { bottom: 80px; left: 50%; transform: translateX(-50%); width: 140px; text-align: center; }
+        .student-bubble::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-style: solid; border-width: 6px 6px 0 6px; border-color: #ffffff transparent transparent transparent; }
+        .active-speaker .head { box-shadow: 0 0 0 2px var(--primary); }
+        .video-controls { background-color: #020617; padding: 10px 16px; display: flex; flex-direction: column; gap: 8px; border-radius: 0 0 12px 12px; border-top: 1px solid var(--border-color); }
+        .timeline-container { display: flex; align-items: center; gap: 10px; }
+        .time-label { font-family: monospace; font-size: 10px; color: var(--text-muted); min-width: 35px; }
+        .timeline-bar { flex: 1; height: 4px; background-color: #1e293b; border-radius: 2px; position: relative; cursor: pointer; }
+        .timeline-fill { height: 100%; width: 0%; background-color: var(--primary); border-radius: 2px; position: absolute; top: 0; left: 0; }
+        .timeline-knob { width: 10px; height: 10px; background-color: var(--primary); border-radius: 50%; position: absolute; top: -3px; left: 0%; transform: translateX(-50%); opacity: 0; transition: opacity 0.2s; }
+        .timeline-bar:hover .timeline-knob { opacity: 1; }
+        .control-buttons { display: flex; align-items: center; justify-content: space-between; }
+        .cb-left, .cb-right { display: flex; align-items: center; gap: 12px; }
+        .play-btn, .control-icon-btn { background: none; border: none; color: var(--text-secondary); font-size: 14px; cursor: pointer; }
+        .play-btn:hover, .control-icon-btn:hover { color: #ffffff; }
+        .control-icon-btn.active { color: var(--primary); }
+        .speed-select { background-color: #1e293b; color: var(--text-primary); border: 1px solid var(--border-color); padding: 3px 6px; border-radius: 4px; font-size: 9px; outline: none; cursor: pointer; }
+        .status-marquee { font-size: 11px; color: var(--text-secondary); font-style: italic; text-align: center; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .toast-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 1000; }
+        .toast { background-color: var(--bg-sidebar); color: var(--text-primary); padding: 10px 16px; border-radius: 6px; font-size: 12px; border-left: 4px solid var(--primary); transform: translateX(120%); animation: toast-in 0.3s forwards; }
+        @keyframes toast-in { to { transform: translateX(0); } }
+        .toast.success { border-left-color: var(--success); }
+        .toast.warning { border-left-color: var(--warning); }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="player-layout">
+        <div class="player-column">
+            <div class="video-container">
+                <div class="classroom-stage">
+                    <div class="classroom-wall">
+                        <div class="blackboard">
+                            <h4>Class Summary</h4>
+                            <p>1) GDP = Gross Domestic Product</p>
+                            <p>2) Opportunity Cost = Alternative Value</p>
+                            <p>3) Kuznets Curve = Inequality vs Growth</p>
+                        </div>
+                    </div>
+                    <div class="smart-board-container">
+                        <div class="smart-board">
+                            <div class="smart-board-inner">
+                                <div class="sb-header"><span class="sb-title">SmartBoard Interactive v2.0</span></div>
+                                <div class="sb-content">
+                                    <div class="sb-screen" id="sb-screen-intro">
+                                        <div class="sb-topic-intro">
+                                            <span class="sb-topic-badge">Topic Introduction</span>
+                                            <div class="sb-topic-title" id="sb-intro-title">Loading...</div>
+                                            <div class="sb-topic-desc" id="sb-intro-desc">Loading...</div>
+                                        </div>
+                                    </div>
+                                    <div class="sb-screen hidden" id="sb-screen-question">
+                                        <div class="sb-question-header"><h3 id="sb-q-text">Loading...</h3></div>
+                                        <div class="sb-options-grid" id="sb-options-container"></div>
+                                    </div>
+                                    <div class="sb-screen hidden" id="sb-screen-flashcard">
+                                        <div class="sb-flashcard-container">
+                                            <div class="sb-flashcard" id="sb-flashcard-sprite">
+                                                <div class="sb-fc-front">
+                                                    <span class="sb-fc-tag" id="sb-fc-tag-front">Flashcard</span>
+                                                    <div class="sb-fc-title" id="sb-fc-title-front">Front Text</div>
+                                                </div>
+                                                <div class="sb-fc-back">
+                                                    <span class="sb-fc-tag" id="sb-fc-tag-back">Explanation</span>
+                                                    <div class="sb-fc-desc" id="sb-fc-desc-back">Back Text</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-container">
+                        <div class="speech-bubble teacher-bubble hidden" id="teacher-bubble">
+                            <div class="speaker-name">Mrs. Sharma (Teacher)</div>
+                            <div class="speech-text" id="teacher-bubble-text">Hello Class!</div>
+                            <div class="speech-arrow"></div>
+                        </div>
+                        <div class="teacher-avatar" id="teacher-avatar">
+                            <svg viewBox="0 0 200 300" width="100%" height="100%">
+                                <path d="M70,80 C50,80 50,130 70,140 Z" fill="#2d1e18" />
+                                <path d="M130,80 C150,80 150,130 130,140 Z" fill="#2d1e18" />
+                                <circle cx="100" cy="65" r="25" fill="#2d1e18" />
+                                <path d="M60,200 L140,200 L160,300 L40,300 Z" fill="#e2ebf0" />
+                                <path d="M55,200 C30,220 40,300 40,300 L75,300 L70,220 Z" fill="#719082" id="arm-left" />
+                                <path d="M145,200 C170,220 160,300 160,300 L125,300 L130,220 Z" fill="#719082" id="arm-right" />
+                                <path d="M70,200 L130,200 L145,300 L55,300 Z" fill="#719082" />
+                                <path d="M90,200 L110,200 L125,300 L75,300 Z" fill="#e2ebf0" />
+                                <rect x="90" y="130" width="20" height="30" rx="5" fill="#fbc3a6" />
+                                <rect x="75" y="80" width="50" height="60" rx="25" fill="#fbc3a6" />
+                                <path d="M73,90 C85,75 115,75 127,90 C130,80 70,80 73,90 Z" fill="#2d1e18" />
+                                <rect x="78" y="98" width="18" height="12" rx="3" fill="none" stroke="#1a1a1a" stroke-width="2.5" />
+                                <rect x="104" y="98" width="18" height="12" rx="3" fill="none" stroke="#1a1a1a" stroke-width="2.5" />
+                                <line x1="96" y1="104" x2="104" y2="104" stroke="#1a1a1a" stroke-width="2.5" />
+                                <circle cx="87" cy="104" r="2" fill="#1a1a1a" />
+                                <circle cx="113" cy="104" r="2" fill="#1a1a1a" />
+                                <path d="M92,122 Q100,122 108,122" fill="none" stroke="#c0392b" stroke-width="3" stroke-linecap="round" id="teacher-mouth" />
+                                <g id="teacher-hand-card">
+                                    <circle cx="140" cy="220" r="10" fill="#fbc3a6" />
+                                    <rect x="135" y="170" width="45" height="50" rx="4" fill="#f1c40f" stroke="#d68910" stroke-width="1.5" />
+                                    <text x="157" y="200" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" id="teacher-card-text">Q1</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="students-container">
+                        <div class="student-desk">
+                            <div class="student-avatar" id="student-rohan">
+                                <div class="speech-bubble student-bubble hidden" id="rohan-speech">
+                                    <span class="std-name">Rohan</span>
+                                    <p>Yes, Ma'am!</p>
+                                </div>
+                                <div class="hair-back hair-boy"></div>
+                                <div class="head"></div>
+                                <div class="shoulders"></div>
+                                <div class="raised-hand hidden" id="rohan-hand"><div class="hand-card">?</div></div>
+                            </div>
+                        </div>
+                        <div class="student-desk">
+                            <div class="student-avatar" id="student-ananya">
+                                <div class="speech-bubble student-bubble hidden" id="ananya-speech">
+                                    <span class="std-name">Ananya</span>
+                                    <p>I agree!</p>
+                                </div>
+                                <div class="hair-back hair-girl"></div>
+                                <div class="head"></div>
+                                <div class="shoulders"></div>
+                                <div class="raised-hand hidden" id="ananya-hand"><div class="hand-card">?</div></div>
+                            </div>
+                        </div>
+                        <div class="student-desk">
+                            <div class="student-avatar" id="student-vikram">
+                                <div class="speech-bubble student-bubble hidden" id="vikram-speech">
+                                    <span class="std-name">Vikram</span>
+                                    <p>Yes, correct!</p>
+                                </div>
+                                <div class="hair-back hair-boy2"></div>
+                                <div class="head"></div>
+                                <div class="shoulders"></div>
+                                <div class="raised-hand hidden" id="vikram-hand"><div class="hand-card">?</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-controls">
+                <div class="timeline-container">
+                    <span class="time-label" id="current-time">00:00</span>
+                    <div class="timeline-bar" id="timeline-bar">
+                        <div class="timeline-fill" id="timeline-fill"></div>
+                        <div class="timeline-knob" id="timeline-knob"></div>
+                    </div>
+                    <span class="time-label" id="total-time">02:30</span>
+                </div>
+                <div class="control-buttons">
+                    <div class="cb-left">
+                        <button class="play-btn" id="play-btn" title="Play">▶</button>
+                        <button class="control-icon-btn" id="prev-btn" title="Previous">⏮</button>
+                        <button class="control-icon-btn" id="next-btn" title="Next">⏭</button>
+                        <button class="control-icon-btn" id="voice-btn" title="Toggle Voice">🔊</button>
+                        <select class="speed-select" id="speed-select">
+                            <option value="0.75">0.75x</option>
+                            <option value="1" selected>1.0x</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="2">2.0x</option>
+                        </select>
+                    </div>
+                    <div class="status-marquee" id="status-marquee">Click Play to start.</div>
+                    <div class="cb-right">
+                        <button class="control-icon-btn" id="interactive-btn" title="Toggle Quiz Mode">❓ Quiz Mode</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-header"><h3>Economics Lecture Topics</h3></div>
+            <div class="playlist-items" id="playlist-items"></div>
+        </aside>
+    </div>
+    <div class="toast-container" id="toast-container"></div>
+    <script>
+        const questionsData = __QUESTIONS_DATA__;
+        let currentQIdx = 0, currentStepIdx = 0, isPlaying = false, playbackSpeed = 1.0, voiceEnabled = true, quizMode = false, userSelectAllowed = false, completedQuestions = new Set(), utterance = null, timer = null;
+        const playBtn = document.getElementById("play-btn"), prevBtn = document.getElementById("prev-btn"), nextBtn = document.getElementById("next-btn"), voiceBtn = document.getElementById("voice-btn"), interactiveBtn = document.getElementById("interactive-btn"), speedSelect = document.getElementById("speed-select"), timelineBar = document.getElementById("timeline-bar"), timelineFill = document.getElementById("timeline-fill"), timelineKnob = document.getElementById("timeline-knob"), currentTimeEl = document.getElementById("current-time"), totalTimeEl = document.getElementById("total-time"), statusMarquee = document.getElementById("status-marquee"), sbScreenIntro = document.getElementById("sb-screen-intro"), sbScreenQuestion = document.getElementById("sb-screen-question"), sbScreenFlashcard = document.getElementById("sb-screen-flashcard"), sbIntroTitle = document.getElementById("sb-intro-title"), sbIntroDesc = document.getElementById("sb-intro-desc"), sbQText = document.getElementById("sb-q-text"), sbOptionsContainer = document.getElementById("sb-options-container"), sbFlashcardSprite = document.getElementById("sb-flashcard-sprite"), sbFcTitleFront = document.getElementById("sb-fc-title-front"), sbFcDescBack = document.getElementById("sb-fc-desc-back"), sbFcTagFront = document.getElementById("sb-fc-tag-front"), sbFcTagBack = document.getElementById("sb-fc-tag-back"), teacherBubble = document.getElementById("teacher-bubble"), teacherBubbleText = document.getElementById("teacher-bubble-text"), teacherAvatar = document.getElementById("teacher-avatar"), teacherCardText = document.getElementById("teacher-card-text"), playlistItemsContainer = document.getElementById("playlist-items");
+        const students = {
+            "Rohan": { bubble: document.getElementById("rohan-speech"), hand: document.getElementById("rohan-hand"), avatar: document.getElementById("student-rohan") },
+            "Ananya": { bubble: document.getElementById("ananya-speech"), hand: document.getElementById("ananya-hand"), avatar: document.getElementById("student-ananya") },
+            "Vikram": { bubble: document.getElementById("vikram-speech"), hand: document.getElementById("vikram-hand"), avatar: document.getElementById("student-vikram") },
+            "Sneha": { bubble: null, hand: null, avatar: null }, "Arjun": { bubble: null, hand: null, avatar: null }, "Pooja": { bubble: null, hand: null, avatar: null }, "Aditya": { bubble: null, hand: null, avatar: null }, "Meera": { bubble: null, hand: null, avatar: null }, "Kabir": { bubble: null, hand: null, avatar: null }, "Riya": { bubble: null, hand: null, avatar: null }
+        };
+        function init() { buildPlaylist(); setupEventListeners(); loadQuestion(0); }
+        function buildPlaylist() {
+            playlistItemsContainer.innerHTML = "";
+            questionsData.forEach((q, idx) => {
+                const btn = document.createElement("button");
+                btn.className = "playlist-item";
+                btn.innerHTML = '<span class="playlist-item-num">' + (idx + 1).toString().padStart(2, '0') + '</span><span class="playlist-item-title">' + q.topic_title + '</span>';
+                btn.addEventListener("click", () => selectQuestion(idx));
+                playlistItemsContainer.appendChild(btn);
+            });
+        }
+        function setupEventListeners() {
+            playBtn.addEventListener("click", togglePlay);
+            prevBtn.addEventListener("click", playPrev);
+            nextBtn.addEventListener("click", playNext);
+            voiceBtn.addEventListener("click", toggleVoice);
+            interactiveBtn.addEventListener("click", toggleQuizMode);
+            speedSelect.addEventListener("change", changeSpeed);
+            timelineBar.addEventListener("click", scrubTimeline);
+        }
+        function loadQuestion(idx) {
+            stopPlayback(); currentQIdx = idx; currentStepIdx = 0; userSelectAllowed = false;
+            const q = questionsData[idx]; teacherCardText.textContent = `Q${q.id}`;
+            const items = playlistItemsContainer.querySelectorAll(".playlist-item");
+            items.forEach((item, i) => {
+                if (i === idx) { item.classList.add("active"); item.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+                else { item.classList.remove("active"); }
+            });
+            sbIntroTitle.textContent = q.topic_title;
+            sbIntroDesc.textContent = q.dialogue[0].text.split("Specifically, ")[1] || "Core theoretical analysis.";
+            sbQText.textContent = `${q.id}. ${q.question}`;
+            sbOptionsContainer.innerHTML = "";
+            q.options.forEach((opt, oIdx) => {
+                const btn = document.createElement("button");
+                btn.className = "sb-option-btn";
+                btn.innerHTML = `<span class="opt-letter">${String.fromCharCode(65 + oIdx)}</span> ${opt}`;
+                btn.addEventListener("click", () => handleOptionClick(oIdx));
+                sbOptionsContainer.appendChild(btn);
+            });
+            sbScreenIntro.classList.remove("hidden");
+            sbScreenQuestion.classList.add("hidden");
+            sbScreenFlashcard.classList.add("hidden");
+            teacherBubble.classList.add("hidden");
+            Object.keys(students).forEach(name => {
+                const s = students[name];
+                if (s && s.bubble) s.bubble.classList.add("hidden");
+                if (s && s.hand) s.hand.classList.add("hidden");
+                if (s && s.avatar) s.avatar.classList.remove("active-speaker");
+            });
+            updateTimeline();
+            statusMarquee.textContent = `Topic: ${q.topic_title}. Click Play to start.`;
+        }
+        function selectQuestion(idx) { loadQuestion(idx); if (isPlaying) playStep(0); }
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            if (isPlaying) { playBtn.textContent = "❚❚"; playStep(currentStepIdx); }
+            else { playBtn.textContent = "▶"; stopPlayback(); }
+        }
+        function stopPlayback() {
+            if (typeof speechSynthesis !== "undefined") { speechSynthesis.cancel(); }
+            if (timer) { clearTimeout(timer); }
+            teacherAvatar.classList.remove("speaking", "gesturing");
+            Object.keys(students).forEach(name => {
+                const s = students[name]; if (s && s.avatar) s.avatar.classList.remove("active-speaker");
+            });
+        }
+        function playPrev() { if (currentQIdx > 0) selectQuestion(currentQIdx - 1); }
+        function playNext() { if (currentQIdx < questionsData.length - 1) selectQuestion(currentQIdx + 1); }
+        function playStep(stepIdx) {
+            const q = questionsData[currentQIdx];
+            if (stepIdx >= q.dialogue.length) {
+                completedQuestions.add(currentQIdx);
+                if (currentQIdx < questionsData.length - 1) {
+                    setTimeout(() => { loadQuestion(currentQIdx + 1); isPlaying = true; playBtn.textContent = "❚❚"; playStep(0); }, 1500);
+                } else {
+                    isPlaying = false; playBtn.textContent = "▶"; statusMarquee.textContent = "All lectures completed!";
+                    showToast("Congratulations! All topics completed.", "success");
+                }
+                return;
+            }
+            currentStepIdx = stepIdx; updateTimeline();
+            const turn = q.dialogue[stepIdx], speaker = turn.speaker, text = turn.text, action = turn.action;
+            handleAction(action, q);
+            teacherBubble.classList.add("hidden");
+            Object.keys(students).forEach(name => {
+                const s = students[name]; if (s && s.bubble) s.bubble.classList.add("hidden");
+            });
+            if (speaker === "Teacher") { teacherBubbleText.textContent = text; teacherBubble.classList.remove("hidden"); }
+            else {
+                const s = students[speaker];
+                if (s && s.bubble) { s.bubble.querySelector("p").textContent = text; s.bubble.classList.remove("hidden"); }
+            }
+            statusMarquee.textContent = `${speaker} is explaining...`;
+            speak(text, speaker, () => {
+                if (action === "student_raise_hand") {
+                    const s = students[speaker]; if (s && s.hand) s.hand.classList.add("hidden");
+                }
+                if (isPlaying) {
+                    if (quizMode && action === "show_question" && !userSelectAllowed) {
+                        isPlaying = false; playBtn.textContent = "▶"; statusMarquee.textContent = "Your turn! Answer on the board.";
+                        userSelectAllowed = true; return;
+                    }
+                    playStep(stepIdx + 1);
+                }
+            });
+        }
+        function handleAction(action, q) {
+            sbScreenIntro.classList.add("hidden");
+            if (action.startsWith("show_card")) {
+                sbScreenQuestion.classList.add("hidden"); sbScreenFlashcard.classList.remove("hidden"); sbFlashcardSprite.classList.remove("flipped");
+                const cardIdx = parseInt(action.split("_")[2]) - 1, card = q.flashcards[cardIdx];
+                sbFcTagFront.textContent = `Card ${cardIdx + 1}`; sbFcTitleFront.textContent = card.front;
+                sbFcTagBack.textContent = `Card ${cardIdx + 1} - Explanation`; sbFcDescBack.textContent = card.back;
+            } else if (action.startsWith("flip_card")) {
+                sbScreenQuestion.classList.add("hidden"); sbScreenFlashcard.classList.remove("hidden"); sbFlashcardSprite.classList.add("flipped");
+            } else if (action === "show_question") {
+                sbScreenQuestion.classList.remove("hidden"); sbScreenFlashcard.classList.add("hidden");
+            } else if (action === "show_topic_intro") {
+                sbScreenIntro.classList.remove("hidden"); sbScreenQuestion.classList.add("hidden"); sbScreenFlashcard.classList.add("hidden");
+            } else if (action === "student_raise_hand") {
+                const speaker = q.dialogue[currentStepIdx].speaker, s = students[speaker];
+                if (s && s.hand) s.hand.classList.remove("hidden");
+            }
+        }
+        function speak(text, speaker, callback) {
+            stopPlayback();
+            if (!voiceEnabled || typeof speechSynthesis === "undefined") {
+                const words = text.split(" ").length, duration = (words / 2.5) * 1000 / playbackSpeed;
+                animateAvatar(speaker, true);
+                timer = setTimeout(() => { animateAvatar(speaker, false); if (callback) callback(); }, duration);
+                return;
+            }
+            utterance = new SpeechSynthesisUtterance(text); utterance.rate = playbackSpeed;
+            const voices = speechSynthesis.getVoices();
+            if (speaker === "Teacher") {
+                const femaleVoice = voices.find(v => v.name.toLowerCase().includes("female") || v.name.toLowerCase().includes("zira") || v.name.toLowerCase().includes("google us english"));
+                if (femaleVoice) utterance.voice = femaleVoice;
+            } else {
+                const maleVoice = voices.find(v => v.name.toLowerCase().includes("male") || v.name.toLowerCase().includes("david") || v.name.toLowerCase().includes("google uk english male"));
+                if (maleVoice) utterance.voice = maleVoice;
+            }
+            utterance.onstart = () => animateAvatar(speaker, true);
+            utterance.onend = () => { animateAvatar(speaker, false); if (callback) callback(); };
+            utterance.onerror = () => { animateAvatar(speaker, false); if (callback) callback(); };
+            speechSynthesis.speak(utterance);
+        }
+        function animateAvatar(speaker, isSpeaking) {
+            if (speaker === "Teacher") {
+                if (isSpeaking) teacherAvatar.classList.add("speaking", "gesturing");
+                else teacherAvatar.classList.remove("speaking", "gesturing");
+            } else {
+                const s = students[speaker];
+                if (s && s.avatar) {
+                    if (isSpeaking) s.avatar.classList.add("active-speaker");
+                    else s.avatar.classList.remove("active-speaker");
+                }
+            }
+        }
+        function handleOptionClick(oIdx) {
+            if (!userSelectAllowed) return;
+            userSelectAllowed = false;
+            const q = questionsData[currentQIdx], isCorrect = oIdx === q.correct_index;
+            const buttons = sbOptionsContainer.querySelectorAll(".sb-option-btn");
+            buttons[q.correct_index].classList.add("correct");
+            if (isCorrect) showToast("Correct! Great job.", "success");
+            else {
+                buttons[oIdx].style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                buttons[oIdx].style.borderColor = "#ef4444";
+                showToast("Incorrect! Let's hear the explanation.", "warning");
+            }
+            setTimeout(() => { isPlaying = true; playBtn.textContent = "❚❚"; playStep(5); }, 1500);
+        }
+        function toggleVoice() {
+            voiceEnabled = !voiceEnabled; voiceBtn.classList.toggle("active", voiceEnabled);
+            voiceBtn.textContent = voiceEnabled ? "🔊" : "🔇";
+            showToast(`Voice Narration: ${voiceEnabled ? "Enabled" : "Disabled"}`, "success");
+        }
+        function toggleQuizMode() { quizMode = !quizMode; interactiveBtn.classList.toggle("active", quizMode); showToast(`Quiz Mode: ${quizMode ? "Enabled" : "Disabled"}`, "warning"); }
+        function changeSpeed(e) { playbackSpeed = parseFloat(e.target.value); if (isPlaying) playStep(currentStepIdx); }
+        function updateTimeline() {
+            const q = questionsData[currentQIdx], percent = (currentStepIdx / (q.dialogue.length - 1)) * 100;
+            timelineFill.style.width = `${percent}%`; timelineKnob.style.left = `${percent}%`;
+            const currentSeconds = currentStepIdx * 8, totalSeconds = q.dialogue.length * 8;
+            currentTimeEl.textContent = formatTime(currentSeconds); totalTimeEl.textContent = formatTime(totalSeconds);
+        }
+        function scrubTimeline(e) {
+            const rect = timelineBar.getBoundingClientRect(), clickX = e.clientX - rect.left, width = rect.width, percent = clickX / width;
+            const q = questionsData[currentQIdx], targetStep = Math.min(q.dialogue.length - 1, Math.max(0, Math.floor(percent * q.dialogue.length)));
+            if (isPlaying) playStep(targetStep);
+            else { currentStepIdx = targetStep; updateTimeline(); handleAction(q.dialogue[targetStep].action, q); }
+        }
+        function formatTime(sec) { return `${Math.floor(sec / 60).toString().padStart(2, '0')}:${(sec % 60).toString().padStart(2, '0')}`; }
+        function showToast(msg, type = "info") {
+            const container = document.getElementById("toast-container"), toast = document.createElement("div");
+            toast.className = `toast ${type}`; toast.textContent = msg; container.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 2500);
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
+    </textarea>
 
 </body>
 </html>
