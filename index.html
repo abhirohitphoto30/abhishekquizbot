@@ -1019,17 +1019,7 @@
                     <button class="menu-btn" onclick="sendMenuCommand('/myquizzes')"><i class="fa-solid fa-list"></i> /myquizzes</button>
                     <button class="menu-btn" onclick="sendMenuCommand('/done')"><i class="fa-solid fa-floppy-disk"></i> /done</button>
                     <button class="menu-btn" onclick="sendMenuCommand('/cancel')"><i class="fa-solid fa-xmark"></i> /cancel</button>
-
-                    <div class="sidebar-section-title">🎨 Settings & Themes</div>
-                    <button class="menu-btn" onclick="sendMenuCommand('/settings')"><i class="fa-solid fa-gear"></i> /settings</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/wallpaper')"><i class="fa-solid fa-image"></i> /wallpaper</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme cyberpunk')"><i class="fa-solid fa-bolt"></i> Cyberpunk</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme neon')"><i class="fa-solid fa-star"></i> Neon</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme space')"><i class="fa-solid fa-moon"></i> Space</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme galaxy')"><i class="fa-solid fa-circle-dot"></i> Galaxy</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme anime')"><i class="fa-solid fa-fire"></i> Anime</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme matrix')"><i class="fa-solid fa-code"></i> Matrix</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme default')"><i class="fa-solid fa-rotate-left"></i> Default Theme</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/stop')"><i class="fa-solid fa-stop"></i> /stop</button>
 
                     <div class="sidebar-section-title">🎮 Quiz Playback</div>
                     <button class="menu-btn" onclick="sendMenuCommand('/quiz')"><i class="fa-solid fa-gamepad"></i> /quiz</button>
@@ -1048,6 +1038,13 @@
                     <button class="menu-btn" onclick="sendMenuCommand('/marathon 20')"><i class="fa-solid fa-person-running"></i> /marathon [x]</button>
                     <button class="menu-btn" onclick="document.getElementById('sched-modal').classList.add('active')"><i class="fa-solid fa-clock"></i> /timer [schedule]</button>
 
+                    <div class="sidebar-section-title">📤 Booklet Exports</div>
+                    <button class="menu-btn" onclick="sendMenuCommand('/html')"><i class="fa-solid fa-file-code"></i> /html [id]</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/pdf')"><i class="fa-solid fa-file-pdf"></i> /pdf [id]</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/video')"><i class="fa-solid fa-file-video"></i> /video [id]</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/mindmap')"><i class="fa-solid fa-network-wired"></i> /mindmap [id]</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/flashcard')"><i class="fa-solid fa-clone"></i> /flashcard [id]</button>
+
                     <div class="sidebar-section-title">&#128202; Analysis &amp; Stats</div>
                     <button class="menu-btn" onclick="sendMenuCommand('/stats')"><i class="fa-solid fa-chart-simple"></i> /stats</button>
                     <button class="menu-btn" onclick="sendMenuCommand('/leaderboard')"><i class="fa-solid fa-trophy"></i> /leaderboard</button>
@@ -1064,29 +1061,28 @@
                     <button class="menu-btn" onclick="sendMenuCommand('/check')"><i class="fa-solid fa-heart-pulse"></i> /check</button>
                     <button class="menu-btn" onclick="sendMenuCommand('/cleanup')"><i class="fa-solid fa-broom"></i> /cleanup</button>
 
-                    <div class="sidebar-section-title">📤 Booklet Exports</div>
-                    <button class="menu-btn" onclick="sendMenuCommand('/html')"><i class="fa-solid fa-file-code"></i> /html [id]</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/pdf')"><i class="fa-solid fa-file-pdf"></i> /pdf [id]</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/video')"><i class="fa-solid fa-file-video"></i> /video [id]</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/mindmap')"><i class="fa-solid fa-network-wired"></i> /mindmap [id]</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/flashcard')"><i class="fa-solid fa-clone"></i> /flashcard [id]</button>
+                    <div class="sidebar-section-title">📄 PDF Converters</div>
+                    <button class="menu-btn" onclick="sendMenuCommand('/vajiram')"><i class="fa-solid fa-file-pdf"></i> /vajiram</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/vision')"><i class="fa-solid fa-file-pdf"></i> /vision</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/sfg')"><i class="fa-solid fa-file-pdf"></i> /sfg</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/pw')"><i class="fa-solid fa-file-pdf"></i> /pw</button>
 
                     <div class="sidebar-section-title">💳 Paid Quizzes</div>
                     <button class="menu-btn" onclick="sendMenuCommand('/add')"><i class="fa-solid fa-user-plus"></i> /add</button>
                     <button class="menu-btn" onclick="sendMenuCommand('/rem')"><i class="fa-solid fa-user-minus"></i> /rem</button>
                     <button class="menu-btn" onclick="sendMenuCommand('/remall')"><i class="fa-solid fa-user-slash"></i> /remall</button>
 
-                    <div class="sidebar-section-title">📄 PDF Converters</div>
-                    <button class="menu-btn" onclick="sendMenuCommand('/vajiram')"><i class="fa-solid fa-file-pdf"></i> /vajiram</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/vision')"><i class="fa-solid fa-file-pdf"></i> /vision</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/sfg')"><i class="fa-solid fa-file-pdf"></i> /sfg</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/pw')"><i class="fa-solid fa-file-pdf"></i> /pw</button>
+                    <div class="sidebar-section-title">🎨 Settings & Themes</div>
+                    <button class="menu-btn" onclick="sendMenuCommand('/settings')"><i class="fa-solid fa-gear"></i> /settings</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/wallpaper')"><i class="fa-solid fa-image"></i> /wallpaper</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme cyberpunk')"><i class="fa-solid fa-bolt"></i> Cyberpunk</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme neon')"><i class="fa-solid fa-star"></i> Neon</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme space')"><i class="fa-solid fa-moon"></i> Space</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme galaxy')"><i class="fa-solid fa-circle-dot"></i> Galaxy</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme anime')"><i class="fa-solid fa-fire"></i> Anime</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme matrix')"><i class="fa-solid fa-code"></i> Matrix</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme default')"><i class="fa-solid fa-rotate-left"></i> Default Theme</button>
                 </div>
-            </div>
-            <div class="sidebar-footer">
-                <button class="primary-btn" onclick="exportUpdatedHtml()" style="background: linear-gradient(135deg, var(--telegram-blue), #50a2e3); box-shadow: 0 4px 10px rgba(36, 129, 204, 0.4);">
-                    <i class="fa-solid fa-download"></i> Save & Export HTML
-                </button>
             </div>
         </div>
 
