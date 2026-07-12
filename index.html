@@ -20,21 +20,23 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <!-- LocalForage CDN for IndexedDB Storage (Bypassing 5MB LocalStorage limit) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
 
     <style>
         :root {
-            --telegram-blue: #2481cc;
-            --telegram-dark-blue: #1e6fa8;
-            --bg-dark: #0e1621;
-            --chat-bg: #182533;
-            --card-bg: #1e2c3a;
-            --text-main: #f5f6f7;
-            --text-muted: #7f91a4;
-            --success: #4fae5e;
+            --telegram-blue: #ff6b9d;
+            --telegram-dark-blue: #e05284;
+            --bg-dark: #0d0820;
+            --chat-bg: #130a28;
+            --card-bg: #1e1030;
+            --text-main: #fff0f8;
+            --text-muted: #9f8ba8;
+            --success: #00ffcc;
             --danger: #d14e4e;
-            --gold: #f59e0b;
-            --bubble-user: #2b5278;
-            --bubble-bot: #182533;
+            --gold: #ffee44;
+            --bubble-user: #2a0850;
+            --bubble-bot: #130a28;
             --glass-border: rgba(255, 255, 255, 0.08);
         }
 
@@ -66,7 +68,7 @@
         /* Sidebar - Command center & quick actions */
         .sidebar {
             width: 250px;
-            background: #17212b;
+            background: #0d0820;
             border-right: 1px solid rgba(0,0,0,0.2);
             display: flex;
             flex-direction: column;
@@ -187,7 +189,7 @@
         /* Chat Header */
         .chat-header {
             height: 60px;
-            background: #17212b;
+            background: #0d0820;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -400,43 +402,6 @@
         .smb-heart { font-size: 0.9rem; }
 
         /* ═══ ANIMATED THEMES ═══ */
-        /* Cyberpunk */
-        body.theme-cyberpunk {
-            --telegram-blue: #00ffe5; --bg-dark: #0a001a; --chat-bg: #0e0020;
-            --card-bg: #150030; --bubble-bot: #0e0020; --bubble-user: #1a003a;
-            --text-main: #e0f7ff; --success: #00ffe5; --gold: #ff00aa;
-        }
-        body.theme-cyberpunk .chat-area { background: #08001a; }
-        body.theme-cyberpunk .sidebar, body.theme-cyberpunk .chat-header, body.theme-cyberpunk .chat-input-area { background: #0a0020; }
-        body.theme-cyberpunk .quiz-card-bubble { border-color: rgba(0,255,229,0.25); }
-        body.theme-cyberpunk .quiz-opt-btn:hover:not(:disabled) { border-color: #00ffe5; box-shadow: 0 0 8px rgba(0,255,229,0.4); }
-
-        /* Neon */
-        body.theme-neon {
-            --telegram-blue: #ff00ff; --bg-dark: #050010; --chat-bg: #07001a;
-            --card-bg: #0f0028; --bubble-bot: #07001a; --bubble-user: #1a003a;
-            --text-main: #fff0ff; --success: #00ff88; --gold: #ffe600;
-        }
-        body.theme-neon .chat-area { background: #050010; }
-        body.theme-neon .sidebar, body.theme-neon .chat-header, body.theme-neon .chat-input-area { background: #080015; }
-        body.theme-neon .quiz-opt-btn:hover:not(:disabled) { box-shadow: 0 0 12px rgba(255,0,255,0.5); }
-
-        /* Space */
-        body.theme-space {
-            --telegram-blue: #4facfe; --bg-dark: #020010; --chat-bg: #040018;
-            --card-bg: #0a0028; --bubble-bot: #040018; --bubble-user: #0d0040;
-            --text-main: #ddeeff; --success: #00d4ff; --gold: #ffcc44;
-        }
-        body.theme-space .chat-area { background: radial-gradient(ellipse at 50% 50%, #0a0030 0%, #020010 100%); }
-
-        /* Galaxy */
-        body.theme-galaxy {
-            --telegram-blue: #9b59b6; --bg-dark: #050008; --chat-bg: #08000e;
-            --card-bg: #0f0018; --bubble-bot: #08000e; --bubble-user: #1a0030;
-            --text-main: #f0e8ff; --success: #00ff88; --gold: #ff9933;
-        }
-        body.theme-galaxy .chat-area { background: radial-gradient(ellipse at 30% 60%, #1a0040 0%, #050008 80%); }
-
         /* Anime */
         body.theme-anime {
             --telegram-blue: #ff6b9d; --bg-dark: #0d0820; --chat-bg: #130a28;
@@ -444,16 +409,6 @@
             --text-main: #fff0f8; --success: #00ffcc; --gold: #ffee44;
         }
         body.theme-anime .sidebar, body.theme-anime .chat-header, body.theme-anime .chat-input-area { background: #0d0820; }
-
-        /* Matrix */
-        body.theme-matrix {
-            --telegram-blue: #00ff41; --bg-dark: #001400; --chat-bg: #001900;
-            --card-bg: #002200; --bubble-bot: #001900; --bubble-user: #003300;
-            --text-main: #00ff41; --text-muted: #007a1f; --success: #00ff88; --gold: #aaff00;
-            --glass-border: rgba(0,255,65,0.12);
-        }
-        body.theme-matrix .sidebar, body.theme-matrix .chat-header, body.theme-matrix .chat-input-area { background: #001200; }
-        body.theme-matrix .quiz-opt-btn:hover:not(:disabled) { box-shadow: 0 0 10px rgba(0,255,65,0.5); }
 
         /* ═══ SCHEDULE TIMER MODAL ═══ */
         .sched-modal { max-width: 400px; text-align: left; }
@@ -598,7 +553,7 @@
 
         /* Keyboard / Input Box */
         .chat-input-area {
-            background: #17212b;
+            background: #0d0820;
             padding: 15px;
             border-top: 1px solid rgba(0,0,0,0.2);
             display: flex;
@@ -969,7 +924,7 @@
         }
     </style>
 </head>
-<body>
+<body class="theme-anime">
     <div id="app">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -1074,14 +1029,7 @@
 
                     <div class="sidebar-section-title">🎨 Settings & Themes</div>
                     <button class="menu-btn" onclick="sendMenuCommand('/settings')"><i class="fa-solid fa-gear"></i> /settings</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/wallpaper')"><i class="fa-solid fa-image"></i> /wallpaper</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme cyberpunk')"><i class="fa-solid fa-bolt"></i> Cyberpunk</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme neon')"><i class="fa-solid fa-star"></i> Neon</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme space')"><i class="fa-solid fa-moon"></i> Space</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme galaxy')"><i class="fa-solid fa-circle-dot"></i> Galaxy</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme anime')"><i class="fa-solid fa-fire"></i> Anime</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme matrix')"><i class="fa-solid fa-code"></i> Matrix</button>
-                    <button class="menu-btn" onclick="sendMenuCommand('/theme default')"><i class="fa-solid fa-rotate-left"></i> Default Theme</button>
+                    <button class="menu-btn" onclick="sendMenuCommand('/theme anime')"><i class="fa-solid fa-fire"></i> Anime Theme</button>
                 </div>
             </div>
         </div>
@@ -1299,7 +1247,7 @@
                         <!-- Live Wallpapers -->
                         <div class="wallpaper-item" onclick="setChatWallpaper('live-stars')" style="height: 60px; background: linear-gradient(135deg, #090a0f, #121526); border-radius: 8px; border: 2px solid var(--glass-border); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: bold; color: white; overflow: hidden; position: relative;">Stars 🌠</div>
                         <div class="wallpaper-item" onclick="setChatWallpaper('live-wave')" style="height: 60px; background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); border-radius: 8px; border: 2px solid var(--glass-border); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: bold; color: white; overflow: hidden; position: relative;">Wave 🌊</div>
-                        <div class="wallpaper-item" onclick="setChatWallpaper('pattern-telegram')" style="height: 60px; background: #17212b; border-radius: 8px; border: 2px solid var(--glass-border); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: bold; color: white; overflow: hidden; position: relative;">Pattern 🀄</div>
+                        <div class="wallpaper-item" onclick="setChatWallpaper('pattern-telegram')" style="height: 60px; background: #0d0820; border-radius: 8px; border: 2px solid var(--glass-border); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: bold; color: white; overflow: hidden; position: relative;">Pattern 🀄</div>
                     </div>
                     
                     <div style="margin-top: 20px; border-top: 1px solid var(--glass-border); padding-top: 15px; text-align: left;">
@@ -2784,10 +2732,13 @@
         }
 
         function loadSavedWallpaper() {
-            const savedType = localStorage.getItem('chat_wallpaper_type');
-            if (savedType) {
-                const savedData = localStorage.getItem('chat_wallpaper_data');
-                setChatWallpaper(savedType, savedData);
+            localStorage.removeItem('chat_wallpaper_type');
+            localStorage.removeItem('chat_wallpaper_data');
+            const chatHistory = document.getElementById('chat-history');
+            if (chatHistory) {
+                chatHistory.style.backgroundImage = 'none';
+                chatHistory.style.backgroundColor = 'transparent';
+                chatHistory.style.animation = 'none';
             }
         }
 
@@ -2913,26 +2864,40 @@
             bestStreakOverall: 0
         };
 
-        // Initialize DB from LocalStorage or Embedded DB
-        function initDatabase() {
+        // Initialize DB from LocalStorage/IndexedDB or Embedded DB
+        async function initDatabase() {
             // Load embedded quizzes first
             if (typeof EMBEDDED_QUIZZES !== 'undefined' && Array.isArray(EMBEDDED_QUIZZES)) {
                 quizzesDb = [...EMBEDDED_QUIZZES];
             }
             
-            // Load local storage additions
+            // Backward Compatibility: Migrate old data from localStorage to localforage
             const stored = localStorage.getItem('local_quizzes');
             if (stored) {
                 try {
                     const parsed = JSON.parse(stored);
-                    parsed.forEach(q => {
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        await localforage.setItem('local_quizzes', parsed);
+                        console.log("Successfully migrated quizzes from localStorage to IndexedDB via localforage.");
+                    }
+                    localStorage.removeItem('local_quizzes');
+                } catch(e) {
+                    console.error("Failed to migrate quizzes from localStorage", e);
+                }
+            }
+
+            // Load IndexedDB additions via localforage
+            try {
+                const storedQuizzes = await localforage.getItem('local_quizzes');
+                if (storedQuizzes && Array.isArray(storedQuizzes)) {
+                    storedQuizzes.forEach(q => {
                         if (!quizzesDb.some(dbQ => dbQ.id === q.id)) {
                             quizzesDb.push(q);
                         }
                     });
-                } catch(e) {
-                    console.error("Failed to load local storage quizzes", e);
                 }
+            } catch(e) {
+                console.error("Failed to load IndexedDB quizzes via localforage", e);
             }
 
             // Load local stats
@@ -2943,10 +2908,18 @@
                 } catch(e) {}
             }
         }
-        initDatabase();
-        FirebaseSyncManager.init();
-        GroupSyncManager.init();
-        loadSavedWallpaper();
+
+        // Graceful State Management: Wait for database initialization to complete
+        (async function() {
+            try {
+                await initDatabase();
+            } catch(e) {
+                console.error("Database initialization failed", e);
+            }
+            FirebaseSyncManager.init();
+            GroupSyncManager.init();
+            loadSavedWallpaper();
+        })();
 
         // Keyboard Shortcut: Press '/' to focus chat input
         window.addEventListener('keydown', (e) => {
@@ -3641,7 +3614,7 @@
 
                 case '/wallpaper':
                     openWallpaperModal();
-                    printMsg('bot', "🎨 Opened Wallpaper Customization Modal. Choose from solid colors, gradients, live waves, or upload an image.");
+                    printMsg('bot', "🎨 Default Anime wallpaper is active.");
                     break;
 
                 case '/create':
@@ -3865,14 +3838,14 @@
                 }
 
                 case '/theme': {
-                    const themes = ['cyberpunk', 'neon', 'space', 'galaxy', 'anime', 'matrix', 'default'];
+                    const themes = ['anime'];
                     const t = param.toLowerCase();
                     if (!t || !themes.includes(t)) {
-                        printMsg('bot', `🌈 Available themes: <b>${themes.join(', ')}</b><br>Usage: <code>/theme cyberpunk</code>`, true);
+                        printMsg('bot', `🌈 Available themes: <b>${themes.join(', ')}</b><br>Usage: <code>/theme anime</code>`, true);
                         break;
                     }
                     document.body.className = document.body.className.replace(/theme-\S+/g, '').trim();
-                    if (t !== 'default') document.body.classList.add('theme-' + t);
+                    document.body.classList.add('theme-' + t);
                     localStorage.setItem('ui_theme', t);
                     reinitParticles();
                     printMsg('bot', `🌈 Theme switched to <b>${t.charAt(0).toUpperCase() + t.slice(1)}</b>!`, true);
@@ -4129,14 +4102,19 @@
             input.click();
         }
 
-        // Save Db to localStorage
-        function saveQuizzesToLocalStorage() {
+        // Save Db to IndexedDB using localforage
+        async function saveQuizzesToLocalStorage() {
             // Find quizzes that were added locally (meaning they aren't pre-embedded)
             const localOnly = quizzesDb.filter(q => {
                 if (typeof EMBEDDED_QUIZZES === 'undefined') return true;
                 return !EMBEDDED_QUIZZES.some(emb => emb.id === q.id);
             });
-            localStorage.setItem('local_quizzes', JSON.stringify(localOnly));
+            try {
+                await localforage.setItem('local_quizzes', localOnly);
+            } catch (e) {
+                console.error("Failed to save quizzes to IndexedDB:", e);
+                alert("⚠️ Storage Error: Failed to save quiz data. Storage quota might be exceeded.");
+            }
         }
 
         // Launch quiz parameters
@@ -5233,7 +5211,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,sans-serif;backgroun
 }
 </style>
 </head>
-<body>
+<body class="theme-anime">
 <div id="modeSelection">
 <div class="mode-container">
 <div class="mode-header">
@@ -6005,6 +5983,12 @@ function rs(){document.body.style.overflow='hidden';location.reload()}
 
             addFooter();
             doc.save(safeText(quizName).replace(/\s+/g, '_') + '_Report.pdf');
+            
+            // Stagger download of themed mindmaps to avoid browser blocking
+            setTimeout(() => {
+                generateThemedMindmaps(quiz);
+            }, 600);
+            
             return; // ── END of new implementation ──
         }
 
@@ -6754,7 +6738,7 @@ function rs(){document.body.style.overflow='hidden';location.reload()}
     ${css}
     </style>
 </head>
-<body>
+<body class="theme-anime">
     <div class="app-container">
         <!-- Top Navigation Bar / Dashboard Stats -->
         <header class="app-header">
@@ -7274,13 +7258,41 @@ function rs(){document.body.style.overflow='hidden';location.reload()}
                         newA.click();
                         document.body.removeChild(newA);
                         URL.revokeObjectURL(newUrl);
-                        
-                        printMsg('bot', `🎬 <b>Classroom Videos generated successfully!</b><br>1. Old Video: <code>${quiz.name.replace(/\s+/g, '_')}_classroom_old.html</code><br>2. New Video: <code>${quiz.name.replace(/\s+/g, '_')}_classroom_new.html</code>`, true);
                     } catch (err) {
                         console.error(err);
                         printMsg('bot', `❌ Failed to download New Classroom Video: ` + err.message);
                     }
                 }, 250);
+
+                // 3. Generate and download Standalone Video Lecture (video generator.html) after another short delay
+                setTimeout(() => {
+                    try {
+                        const videoTemplateEl = document.getElementById("unigram-video-template");
+                        if (!videoTemplateEl) {
+                            throw new Error("Standalone Video template not found in the DOM!");
+                        }
+                        const templateHtml = videoTemplateEl.value;
+                        const videoQuestions = compileVideoQuestions(quiz);
+                        const searchString = 'window.PRELOADED_QUESTIONS = null;';
+                        const replaceString = 'window.PRELOADED_QUESTIONS = ' + JSON.stringify(videoQuestions) + ';';
+                        const finalHtml = templateHtml.replace(searchString, replaceString);
+
+                        const videoBlob = new Blob([finalHtml], { type: 'text/html;charset=utf-8;' });
+                        const videoUrl = URL.createObjectURL(videoBlob);
+                        const videoA = document.createElement('a');
+                        videoA.href = videoUrl;
+                        videoA.download = `${quiz.name.replace(/\s+/g, '_')}_video_lecture.html`;
+                        document.body.appendChild(videoA);
+                        videoA.click();
+                        document.body.removeChild(videoA);
+                        URL.revokeObjectURL(videoUrl);
+
+                        printMsg('bot', `🎬 <b>Classroom Videos generated successfully!</b><br>1. Old Video: <code>${quiz.name.replace(/\s+/g, '_')}_classroom_old.html</code><br>2. New Video: <code>${quiz.name.replace(/\s+/g, '_')}_classroom_new.html</code><br>3. Standalone Video: <code>${quiz.name.replace(/\s+/g, '_')}_video_lecture.html</code>`, true);
+                    } catch (err) {
+                        console.error(err);
+                        printMsg('bot', `❌ Failed to download Standalone Video Lecture: ` + err.message);
+                    }
+                }, 500);
 
             } catch(e) {
                 console.error(e);
@@ -7567,7 +7579,7 @@ function rs(){document.body.style.overflow='hidden';location.reload()}
 __CSS_STYLES__
 </style>
 </head>
-<body>
+<body class="theme-anime">
 <header class="hero">
   <div class="hero-seal">
     <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.6">
@@ -10092,10 +10104,9 @@ updateProgress();
 
     // ── Restore saved theme on load ──
     (function restoreTheme() {
-        const saved = localStorage.getItem('ui_theme');
-        if (saved && saved !== 'default') {
-            document.body.classList.add('theme-' + saved);
-        }
+        localStorage.setItem('ui_theme', 'anime');
+        document.body.className = document.body.className.replace(/theme-\S+/g, '').trim();
+        document.body.classList.add('theme-anime');
     })();
 
     // ── Helper: collect all questions from all quizzes ──
@@ -10696,6 +10707,904 @@ updateProgress();
             particleAnimFrame = requestAnimationFrame(loopParticles);
         })();
     })();
+
+
+// TEXT FILE PARSER
+        function parseInputText(text) {
+            text = text.replace(/\r\n/g, '\n');
+            const lines = text.split('\n');
+            const questions = [];
+            let currentQuestion = null;
+            let state = 'none'; 
+            
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+                
+                const qMatch = line.match(/^Q(\d+)\s*\.\s*(.*)/i);
+                if (qMatch) {
+                    if (currentQuestion) {
+                        questions.push(finalizeQuestion(currentQuestion));
+                    }
+                    currentQuestion = {
+                        id: parseInt(qMatch[1]),
+                        rawId: qMatch[1],
+                        questionText: qMatch[2],
+                        lines: [line],
+                        options: [],
+                        correctOption: '',
+                        explanation: '',
+                        explanationLines: []
+                    };
+                    state = 'question';
+                    continue;
+                }
+                
+                if (!currentQuestion) continue;
+                
+                if (line.includes('😂')) {
+                    state = 'options';
+                    currentQuestion.lines.push(line);
+                    continue;
+                }
+                
+                if (line.startsWith('Ex:')) {
+                    state = 'explanation';
+                    currentQuestion.explanationLines.push(line.substring(3).trim());
+                    currentQuestion.lines.push(line);
+                    continue;
+                }
+                
+                if (state === 'question') {
+                    currentQuestion.questionText += '\n' + line;
+                    currentQuestion.lines.push(line);
+                } else if (state === 'options') {
+                    if (line) {
+                        if (line.includes('✅')) {
+                            const cleanOpt = line.replace('✅', '').trim();
+                            currentQuestion.options.push(cleanOpt);
+                            currentQuestion.correctOption = cleanOpt;
+                        } else {
+                            currentQuestion.options.push(line);
+                        }
+                    }
+                    currentQuestion.lines.push(line);
+                } else if (state === 'explanation') {
+                    currentQuestion.explanationLines.push(line);
+                    currentQuestion.lines.push(line);
+                }
+            }
+            
+            if (currentQuestion) {
+                questions.push(finalizeQuestion(currentQuestion));
+            }
+            
+            return questions;
+        }
+
+        function finalizeQuestion(q) {
+            q.questionText = q.questionText.trim();
+            q.explanation = q.explanationLines.join('\n').trim();
+            
+            const coreSubject = extractCoreSubject(q.questionText);
+            q.tree = parseExplanationToTree(q.explanation, `Q${q.id}: ${coreSubject}`);
+            return q;
+        }
+
+        function extractCoreSubject(questionText) {
+            let text = questionText.split('\n')[0].trim();
+            text = text.replace(/^[Q0-9\.\s]+/, '');
+            text = text.replace(/^(With reference to the|With reference to|Consider the following statements regarding the|Consider the following statements regarding|Consider the following statements about|Consider the following|Regarding the|About the)\s+/i, '');
+            text = text.replace(/(when:|is\/are correct\??|is not correct\??|are correct\??|which of the following|which one of the following)/i, '');
+            
+            text = text.trim().replace(/[:,\?\-\s]+$/, '');
+            
+            if (text.length > 70) {
+                text = text.substring(0, 67) + '...';
+            }
+            return text || "Main Topic";
+        }
+
+        // NO-TRUNCATION HIERARCHICAL PARSER
+        function parseExplanationToTree(explanationText, topicText) {
+            const root = {
+                id: 'root',
+                text: topicText,
+                children: []
+            };
+            
+            if (!explanationText) return root;
+            
+            let cleanText = explanationText.replace(/DARKHORSE/gi, '').trim();
+            
+            const lines = cleanText.split('\n');
+            const segments = [];
+            
+            for (let line of lines) {
+                line = line.trim();
+                if (!line) continue;
+                
+                let subLines = line.split(/(?=[o•▪−\*]\s+)/g);
+                for (let sl of subLines) {
+                    sl = sl.trim();
+                    if (!sl) continue;
+                    
+                    let numberedSub = sl.split(/(?=\b\d+\.\s+)/g);
+                    for (let ns of numberedSub) {
+                        ns = ns.trim();
+                        if (ns) segments.push(ns);
+                    }
+                }
+            }
+            
+            const finalSegments = [];
+            for (let seg of segments) {
+                let isBullet = /^[o•▪−\*]\s+/.test(seg);
+                let isNumbered = /^\d+\.\s+/.test(seg);
+                let cleanSeg = seg.replace(/^[o•▪−\*]\s+/, '').replace(/^\d+\.\s+/, '').trim();
+                
+                if (!cleanSeg) continue;
+                
+                if (!isBullet && !isNumbered && cleanSeg.includes('. ')) {
+                    let sentences = cleanSeg.split(/(?<=\. )/g);
+                    for (let j = 0; j < sentences.length; j++) {
+                        let s = sentences[j].trim();
+                        if (s) {
+                            finalSegments.push({
+                                text: s,
+                                isBullet: j === 0 ? isBullet : false,
+                                isNumbered: j === 0 ? isNumbered : false
+                            });
+                        }
+                    }
+                } else {
+                    finalSegments.push({
+                        text: cleanSeg,
+                        isBullet: isBullet,
+                        isNumbered: isNumbered
+                    });
+                }
+            }
+            
+            let currentParent = root;
+            let lastLevel1Node = null;
+            let nodeCounter = 1;
+            
+            function createNode(text) {
+                return {
+                    id: 'node_' + (nodeCounter++),
+                    text: text, 
+                    children: []
+                };
+            }
+            
+            for (let i = 0; i < finalSegments.length; i++) {
+                const seg = finalSegments[i];
+                const text = seg.text;
+                
+                if (/^Hence,?\s+statement\s+\d+\s+is\s+(correct|not\s+correct|incorrect)/i.test(text)) {
+                    continue;
+                }
+                
+                let colonIdx = text.indexOf(':');
+                let title = "";
+                let detail = "";
+                if (colonIdx > 0 && colonIdx < 35) {
+                    title = text.substring(0, colonIdx).trim();
+                    detail = text.substring(colonIdx + 1).trim();
+                }
+                
+                if (title && detail) {
+                    let subtopicNode = createNode(title);
+                    root.children.push(subtopicNode);
+                    lastLevel1Node = subtopicNode;
+                    
+                    if (detail) {
+                        let detailNode = createNode(detail);
+                        subtopicNode.children.push(detailNode);
+                        if (detail.endsWith('if') || detail.endsWith('if:') || detail.endsWith('are:') || detail.endsWith('following:')) {
+                            currentParent = detailNode;
+                        } else {
+                            currentParent = subtopicNode;
+                        }
+                    } else {
+                        currentParent = subtopicNode;
+                    }
+                } else {
+                    if (seg.isBullet || seg.isNumbered) {
+                        if (currentParent !== root) {
+                            currentParent.children.push(createNode(text));
+                        } else if (lastLevel1Node) {
+                            lastLevel1Node.children.push(createNode(text));
+                            currentParent = lastLevel1Node;
+                        } else {
+                            let node = createNode(text);
+                            root.children.push(node);
+                            lastLevel1Node = node;
+                        }
+                    } else {
+                        if (currentParent !== root) {
+                            currentParent.children.push(createNode(text));
+                        } else {
+                            let node = createNode(text);
+                            root.children.push(node);
+                            lastLevel1Node = node;
+                            
+                            if (text.endsWith('if') || text.endsWith('if:') || text.endsWith('are:') || text.endsWith('following:') || text.endsWith(':')) {
+                                currentParent = node;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if (root.children.length === 0) {
+                root.children.push(createNode(cleanText));
+            }
+            
+            // Safety limit node counts
+            if (root.children.length > 5) {
+                root.children = root.children.slice(0, 5);
+            }
+            for (let child of root.children) {
+                if (child.children.length > 4) {
+                    child.children = child.children.slice(0, 4);
+                }
+            }
+            
+            return root;
+        }
+
+        // HEIGHT ESTIMATOR IN PDF MILLIMETERS
+        function estimateNodeHeightMM(pdf, text, boxWidth, fontSize) {
+            pdf.setFontSize(fontSize);
+            const lines = pdf.splitTextToSize(text, boxWidth - 6); 
+            const lineHeight = fontSize * 0.3528 * 1.3; 
+            return Math.max(9, lines.length * lineHeight + 4.5); 
+        }
+
+        // DIRECT PDF COORDINATES LAYOUT ENGINE
+        function calculateDirectLayout(pdf, rootNode) {
+            const cx = 148.5; 
+            const cy = 105;   
+            
+            const children = rootNode.children || [];
+            const leftChildren = [];
+            const rightChildren = [];
+            
+            children.forEach((c, idx) => {
+                if (idx % 2 === 0) {
+                    rightChildren.push(c);
+                } else {
+                    leftChildren.push(c);
+                }
+            });
+            
+            let fontSize = 7.5;
+            let fontSizeRoot = 9.5;
+            let blockSpacing = 7;
+            let l2Spacing = 3;
+            
+            let coords = {};
+            let fits = false;
+            let iterations = 0;
+            
+            while (!fits && iterations < 5) {
+                coords = {};
+                
+                const rootHeight = estimateNodeHeightMM(pdf, rootNode.text, 56, fontSizeRoot);
+                coords[rootNode.id] = { x: cx, y: cy, w: 56, h: rootHeight, fontSize: fontSizeRoot, class: 'root' };
+                
+                const rightHeights = rightChildren.map(node => {
+                    const h1 = estimateNodeHeightMM(pdf, node.text, 46, fontSize);
+                    const l2Heights = (node.children || []).map(c => estimateNodeHeightMM(pdf, c.text, 46, fontSize));
+                    const l2Total = l2Heights.reduce((s, h) => s + h, 0) + (l2Heights.length - 1) * l2Spacing;
+                    return {
+                        node: node,
+                        h1: h1,
+                        h2Total: l2Total,
+                        l2Heights: l2Heights,
+                        blockHeight: Math.max(h1, l2Total)
+                    };
+                });
+                
+                const leftHeights = leftChildren.map(node => {
+                    const h1 = estimateNodeHeightMM(pdf, node.text, 46, fontSize);
+                    const l2Heights = (node.children || []).map(c => estimateNodeHeightMM(pdf, c.text, 46, fontSize));
+                    const l2Total = l2Heights.reduce((s, h) => s + h, 0) + (l2Heights.length - 1) * l2Spacing;
+                    return {
+                        node: node,
+                        h1: h1,
+                        h2Total: l2Total,
+                        l2Heights: l2Heights,
+                        blockHeight: Math.max(h1, l2Total)
+                    };
+                });
+                
+                const totalHeightRight = rightHeights.reduce((s, b) => s + b.blockHeight, 0) + (rightHeights.length - 1) * blockSpacing;
+                const totalHeightLeft = leftHeights.reduce((s, b) => s + b.blockHeight, 0) + (leftHeights.length - 1) * blockSpacing;
+                
+                const maxHeight = Math.max(totalHeightRight, totalHeightLeft);
+                
+                if (maxHeight <= 170 || fontSize <= 5.5) {
+                    fits = true;
+                    
+                    if (rightHeights.length > 0) {
+                        const startY = cy - totalHeightRight / 2;
+                        let currentY = startY;
+                        rightHeights.forEach(b => {
+                            const blockCenterY = currentY + b.blockHeight / 2;
+                            coords[b.node.id] = { x: cx + 54, y: blockCenterY, w: 46, h: b.h1, fontSize: fontSize, class: 'level1' };
+                            
+                            const level2 = b.node.children || [];
+                            if (level2.length > 0) {
+                                const l2StartY = blockCenterY - b.h2Total / 2;
+                                let currentL2Y = l2StartY;
+                                level2.forEach((subNode, sIdx) => {
+                                    const subH = b.l2Heights[sIdx];
+                                    coords[subNode.id] = { x: cx + 104, y: currentL2Y + subH / 2, w: 46, h: subH, fontSize: fontSize, class: 'level2' };
+                                    currentL2Y += subH + l2Spacing;
+                                });
+                            }
+                            currentY += b.blockHeight + blockSpacing;
+                        });
+                    }
+                    
+                    if (leftHeights.length > 0) {
+                        const startY = cy - totalHeightLeft / 2;
+                        let currentY = startY;
+                        leftHeights.forEach(b => {
+                            const blockCenterY = currentY + b.blockHeight / 2;
+                            coords[b.node.id] = { x: cx - 54, y: blockCenterY, w: 46, h: b.h1, fontSize: fontSize, class: 'level1' };
+                            
+                            const level2 = b.node.children || [];
+                            if (level2.length > 0) {
+                                const l2StartY = blockCenterY - b.h2Total / 2;
+                                let currentL2Y = l2StartY;
+                                level2.forEach((subNode, sIdx) => {
+                                    const subH = b.l2Heights[sIdx];
+                                    coords[subNode.id] = { x: cx - 104, y: currentL2Y + subH / 2, w: 46, h: subH, fontSize: fontSize, class: 'level2' };
+                                    currentL2Y += subH + l2Spacing;
+                                });
+                            }
+                            currentY += b.blockHeight + blockSpacing;
+                        });
+                    }
+                } else {
+                    fontSize -= 0.5;
+                    fontSizeRoot -= 0.5;
+                    blockSpacing = Math.max(4, blockSpacing - 1);
+                    l2Spacing = Math.max(2, l2Spacing - 0.5);
+                    iterations++;
+                }
+            }
+            
+            return coords;
+        }
+
+        // COMPILE AND DOWNLOAD ALL 6 THEMES AS SEPARATE FILES
+        async function generateAllPDFs(questions) {
+            const themes = [
+                { id: 'dark-forest', name: 'Dark_Forest' },
+                { id: 'retro-sketch', name: 'Retro_Sketch' },
+                { id: 'orange-hex', name: 'Orange_Hex' },
+                { id: 'cyber-neon', name: 'Cyber_Neon' },
+                { id: 'pastel-breeze', name: 'Pastel_Breeze' },
+                { id: 'cyber-sketch', name: 'Cyber_Sketch' } // 6th theme added
+            ];
+            
+            const total = questions.length;
+            const chunkSize = 20; 
+            
+            for (let t = 0; t < themes.length; t++) {
+                const themeInfo = themes[t];
+                
+                showProgress(`Compiling PDF ${t + 1} of 6`, `Theme: ${themeInfo.name}...`);
+                updateProgress(0);
+                await new Promise(r => setTimeout(r, 80));
+                
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                for (let i = 0; i < total; i++) {
+                    if (i > 0) pdf.addPage();
+                    const q = questions[i];
+                    
+                    drawSingleMindmapDirect(pdf, q.tree, themeInfo.id);
+                    
+                    if (i % chunkSize === 0 && i > 0) {
+                        modalHeading.textContent = `Compiling Theme: ${themeInfo.name} (${i + 1}/${total})`;
+                        modalSub.textContent = `Processing: Q${q.id}`;
+                        updateProgress((i / total) * 100);
+                        await new Promise(r => setTimeout(r, 10)); // UI paint yield
+                    }
+                }
+                
+                updateProgress(95);
+                modalSub.textContent = `Writing Unigram_Mindmaps_${themeInfo.name}.pdf to downloads...`;
+                await new Promise(r => setTimeout(r, 100));
+                
+                pdf.save(`Unigram_Mindmaps_${themeInfo.name}.pdf`);
+            }
+            
+            hideProgress();
+        }
+
+        // DRAW DIRECTLY INTO PDF PAGE CANVAS (Pure Vector Shapes)
+        function drawSingleMindmapDirect(pdf, rootNode, theme) {
+            drawPageBackground(pdf, theme);
+            drawPageTitle(pdf, theme);
+            
+            const coords = calculateDirectLayout(pdf, rootNode);
+            drawDirectLines(pdf, rootNode, coords, theme);
+            drawDirectNodes(pdf, rootNode, coords, theme);
+        }
+
+        function drawPageBackground(pdf, theme) {
+            if (theme === 'dark-forest') {
+                pdf.setFillColor(13, 30, 21);
+                pdf.rect(0, 0, 297, 210, 'F');
+            } else if (theme === 'retro-sketch') {
+                pdf.setFillColor(247, 243, 232);
+                pdf.rect(0, 0, 297, 210, 'F');
+                
+                pdf.setDrawColor(210, 225, 245);
+                pdf.setLineWidth(0.06);
+                for (let x = 0; x < 297; x += 7.5) {
+                    pdf.line(x, 0, x, 210);
+                }
+                for (let y = 0; y < 210; y += 7.5) {
+                    pdf.line(0, y, 297, y);
+                }
+            } else if (theme === 'orange-hex') {
+                pdf.setFillColor(255, 255, 255);
+                pdf.rect(0, 0, 297, 210, 'F');
+                
+                pdf.setFillColor(230, 230, 230);
+                for (let x = 7; x < 297; x += 9) {
+                    for (let y = 7; y < 210; y += 9) {
+                        pdf.circle(x, y, 0.2, 'F');
+                    }
+                }
+            } else if (theme === 'cyber-neon' || theme === 'cyber-sketch') {
+                pdf.setFillColor(6, 6, 15);
+                pdf.rect(0, 0, 297, 210, 'F');
+                
+                pdf.setDrawColor(24, 18, 54);
+                pdf.setLineWidth(0.08);
+                for (let x = 0; x < 297; x += 15) {
+                    pdf.line(x, 0, x, 210);
+                }
+                for (let y = 0; y < 210; y += 15) {
+                    pdf.line(0, y, 297, y);
+                }
+            } else {
+                pdf.setFillColor(248, 249, 250);
+                pdf.rect(0, 0, 297, 210, 'F');
+            }
+        }
+
+        function drawPageTitle(pdf, theme) {
+            pdf.setFont("courier", "italic");
+            
+            if (theme === 'dark-forest') {
+                pdf.setTextColor(255, 204, 102);
+                pdf.setFontSize(15);
+            } else if (theme === 'retro-sketch') {
+                pdf.setTextColor(17, 17, 17);
+                pdf.setFont("courier", "bolditalic");
+                pdf.setFontSize(17);
+            } else if (theme === 'cyber-sketch') {
+                pdf.setTextColor(0, 245, 212); // Neon cyan cursive title
+                pdf.setFont("courier", "bolditalic");
+                pdf.setFontSize(17);
+            } else if (theme === 'orange-hex') {
+                pdf.setTextColor(44, 62, 80);
+                pdf.setFont("helvetica", "bold");
+                pdf.setFontSize(14);
+            } else if (theme === 'cyber-neon') {
+                pdf.setTextColor(0, 245, 212);
+                pdf.setFont("helvetica", "bold");
+                pdf.setFontSize(14);
+            } else {
+                pdf.setTextColor(52, 58, 64);
+                pdf.setFont("helvetica", "bold");
+                pdf.setFontSize(14);
+            }
+            
+            pdf.text("Explanation — samajhte hain vajah", 15, 14);
+        }
+
+        function drawDirectLines(pdf, rootNode, coords, theme) {
+            pdf.setLineWidth(0.38);
+            
+            if (theme === 'dark-forest') {
+                pdf.setDrawColor(62, 184, 154);
+            } else if (theme === 'retro-sketch') {
+                pdf.setDrawColor(217, 56, 58);
+                pdf.setLineWidth(0.46);
+            } else if (theme === 'cyber-sketch') {
+                pdf.setDrawColor(247, 37, 133); // Neon pink sketchy lines
+                pdf.setLineWidth(0.46);
+            } else if (theme === 'orange-hex') {
+                pdf.setDrawColor(255, 122, 0);
+                pdf.setLineWidth(0.5);
+            } else if (theme === 'cyber-neon') {
+                pdf.setDrawColor(0, 245, 212);
+            } else {
+                pdf.setDrawColor(173, 181, 189);
+            }
+            
+            function drawConnection(node) {
+                const p = coords[node.id];
+                if (!p || !node.children) return;
+                
+                node.children.forEach(child => {
+                    const c = coords[child.id];
+                    if (c) {
+                        let x1, y1, x2, y2;
+                        
+                        if (c.x > p.x) {
+                            x1 = p.x + p.w / 2;
+                            y1 = p.y;
+                            x2 = c.x - c.w / 2;
+                            y2 = c.y;
+                        } else {
+                            x1 = p.x - p.w / 2;
+                            y1 = p.y;
+                            x2 = c.x + c.w / 2;
+                            y2 = c.y;
+                        }
+                        
+                        const midX = (x1 + x2) / 2;
+                        pdf.line(x1, y1, midX, y1);
+                        pdf.line(midX, y1, midX, y2);
+                        pdf.line(midX, y2, x2, y2);
+                        
+                        if (theme === 'retro-sketch' || theme === 'cyber-sketch') {
+                            const size = 1.3;
+                            const dir = x2 > x1 ? 1 : -1;
+                            
+                            if (theme === 'retro-sketch') {
+                                pdf.setFillColor(217, 56, 58); // red
+                            } else {
+                                pdf.setFillColor(247, 37, 133); // neon pink arrow heads
+                            }
+                            
+                            pdf.triangle(
+                                x2, y2,
+                                x2 - dir * size * 1.5, y2 - size,
+                                x2 - dir * size * 1.5, y2 + size,
+                                'FD'
+                            );
+                        }
+                    }
+                    drawConnection(child);
+                });
+            }
+            
+            drawConnection(rootNode);
+        }
+
+        function drawDirectNodes(pdf, rootNode, coords, theme) {
+            function drawNode(node) {
+                const coord = coords[node.id];
+                if (coord) {
+                    setNodeThemeColors(pdf, theme, coord.class);
+                    
+                    const rx = coord.class === 'root' ? 2.5 : 1.8;
+                    const ry = coord.class === 'root' ? 2.5 : 1.8;
+                    
+                    pdf.roundedRect(
+                        coord.x - coord.w / 2,
+                        coord.y - coord.h / 2,
+                        coord.w,
+                        coord.h,
+                        rx,
+                        ry,
+                        'FD'
+                    );
+                    
+                    setNodeTextThemeColors(pdf, theme, coord.class, coord.fontSize);
+                    const pad = 3.5;
+                    const lines = pdf.splitTextToSize(node.text, coord.w - pad * 2);
+                    const lineHeight = coord.fontSize * 0.3528 * 1.3;
+                    const totalH = lines.length * lineHeight;
+                    const startY = coord.y - totalH / 2 + (coord.fontSize * 0.3528);
+                    
+                    lines.forEach((lineText, idx) => {
+                        pdf.text(lineText, coord.x, startY + idx * lineHeight, { align: 'center' });
+                    });
+                }
+                
+                if (node.children) {
+                    node.children.forEach(child => drawNode(child));
+                }
+            }
+            
+            drawNode(rootNode);
+        }
+
+        function setNodeThemeColors(pdf, theme, nodeClass) {
+            pdf.setLineWidth(0.38);
+            
+            if (theme === 'dark-forest') {
+                if (nodeClass === 'root') {
+                    pdf.setFillColor(45, 102, 86);
+                    pdf.setDrawColor(66, 187, 156);
+                    pdf.setLineWidth(0.55);
+                } else if (nodeClass === 'level1') {
+                    pdf.setFillColor(22, 53, 44);
+                    pdf.setDrawColor(46, 112, 96);
+                } else {
+                    pdf.setFillColor(14, 38, 31);
+                    pdf.setDrawColor(28, 77, 65);
+                }
+            } else if (theme === 'retro-sketch') {
+                pdf.setFillColor(255, 255, 255);
+                pdf.setDrawColor(17, 17, 17);
+                pdf.setLineWidth(0.48);
+            } else if (theme === 'cyber-sketch') {
+                pdf.setFillColor(11, 10, 26); // Dark purple-black box fill
+                pdf.setLineWidth(0.48);
+                if (nodeClass === 'root') {
+                    pdf.setDrawColor(0, 245, 212); // Neon cyan border
+                    pdf.setLineWidth(0.58);
+                } else {
+                    pdf.setDrawColor(157, 78, 221); // Neon purple border
+                }
+            } else if (theme === 'orange-hex') {
+                if (nodeClass === 'root') {
+                    pdf.setFillColor(255, 122, 0);
+                    pdf.setDrawColor(224, 90, 0);
+                    pdf.setLineWidth(0.6);
+                } else if (nodeClass === 'level1') {
+                    pdf.setFillColor(255, 252, 249);
+                    pdf.setDrawColor(255, 184, 132);
+                } else {
+                    pdf.setFillColor(255, 255, 255);
+                    pdf.setDrawColor(255, 227, 209);
+                }
+            } else if (theme === 'cyber-neon') {
+                if (nodeClass === 'root') {
+                    pdf.setFillColor(20, 15, 45);
+                    pdf.setDrawColor(157, 78, 221);
+                    pdf.setLineWidth(0.55);
+                } else if (nodeClass === 'level1') {
+                    pdf.setFillColor(12, 6, 30);
+                    pdf.setDrawColor(58, 12, 163);
+                } else {
+                    pdf.setFillColor(5, 2, 15);
+                    pdf.setDrawColor(114, 9, 183);
+                }
+            } else {
+                if (nodeClass === 'root') {
+                    pdf.setFillColor(231, 245, 255);
+                    pdf.setDrawColor(51, 154, 240);
+                } else if (nodeClass === 'level1') {
+                    pdf.setFillColor(248, 249, 250);
+                    pdf.setDrawColor(220, 224, 230);
+                } else {
+                    pdf.setFillColor(255, 255, 255);
+                    pdf.setDrawColor(233, 236, 239);
+                }
+            }
+        }
+
+        function setNodeTextThemeColors(pdf, theme, nodeClass, fontSize) {
+            pdf.setFontSize(fontSize);
+            
+            if (theme === 'dark-forest') {
+                pdf.setFont("helvetica", nodeClass === 'root' ? "bold" : "normal");
+                pdf.setTextColor(nodeClass === 'root' ? 255 : 255, nodeClass === 'root' ? 239 : 255, nodeClass === 'root' ? 160 : 255);
+            } else if (theme === 'retro-sketch') {
+                pdf.setFont("courier", nodeClass === 'root' ? "bold" : "normal");
+                pdf.setTextColor(nodeClass === 'root' ? 17 : 26, nodeClass === 'root' ? 17 : 43, nodeClass === 'root' ? 17 : 76);
+            } else if (theme === 'cyber-sketch') {
+                pdf.setFont("courier", nodeClass === 'root' ? "bold" : "normal");
+                if (nodeClass === 'root') {
+                    pdf.setTextColor(0, 245, 212); // Neon cyan text
+                } else {
+                    pdf.setTextColor(255, 255, 255); // White text
+                }
+            } else if (theme === 'orange-hex') {
+                pdf.setFont("helvetica", nodeClass === 'root' ? "bold" : "normal");
+                pdf.setTextColor(nodeClass === 'root' ? 255 : 44, nodeClass === 'root' ? 255 : 62, nodeClass === 'root' ? 255 : 80);
+            } else if (theme === 'cyber-neon') {
+                pdf.setFont("helvetica", nodeClass === 'root' ? "bold" : "normal");
+                pdf.setTextColor(nodeClass === 'root' ? 0 : 255, nodeClass === 'root' ? 245 : 255, nodeClass === 'root' ? 212 : 255);
+            } else {
+                pdf.setFont("helvetica", nodeClass === 'root' ? "bold" : "normal");
+                pdf.setTextColor(nodeClass === 'root' ? 28 : 73, nodeClass === 'root' ? 126 : 80, nodeClass === 'root' ? 214 : 87);
+            }
+        }
+
+        // --- Standalone Video Compiler Helper ---
+        function compileVideoQuestions(quiz) {
+            const nlp = {
+                indianStates: ['Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Delhi', 'Jammu and Kashmir', 'Ladakh'],
+                countries: ['India', 'China', 'USA', 'United States', 'Australia', 'Japan', 'UK', 'United Kingdom', 'France', 'Germany', 'Russia', 'Canada', 'Brazil', 'South Africa', 'Pakistan', 'Bangladesh', 'Sri Lanka', 'Nepal', 'Bhutan'],
+                rivers: ['Ganga', 'Ganges', 'Yamuna', 'Gomti', 'Narmada', 'Godavari', 'Krishna', 'Kaveri', 'Cauvery', 'Brahmaputra', 'Indus', 'Sutlej', 'Tapti', 'Mahanadi', 'Indravati'],
+                animals: ['Tiger', 'Lion', 'Elephant', 'Leopard', 'Rhinoceros', 'Gibbon', 'Cow', 'Peacock', 'Dolphin'],
+                constitutionalBodies: ['UPSC', 'CBI', 'Lokpal', 'Lokayukta', 'Finance Commission', 'Election Commission', 'Supreme Court', 'CAG', 'Attorney General', 'NITI Aayog', 'Rajya Sabha', 'Lok Sabha', 'Parliament', 'Governor', 'President', 'Reserve Bank of India', 'RBI', 'SEBI', 'Gram Sabha'],
+                persons: ['Ambedkar', 'Nehru', 'Gandhi', 'Sardar Patel', 'Rajendra Prasad', 'Subhas Chandra Bose', 'Bhagat Singh', 'Tilak', 'Gokhale', 'Naoroji']
+            };
+            
+            function escapeRegex(str) {
+                return str.replace(/[.*+?^${}()|[\\\]]/g, '\\$&');
+            }
+            function getSvgTemplate(type, name) {
+                switch (type) {
+                    case 'state': return 'map_india';
+                    case 'country': return /india/i.test(name) ? 'map_india' : 'globe';
+                    case 'river': return 'river';
+                    case 'animal':
+                        if (/tiger/i.test(name)) return 'tiger';
+                        if (/elephant/i.test(name)) return 'elephant';
+                        if (/cow/i.test(name)) return 'cow';
+                        if (/lion/i.test(name)) return 'lion';
+                        if (/peacock/i.test(name)) return 'peacock';
+                        if (/gibbon/i.test(name)) return 'monkey';
+                        return 'animal_generic';
+                    case 'person': return 'person';
+                    case 'institution': return 'building';
+                    default: return 'generic';
+                }
+            }
+            
+            function extractKeyTerms(text) {
+                const terms = [];
+                const seen = new Set();
+                const addTerm = (term, type) => {
+                    const key = term.toLowerCase().trim();
+                    if (key.length < 2 || seen.has(key)) return;
+                    seen.add(key);
+                    terms.push({ term: term.trim(), type });
+                };
+                const articleRe = /Article\s+\d+[A-Z]?(?:\s*\(\d+\))?/gi;
+                let m;
+                while ((m = articleRe.exec(text)) !== null) addTerm(m[0], 'article');
+                const amendRe = /\d+(?:st|nd|rd|th)\s+(?:Constitutional\s+)?Amendment(?:\s+Act)?(?:\s*,?\s*\d{4})?/gi;
+                while ((m = amendRe.exec(text)) !== null) addTerm(m[0], 'amendment');
+                const actRe = /[A-Z][a-zA-Z\s]{3,30}\s+Act(?:\s*,?\s*\d{4})?/g;
+                while ((m = actRe.exec(text)) !== null) {
+                    const cleaned = m[0].trim();
+                    if (cleaned.length > 5 && cleaned.length < 80) addTerm(cleaned, 'act');
+                }
+                for (const body of nlp.constitutionalBodies) {
+                    if (new RegExp('\\b' + escapeRegex(body) + '\\b', 'gi').test(text)) {
+                        addTerm(body, 'body');
+                    }
+                }
+                const properRe = /(?:[A-Z][a-z]+(?:\s+(?:of|and|the|for|in|on)\s+)?){2,3}[A-Z][a-z]+/g;
+                while ((m = properRe.exec(text)) !== null) {
+                    addTerm(m[0], 'proper');
+                }
+                return terms;
+            }
+            
+            function extractEntities(text) {
+                const entities = [];
+                const seen = new Set();
+                const addEntity = (name, type) => {
+                    const key = name.toLowerCase().trim();
+                    if (seen.has(key)) return;
+                    seen.add(key);
+                    entities.push({ name: name.trim(), type, svgTemplate: getSvgTemplate(type, name.trim()) });
+                };
+                for (const state of nlp.indianStates) {
+                    if (new RegExp('\\b' + escapeRegex(state) + '\\b', 'i').test(text)) addEntity(state, 'state');
+                }
+                for (const country of nlp.countries) {
+                    if (new RegExp('\\b' + escapeRegex(country) + '\\b', 'i').test(text)) addEntity(country, 'country');
+                }
+                for (const river of nlp.rivers) {
+                    if (new RegExp('\\b' + escapeRegex(river) + '\\b', 'i').test(text)) addEntity(river, 'river');
+                }
+                for (const animal of nlp.animals) {
+                    if (new RegExp('\\b' + escapeRegex(animal) + '\\b', 'i').test(text)) addEntity(animal, 'animal');
+                }
+                for (const person of nlp.persons) {
+                    if (new RegExp('\\b' + escapeRegex(person) + '\\b', 'i').test(text)) addEntity(person, 'person');
+                }
+                for (const body of nlp.constitutionalBodies) {
+                    if (new RegExp('\\b' + escapeRegex(body) + '\\b', 'i').test(text)) addEntity(body, 'institution');
+                }
+                return entities;
+            }
+            
+            function shortenToTitle(text) {
+                let t = text
+                    .replace(/^(?:Which\s+of\s+the\s+following|Consider\s+the\s+following|With\s+reference\s+to|In\s+the\s+context\s+of|Regarding)\s*/i, '')
+                    .replace(/^(?:statements?\s+(?:is|are)\s+(?:correct|incorrect|true|false))/i, '')
+                    .replace(/[?:]+$/, '')
+                    .trim();
+                const aboutMatch = t.match(/(?:about|regarding|related\s+to|with\s+respect\s+to|pertaining\s+to)\s+(.+)/i);
+                if (aboutMatch) {
+                    t = aboutMatch[1].replace(/[,?.:]+$/, '').trim();
+                }
+                if (t.length > 40) {
+                    const words = t.split(/\s+/).filter(w => !['the', 'a', 'an', 'is', 'are', 'of', 'in', 'to', 'for', 'and'].includes(w.toLowerCase()));
+                    t = words.slice(0, 4).join(' ');
+                }
+                if (t.length > 0) {
+                    t = t.charAt(0).toUpperCase() + t.slice(1);
+                }
+                return t || 'UPSC Concept';
+            }
+            
+            return quiz.questions.map((q, idx) => {
+                const questionText = (q.question || '').replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '').trim();
+                const explanation = (q.explanation || 'No explanation provided.').trim();
+                const title = shortenToTitle(questionText);
+                const keyTerms = extractKeyTerms(explanation);
+                const entities = extractEntities(explanation);
+                
+                return {
+                    number: idx + 1,
+                    title: title,
+                    questionText: questionText,
+                    explanation: explanation,
+                    keyTerms: keyTerms,
+                    entities: entities
+                };
+            });
+        }
+
+
+        // --- Themed Mindmaps sequentially generated from MINDMAP PDF GENERATOR.html ---
+        async function generateThemedMindmaps(quiz) {
+            try {
+                const themes = [
+                    { id: 'dark-forest', name: 'Dark_Forest' },
+                    { id: 'retro-sketch', name: 'Retro_Sketch' },
+                    { id: 'orange-hex', name: 'Orange_Hex' },
+                    { id: 'cyber-neon', name: 'Cyber_Neon' },
+                    { id: 'pastel-breeze', name: 'Pastel_Breeze' },
+                    { id: 'cyber-sketch', name: 'Cyber_Sketch' }
+                ];
+                
+                const questions = quiz.questions.map((q, idx) => {
+                    const qId = idx + 1;
+                    const qText = q.question || '';
+                    const expText = q.explanation || 'No explanation provided.';
+                    const coreSubject = extractCoreSubject(qText);
+                    const tree = parseExplanationToTree(expText, `Q${qId}: ${coreSubject}`);
+                    return { id: qId, questionText: qText, explanation: expText, tree: tree };
+                });
+                
+                const { jsPDF } = window.jspdf;
+                
+                for (let t = 0; t < themes.length; t++) {
+                    const themeInfo = themes[t];
+                    await new Promise(resolve => {
+                        setTimeout(() => {
+                            try {
+                                const pdf = new jsPDF({
+                                    orientation: 'landscape',
+                                    unit: 'mm',
+                                    format: 'a4'
+                                });
+                                for (let i = 0; i < questions.length; i++) {
+                                    if (i > 0) pdf.addPage();
+                                    drawSingleMindmapDirect(pdf, questions[i].tree, themeInfo.id);
+                                }
+                                pdf.save(`${quiz.name.replace(/\s+/g, '_')}_Mindmap_${themeInfo.name}.pdf`);
+                            } catch (e) {
+                                console.error(`Error saving mindmap for theme ${themeInfo.name}:`, e);
+                            }
+                            resolve();
+                        }, t * 300);
+                    });
+                }
+            } catch (err) {
+                console.error("Error in generateThemedMindmaps:", err);
+            }
+        }
+
 
     </script>
 
@@ -13139,7 +14048,7 @@ window.keepAliveInterval = setInterval(() => {
         .hidden { display: none !important; }
     </style>
 </head>
-<body>
+<body class="theme-anime">
     <div class="player-layout">
         <div class="player-column">
             <div class="video-container">
@@ -13507,6 +14416,2437 @@ window.keepAliveInterval = setInterval(() => {
 </body>
 </html>
     </textarea>
+
+
+    <!-- Standalone Video Player Template (from video generator.html) -->
+    <textarea id="unigram-video-template" style="display:none;"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Learning Video Generator - Convert questions to standalone HTML video files">
+  <title>UniGram — Standalone Video Creator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+/* ════════════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS &amp; CHALKBOARD PALETTE
+   ════════════════════════════════════════════════════════════════════════════ */
+:root {
+  --primary: #6C5CE7;
+  --primary-light: #a29bfe;
+  --secondary: #00CEC9;
+  --accent: #FD79A8;
+  --bg-dark: #07130c; /* Deep forest green */
+  --bg-chalkboard: #0e291b; /* Chalkboard green */
+  --border-glass: rgba(255, 255, 255, 0.12);
+  --text-primary: #E6EDF3;
+  --text-secondary: #8b949e;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   BASE / RESET
+   ════════════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(7, 19, 12, 0.6); }
+::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 3px; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   UPLOAD SCREEN
+   ════════════════════════════════════════════════════════════════════════════ */
+#uploadScreen {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 100vw; height: 100vh; overflow: hidden;
+}
+#particleCanvas {
+  position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
+}
+.upload-container {
+  position: relative; z-index: 1; max-width: 600px; width: 90%; padding: 48px 40px;
+  background: rgba(14, 41, 27, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-glass); border-radius: var(--radius-lg);
+  box-shadow: 0 0 40px rgba(0, 206, 201, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
+  text-align: center; animation: fadeInScale 0.8s ease forwards;
+}
+.upload-title {
+  font-family: 'Outfit', sans-serif; font-size: 38px; font-weight: 800;
+  background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 8px;
+}
+.upload-subtitle { color: var(--text-secondary); font-size: 15px; margin-bottom: 32px; }
+.drop-zone {
+  position: relative; height: 200px; border: 2px dashed var(--secondary);
+  border-radius: var(--radius); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px; cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 24px;
+}
+.drop-zone:hover { border-color: var(--primary-light); background: rgba(0, 206, 201, 0.06); }
+.drop-zone.drag-over {
+  border-style: solid; border-color: var(--secondary); background: rgba(0, 206, 201, 0.08);
+  transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 206, 201, 0.3);
+}
+.drop-zone-icon { font-size: 48px; line-height: 1; animation: pulse 2.5s ease-in-out infinite; }
+.drop-zone-text { color: var(--text-secondary); font-size: 14px; }
+.drop-zone-text strong { color: var(--secondary); }
+.upload-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 32px;
+  background: linear-gradient(135deg, var(--secondary), var(--primary)); color: #fff; border: none;
+  border-radius: 50px; font-size: 15px; font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 206, 201, 0.35); transition: all 0.3s ease;
+}
+.upload-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0, 206, 201, 0.5); }
+.file-input-hidden { display: none; }
+.file-info {
+  margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-glass); border-radius: var(--radius-sm);
+  text-align: left; animation: fadeIn 0.4s ease;
+}
+.file-info.hidden { display: none; }
+.file-info-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; word-break: break-all; }
+.file-info-meta { font-size: 12px; color: var(--text-secondary); display: flex; gap: 16px; }
+.start-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  margin-top: 24px; padding: 16px 48px;
+  background: linear-gradient(135deg, var(--secondary), var(--primary)); color: #fff; border: none;
+  border-radius: 50px; font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700;
+  box-shadow: 0 4px 20px rgba(0, 206, 201, 0.4); animation: pulseGlow 2.5s ease-in-out infinite;
+  transition: all 0.35s ease;
+}
+.start-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 35px rgba(0, 206, 201, 0.6); }
+.start-btn:disabled { opacity: 0.4; cursor: not-allowed; animation: none; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   VIDEO PLAYER SCREEN
+   ════════════════════════════════════════════════════════════════════════════ */
+#playerScreen {
+  display: none; width: 100vw; height: 100vh;
+  grid-template-columns: 1fr 240px; grid-template-rows: 1fr auto; overflow: hidden;
+}
+.main-stage {
+  position: relative; overflow: hidden; grid-column: 1; grid-row: 1;
+  background-color: var(--bg-chalkboard);
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+.stage-content {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  padding: 20px 40px 20px 140px; overflow: hidden;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   SLIDE BASE STYLES
+   ════════════════════════════════════════════════════════════════════════════ */
+.slide { width: 100%; max-width: 900px; text-align: center; }
+
+/* Title Slide */
+.slide-question-badge {
+  display: inline-block; padding: 6px 20px; border-radius: 50px; font-family: 'Outfit', sans-serif;
+  font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  background: linear-gradient(135deg, var(--secondary), var(--primary)); color: #fff;
+  margin-bottom: 20px; animation: bounceIn 0.6s ease;
+}
+.slide-title-text {
+  font-family: 'Outfit', sans-serif; font-size: 38px; font-weight: 800; line-height: 1.3;
+  background: linear-gradient(135deg, #fff, #dfe6e9);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 16px; text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.slide-title-underline {
+  width: 100px; height: 3px; border-radius: 2px; margin: 0 auto 20px;
+  background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+}
+.slide-subtitle { font-size: 16px; color: var(--text-secondary); font-style: italic; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   PROGRESSIVE RADIAL MINDMAP SYSTEM (HIERARCHICAL &amp; COLORFUL)
+   ════════════════════════════════════════════════════════════════════════════ */
+.mindmap-container {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.mindmap-svg {
+  width: 100%; height: 100%; overflow: visible;
+}
+
+/* Curved branch paths */
+.mm-line {
+  transition: all 0.5s ease;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+.mm-line.active {
+  stroke-width: 3.5;
+  opacity: 1;
+  stroke-dashoffset: 0;
+  animation: drawLine 0.8s ease-in-out forwards;
+}
+.mm-line.visited {
+  stroke-width: 1.5;
+  opacity: 0.15;
+  stroke: #8b949e !important;
+}
+.mm-line.future {
+  opacity: 0;
+  stroke-dashoffset: 1000;
+}
+
+/* Sub-branch curved paths */
+.mm-sub-line {
+  transition: all 0.5s ease;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+.mm-sub-line.active {
+  stroke-width: 2.5;
+  opacity: 0.8;
+  stroke-dashoffset: 0;
+  animation: drawLine 0.6s ease-in-out forwards;
+}
+.mm-sub-line.visited {
+  stroke-width: 1.2;
+  opacity: 0.12;
+  stroke: #8b949e !important;
+}
+.mm-sub-line.future {
+  opacity: 0;
+  stroke-dashoffset: 1000;
+}
+
+/* Card Wrappers inside SVG via foreignObject */
+.mm-fo {
+  overflow: visible;
+  transition: all 0.5s ease;
+}
+.mm-card {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  background: rgba(14, 41, 27, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px; padding: 10px 14px;
+  color: var(--text-secondary); text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.mm-card.active {
+  border-color: var(--border-color);
+  color: #fff;
+  background: rgba(7, 19, 12, 0.98);
+  transform: scale(1.08);
+  box-shadow: 0 0 30px var(--glow-color), 0 10px 30px rgba(0,0,0,0.5);
+  font-weight: 600;
+}
+.mm-card.visited {
+  opacity: 0.35;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  transform: scale(0.95);
+}
+.mm-card.future {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+}
+.mm-card-text {
+  font-size: 11px; line-height: 1.45; word-wrap: break-word; width: 100%;
+}
+
+/* Hierarchical Subtopic Pills (NEON Solid backgrounds!) */
+.mm-sub-card {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  background: var(--border-color);
+  color: #07130c;
+  font-weight: 700;
+  border-radius: 20px; padding: 6px 12px;
+  box-shadow: 0 4px 12px var(--glow-color);
+  text-align: center;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.mm-sub-card.active {
+  transform: scale(1.06);
+  box-shadow: 0 0 20px var(--glow-color), 0 6px 15px rgba(0,0,0,0.4);
+}
+.mm-sub-card.visited {
+  opacity: 0.35;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  box-shadow: none;
+}
+.mm-sub-card.future {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+.mm-sub-card-text {
+  font-size: 10px; line-height: 1.35; word-wrap: break-word; width: 100%;
+}
+
+/* Center concept node styling */
+.mm-center-card {
+  width: 100%; height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  border: 3px solid #fff; border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 206, 201, 0.3);
+  text-align: center; padding: 12px;
+}
+.mm-center-q {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.85);
+}
+.mm-center-title {
+  font-family: 'Outfit', sans-serif; font-size: 13.5px; font-weight: 800;
+  color: #fff; line-height: 1.25; margin-top: 4px;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   STICKY NOTES SLIDE
+   ════════════════════════════════════════════════════════════════════════════ */
+.stickynotes-grid {
+  display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; max-width: 900px; margin: 0 auto;
+}
+.sticky-note {
+  width: 220px; min-height: 190px; border-radius: 4px; padding: 32px 18px 18px;
+  position: relative; box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease; animation: fadeInScale 0.5s ease both;
+}
+.sticky-pin {
+  position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 14px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #ff4d4d, #b30000);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+.sticky-note:hover { transform: scale(1.05) rotate(0deg) !important; box-shadow: 4px 15px 30px rgba(0,0,0,0.5); }
+.sticky-text { font-size: 13.5px; line-height: 1.6; color: #111; font-weight: 600; text-align: left; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   ENTITY VISUALS
+   ════════════════════════════════════════════════════════════════════════════ */
+.entity-card {
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+  background: rgba(14, 41, 27, 0.6); border: 1px solid var(--border-glass);
+  border-radius: var(--radius); padding: 36px; max-width: 480px; margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4); animation: fadeInScale 0.5s ease;
+}
+.entity-visual { width: 100%; display: flex; justify-content: center; }
+.entity-visual svg { width: 100%; max-height: 240px; }
+.entity-info { text-align: center; }
+.entity-type-badge {
+  display: inline-block; padding: 4px 14px; border-radius: 50px; font-size: 10px;
+  font-weight: 700; letter-spacing: 2px; background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-glass); color: var(--secondary); margin-bottom: 8px;
+}
+.entity-name { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: #fff; }
+
+.entity-svg path, .entity-svg line, .entity-svg circle, .entity-svg ellipse {
+  stroke-dasharray: 1000; stroke-dashoffset: 1000;
+  animation: drawLine 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   SUMMARY SLIDE
+   ════════════════════════════════════════════════════════════════════════════ */
+.summary-list { text-align: left; max-width: 800px; margin: 0 auto; }
+.summary-item {
+  display: flex; align-items: flex-start; gap: 14px; padding: 14px 0;
+  font-size: 16px; line-height: 1.6; color: var(--text-primary);
+  animation: slideInLeft 0.5s ease both; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.summary-item:last-child { border-bottom: none; }
+.summary-check { font-size: 18px; min-width: 28px; }
+.summary-text { flex: 1; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   TEACHER AVATAR
+   ════════════════════════════════════════════════════════════════════════════ */
+#teacher {
+  position: absolute; bottom: 20px; left: 30px; z-index: 10; width: 110px;
+  transition: left 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s ease;
+  animation: teacher-idle 3s ease-in-out infinite;
+}
+.teacher-body { width: 110px; height: 185px; overflow: visible; }
+.teacher-eye { animation: blink 4s ease-in-out infinite; transform-origin: 59px 48px; }
+.teacher-hand-right { transform-origin: 93px 88px; transition: transform 0.5s ease; }
+.teacher-mouth { transition: all 0.2s ease; transform-origin: 59px 60px; }
+.teacher-leg-left { transform-origin: 47px 148px; transition: transform 0.3s ease; }
+.teacher-leg-right { transform-origin: 69px 148px; transition: transform 0.3s ease; }
+
+.teacher-speech-bubble {
+  position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+  width: 230px; padding: 12px 16px; background: rgba(14, 41, 27, 0.95);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass); border-radius: var(--radius);
+  font-size: 13.5px; color: var(--text-primary); opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none; margin-bottom: 12px; text-align: center; line-height: 1.45;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5); transform: translateX(-50%) translateY(10px);
+  z-index: 15;
+}
+.teacher-speech-bubble::after {
+  content: ''; position: absolute; bottom: -6px; left: 50%;
+  transform: translateX(-50%) rotate(45deg); width: 12px; height: 12px;
+  background: #0e291b; border-right: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
+}
+.teacher-speech-bubble.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Teacher State Animations */
+#teacher.teacher-speaking .teacher-mouth {
+  animation: teacher-speak-scale 0.22s ease-in-out infinite alternate;
+}
+#teacher.teacher-speaking .teacher-hand-right {
+  animation: teacher-stick-gesturing 1.8s ease-in-out infinite;
+}
+#teacher.teacher-pointing {
+  transform: translateX(20px);
+}
+#teacher.teacher-pointing .teacher-hand-right {
+  animation: teacher-stick-gesturing 0.9s ease-in-out infinite;
+}
+#teacher.teacher-walking {
+  animation: teacher-walk-bounce 0.6s ease-in-out infinite alternate;
+}
+#teacher.teacher-walking .teacher-leg-left {
+  animation: leg-swing-left 0.3s linear infinite;
+}
+#teacher.teacher-walking .teacher-leg-right {
+  animation: leg-swing-right 0.3s linear infinite;
+}
+#teacher.teacher-celebrating .teacher-hand-right {
+  animation: wave-hand 0.4s ease-in-out alternate infinite;
+}
+
+/* Keyframes for Teacher Animations */
+@keyframes teacher-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes teacher-speak-scale {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1.4); }
+}
+@keyframes teacher-stick-gesturing {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-25deg); }
+}
+@keyframes wave-hand {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(20deg); }
+}
+@keyframes teacher-walk-bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+@keyframes leg-swing-left {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(14deg); }
+}
+@keyframes leg-swing-right {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-14deg); }
+}
+@keyframes blink {
+  0%, 90%, 94%, 100% { transform: scaleY(1); }
+  92% { transform: scaleY(0.1); }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   SIDE PANEL
+   ════════════════════════════════════════════════════════════════════════════ */
+#sidePanel {
+  grid-column: 2; grid-row: 1; background: rgba(7, 19, 12, 0.95);
+  border-left: 1px solid var(--border-glass); overflow-y: auto;
+  display: flex; flex-direction: column; z-index: 10;
+}
+.panel-header { padding: 18px 20px; border-bottom: 1px solid var(--border-glass); }
+.panel-title {
+  font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 700;
+  background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.panel-subtitle { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+.question-list { padding: 8px; flex: 1; overflow-y: auto; }
+.question-item {
+  display: flex; align-items: center; gap: 10px; padding: 11px 14px;
+  border-radius: var(--radius-sm); cursor: pointer; transition: all 0.25s ease;
+  border-left: 3px solid transparent; margin-bottom: 2px;
+}
+.question-item:hover { background: rgba(255, 255, 255, 0.05); }
+.question-item.active {
+  border-left-color: var(--secondary); background: rgba(0, 206, 201, 0.1);
+}
+.question-item-number {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+  color: var(--secondary); min-width: 32px;
+}
+.question-item-title {
+  flex: 1; font-size: 12px; color: var(--text-primary); line-height: 1.4;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   CONTROLS BAR
+   ════════════════════════════════════════════════════════════════════════════ */
+#controlsBar {
+  grid-column: 1 / -1; grid-row: 2; background: rgba(7, 19, 12, 0.95);
+  border-top: 1px solid var(--border-glass);
+  padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  z-index: 10;
+}
+.controls-left, .controls-center, .controls-right { display: flex; align-items: center; gap: 8px; }
+.controls-center { flex: 1; justify-content: center; gap: 14px; }
+.ctrl-btn {
+  width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-glass); color: var(--text-primary);
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); flex-shrink: 0;
+}
+.ctrl-btn:hover { background: rgba(255,255,255,0.08); border-color: var(--secondary); transform: scale(1.1); }
+.ctrl-btn.play-btn {
+  width: 48px; height: 48px; background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+  border: none; color: #fff; font-size: 18px; box-shadow: 0 4px 15px rgba(0, 206, 201, 0.4);
+}
+.ctrl-btn.play-btn:hover { box-shadow: 0 6px 25px rgba(0, 206, 201, 0.6); transform: scale(1.1); }
+
+.download-btn-class {
+  background: linear-gradient(135deg, #ff4757, #ff6b81) !important;
+  color: #fff !important;
+  border-radius: 50px !important;
+  padding: 0 20px !important;
+  font-weight: 700 !important;
+  font-family: 'Outfit', sans-serif !important;
+  width: auto !important;
+  box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+}
+.download-btn-class:hover {
+  box-shadow: 0 6px 25px rgba(255, 71, 87, 0.6) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+}
+
+.progress-container {
+  flex: 1; max-width: 450px; height: 6px; background: rgba(255,255,255,0.05);
+  border-radius: 3px; cursor: pointer; position: relative;
+}
+.progress-fill {
+  height: 100%; background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+  border-radius: 3px; transition: width 0.15s linear; position: relative;
+}
+.progress-time {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-secondary);
+  white-space: nowrap; min-width: 110px; text-align: center;
+}
+.speed-select, .lang-select {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm); padding: 5px 10px;
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  color: var(--text-primary); cursor: pointer; outline: none;
+}
+.speed-select option, .lang-select option { background: #07130c; color: var(--text-primary); }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   LOADING OVERLAY
+   ════════════════════════════════════════════════════════════════════════════ */
+.loading-overlay {
+  position: fixed; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 20px;
+  background: rgba(7, 19, 12, 0.96); backdrop-filter: blur(12px); z-index: 100;
+  transition: opacity 0.4s ease;
+}
+.loading-overlay.hidden { opacity: 0; pointer-events: none; }
+.loader {
+  width: 60px; height: 60px; border-radius: 50%; border: 3px solid transparent;
+  border-top-color: var(--secondary); border-right-color: var(--primary-light);
+  animation: spin 1s linear infinite;
+}
+.loading-text { font-family: 'Outfit', sans-serif; font-size: 16px; color: var(--text-secondary); }
+.loading-text::after { content: ''; animation: loadingDots 1.5s steps(4, end) infinite; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   KEYFRAME GENERAL ANIMATIONS
+   ════════════════════════════════════════════════════════════════════════════ */
+@keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInScale { 0% { opacity: 0; transform: scale(0.92); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes slideInLeft { 0% { opacity: 0; transform: translateX(-25px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 4px 20px rgba(0, 206, 201, 0.4); }
+  50% { box-shadow: 0 4px 40px rgba(0, 206, 201, 0.7), 0 0 60px rgba(0, 206, 201, 0.3); }
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes drawLine { 0% { stroke-dashoffset: 1000; } 100% { stroke-dashoffset: 0; } }
+@keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.05); } 70% { transform: scale(0.97); } 100% { transform: scale(1); } }
+@keyframes loadingDots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75% { content: '...'; } }
+
+@media (max-width: 900px) {
+  #playerScreen { grid-template-columns: 1fr; }
+  #sidePanel { display: none; }
+  .stage-content { padding: 20px 20px 20px 110px; }
+}
+
+.hidden { display: none !important; }
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     UPLOAD SCREEN
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div id="uploadScreen">
+  <canvas id="particleCanvas"></canvas>
+  <div class="upload-container">
+    <h1 class="upload-title">Learning HTML Video Generator</h1>
+    <p class="upload-subtitle">Upload your questions file to export a standalone HTML video directly ✨</p>
+    <div class="drop-zone" id="dropZone">
+      <span class="drop-zone-icon">📁</span>
+      <p class="drop-zone-text">Drag &amp; drop your <strong>.txt file</strong> here or click to browse</p>
+      <input type="file" class="file-input-hidden" id="fileInput" accept=".txt">
+    </div>
+    <button class="upload-btn" id="uploadBtn"><span>📤</span> Choose File</button>
+    <div class="file-info hidden" id="fileInfo">
+      <div class="file-info-name" id="fileName">document.txt</div>
+      <div class="file-info-meta">
+        <span>❓ <span id="questionCount">0 questions</span></span>
+      </div>
+    </div>
+    <button class="start-btn" id="startBtn" disabled><span>⬇</span> Download HTML Video</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     VIDEO PLAYER SCREEN
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div id="playerScreen">
+  <div class="main-stage">
+    <div class="stage-content" id="stage">
+      <!-- Slides render here -->
+    </div>
+    <div id="teacher">
+      <div class="teacher-speech-bubble" id="teacherBubble"></div>
+      <svg class="teacher-body" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FDBCB4"/><stop offset="100%" stop-color="#F0A89A"/>
+          </linearGradient>
+          <linearGradient id="outfitGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1B4D3E"/><stop offset="100%" stop-color="#0F3327"/>
+          </linearGradient>
+          <linearGradient id="vestGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0B221A"/><stop offset="100%" stop-color="#05120D"/>
+          </linearGradient>
+          <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2c2c3a"/><stop offset="100%" stop-color="#1a1a28"/>
+          </linearGradient>
+        </defs>
+        <!-- Legs &amp; Shoes -->
+        <rect class="teacher-leg-left" x="40" y="148" width="14" height="36" rx="5" fill="#0B221A"/>
+        <rect class="teacher-leg-right" x="62" y="148" width="14" height="36" rx="5" fill="#0B221A"/>
+        <ellipse cx="47" cy="186" rx="11" ry="6" fill="#1a1a28"/>
+        <ellipse cx="69" cy="186" rx="11" ry="6" fill="#1a1a28"/>
+        <!-- Body -->
+        <rect x="34" y="82" width="50" height="70" rx="10" fill="url(#outfitGrad)"/>
+        <!-- Vest -->
+        <rect x="34" y="82" width="16" height="62" rx="4" fill="url(#vestGrad)"/>
+        <rect x="68" y="82" width="16" height="62" rx="4" fill="url(#vestGrad)"/>
+        <circle cx="59" cy="100" r="2" fill="#00CEC9"/>
+        <circle cx="59" cy="114" r="2" fill="#00CEC9"/>
+        <circle cx="59" cy="128" r="2" fill="#00CEC9"/>
+        <!-- Neck -->
+        <rect x="52" y="72" width="14" height="14" rx="4" fill="url(#skinGrad)"/>
+        <!-- Head -->
+        <ellipse cx="59" cy="50" rx="24" ry="28" fill="url(#skinGrad)"/>
+        <!-- Hair -->
+        <ellipse cx="59" cy="32" rx="25" ry="16" fill="url(#hairGrad)"/>
+        <ellipse cx="37" cy="42" rx="5" ry="10" fill="url(#hairGrad)"/>
+        <ellipse cx="81" cy="42" rx="5" ry="10" fill="url(#hairGrad)"/>
+        <!-- Eyes -->
+        <ellipse class="teacher-eye" cx="49" cy="48" rx="3.5" ry="4" fill="#1a1a28"/>
+        <ellipse class="teacher-eye" cx="69" cy="48" rx="3.5" ry="4" fill="#1a1a28"/>
+        <circle cx="50.5" cy="46.5" r="1.2" fill="#fff" opacity="0.9"/>
+        <circle cx="70.5" cy="46.5" r="1.2" fill="#fff" opacity="0.9"/>
+        <!-- Eyebrows -->
+        <line x1="44" y1="40" x2="53" y2="39" stroke="#2c2c3a" stroke-width="2" stroke-linecap="round"/>
+        <line x1="65" y1="39" x2="74" y2="40" stroke="#2c2c3a" stroke-width="2" stroke-linecap="round"/>
+        <!-- Mouth -->
+        <path class="teacher-mouth" d="M53 60 Q59 66 65 60" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Nose -->
+        <ellipse cx="59" cy="54" rx="2.5" ry="2" fill="#E8998D"/>
+        <!-- Blush -->
+        <ellipse cx="43" cy="56" rx="4" ry="2.5" fill="#FFB3A7" opacity="0.5"/>
+        <ellipse cx="75" cy="56" rx="4" ry="2.5" fill="#FFB3A7" opacity="0.5"/>
+        <!-- Glasses -->
+        <circle cx="49" cy="48" r="8" stroke="#00CEC9" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <circle cx="69" cy="48" r="8" stroke="#00CEC9" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <line x1="57" y1="48" x2="61" y2="48" stroke="#00CEC9" stroke-width="1.2" opacity="0.6"/>
+        <!-- Left Arm -->
+        <g class="teacher-hand-left">
+          <rect x="18" y="88" width="14" height="42" rx="6" fill="url(#outfitGrad)"/>
+          <ellipse cx="25" cy="132" rx="7" ry="6" fill="url(#skinGrad)"/>
+        </g>
+        <!-- Right Arm + Pointer -->
+        <g class="teacher-hand-right">
+          <rect x="86" y="88" width="14" height="42" rx="6" fill="url(#outfitGrad)"/>
+          <ellipse cx="93" cy="132" rx="7" ry="6" fill="url(#skinGrad)"/>
+          <line x1="96" y1="128" x2="114" y2="98" stroke="#E0C068" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="114" cy="98" r="3" fill="#e74c3c"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Side Panel -->
+  <div id="sidePanel">
+    <div class="panel-header">
+      <div class="panel-title">Questions</div>
+      <div class="panel-subtitle">Jump to topics</div>
+    </div>
+    <div class="question-list" id="questionList"></div>
+  </div>
+
+  <!-- Controls Bar -->
+  <div id="controlsBar">
+    <div class="controls-left">
+      <button class="ctrl-btn" id="prevBtn" title="Previous (←)">⏮</button>
+      <button class="ctrl-btn play-btn" id="playBtn" title="Play / Pause (Space)">▶</button>
+      <button class="ctrl-btn" id="nextBtn" title="Next (→)">⏭</button>
+    </div>
+    <div class="controls-center">
+      <span class="progress-time" id="progressText">Ready</span>
+      <div class="progress-container" id="progressBar">
+        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+      </div>
+    </div>
+    <div class="controls-right">
+      <button class="ctrl-btn download-btn-class" id="downloadHtmlBtn" title="Save Standalone Video File">📥 Save HTML Video</button>
+      <select class="speed-select" id="speedSelect" title="Playback Speed">
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="1.75">1.75×</option>
+        <option value="2">2×</option>
+        <option value="2.25">2.25×</option>
+        <option value="2.5">2.5×</option>
+        <option value="3">3×</option>
+      </select>
+      <select class="lang-select" id="langSelect" title="Voice Language"></select>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay hidden" id="loadingOverlay">
+  <div class="loader"></div>
+  <div class="loading-text" id="loaderText">Generating your video file</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════════
+// temp_engine.js — Interactive Standalone HTML Video Creator Engine
+// Compiles UPSC/HR text questions into standalone self-playing HTML video files.
+// ═══════════════════════════════════════════════════════════════════════════════
+
+window.PRELOADED_QUESTIONS = null;
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   1. NLPLite — Extract entity types, keywords, states, and animals
+   ────────────────────────────────────────────────────────────────────────────── */
+
+class NLPLite {
+  constructor() {
+    this.indianStates = [
+      'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+      'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
+      'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya',
+      'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim',
+      'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand',
+      'West Bengal', 'Delhi', 'Jammu and Kashmir', 'Ladakh'
+    ];
+
+    this.countries = [
+      'India', 'China', 'USA', 'United States', 'Australia', 'Japan', 'UK',
+      'United Kingdom', 'France', 'Germany', 'Russia', 'Canada', 'Brazil',
+      'South Africa', 'Pakistan', 'Bangladesh', 'Sri Lanka', 'Nepal', 'Bhutan'
+    ];
+
+    this.rivers = [
+      'Ganga', 'Ganges', 'Yamuna', 'Gomti', 'Narmada', 'Godavari', 'Krishna',
+      'Kaveri', 'Cauvery', 'Brahmaputra', 'Indus', 'Sutlej', 'Tapti', 'Mahanadi', 'Indravati'
+    ];
+
+    this.animals = [
+      'Tiger', 'Lion', 'Elephant', 'Leopard', 'Rhinoceros', 'Gibbon', 'Cow', 'Peacock', 'Dolphin'
+    ];
+
+    this.constitutionalBodies = [
+      'UPSC', 'CBI', 'Lokpal', 'Lokayukta', 'Finance Commission',
+      'Election Commission', 'Supreme Court', 'CAG', 'Attorney General',
+      'NITI Aayog', 'Rajya Sabha', 'Lok Sabha', 'Parliament', 'Governor',
+      'President', 'Reserve Bank of India', 'RBI', 'SEBI', 'Gram Sabha'
+    ];
+
+    this.persons = [
+      'Ambedkar', 'Nehru', 'Gandhi', 'Sardar Patel', 'Rajendra Prasad',
+      'Subhas Chandra Bose', 'Bhagat Singh', 'Tilak', 'Gokhale', 'Naoroji'
+    ];
+  }
+
+  extractKeyTerms(text) {
+    const terms = [];
+    const seen = new Set();
+
+    const addTerm = (term, type) => {
+      const key = term.toLowerCase().trim();
+      if (key.length < 2 || seen.has(key)) return;
+      seen.add(key);
+      terms.push({ term: term.trim(), type });
+    };
+
+    const articleRe = /Article\s+\d+[A-Z]?(?:\s*\(\d+\))?/gi;
+    let m;
+    while ((m = articleRe.exec(text)) !== null) addTerm(m[0], 'article');
+
+    const amendRe = /\d+(?:st|nd|rd|th)\s+(?:Constitutional\s+)?Amendment(?:\s+Act)?(?:\s*,?\s*\d{4})?/gi;
+    while ((m = amendRe.exec(text)) !== null) addTerm(m[0], 'amendment');
+
+    const actRe = /[A-Z][a-zA-Z\s]{3,30}\s+Act(?:\s*,?\s*\d{4})?/g;
+    while ((m = actRe.exec(text)) !== null) {
+      const cleaned = m[0].trim();
+      if (cleaned.length > 5 &amp;&amp; cleaned.length < 80) addTerm(cleaned, 'act');
+    }
+
+    for (const body of this.constitutionalBodies) {
+      if (new RegExp('\\b' + this._escapeRegex(body) + '\\b', 'gi').test(text)) {
+        addTerm(body, 'body');
+      }
+    }
+
+    const properRe = /(?:[A-Z][a-z]+(?:\s+(?:of|and|the|for|in|on)\s+)?){2,3}[A-Z][a-z]+/g;
+    while ((m = properRe.exec(text)) !== null) {
+      addTerm(m[0], 'proper');
+    }
+
+    return terms;
+  }
+
+  extractEntities(text) {
+    const entities = [];
+    const seen = new Set();
+
+    const addEntity = (name, type) => {
+      const key = name.toLowerCase().trim();
+      if (seen.has(key)) return;
+      seen.add(key);
+      entities.push({ name: name.trim(), type, svgTemplate: this._getSvgTemplate(type, name.trim()) });
+    };
+
+    for (const state of this.indianStates) {
+      if (new RegExp('\\b' + this._escapeRegex(state) + '\\b', 'i').test(text)) addEntity(state, 'state');
+    }
+    for (const country of this.countries) {
+      if (new RegExp('\\b' + this._escapeRegex(country) + '\\b', 'i').test(text)) addEntity(country, 'country');
+    }
+    for (const river of this.rivers) {
+      if (new RegExp('\\b' + this._escapeRegex(river) + '\\b', 'i').test(text)) addEntity(river, 'river');
+    }
+    for (const animal of this.animals) {
+      if (new RegExp('\\b' + this._escapeRegex(animal) + '\\b', 'i').test(text)) addEntity(animal, 'animal');
+    }
+    for (const person of this.persons) {
+      if (new RegExp('\\b' + this._escapeRegex(person) + '\\b', 'i').test(text)) addEntity(person, 'person');
+    }
+    for (const body of this.constitutionalBodies) {
+      if (new RegExp('\\b' + this._escapeRegex(body) + '\\b', 'i').test(text)) addEntity(body, 'institution');
+    }
+
+    return entities;
+  }
+
+  _escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&amp;');
+  }
+
+  _getSvgTemplate(type, name) {
+    switch (type) {
+      case 'state': return 'map_india';
+      case 'country':
+        if (/india/i.test(name)) return 'map_india';
+        return 'globe';
+      case 'river': return 'river';
+      case 'animal':
+        if (/tiger/i.test(name)) return 'tiger';
+        if (/elephant/i.test(name)) return 'elephant';
+        if (/cow/i.test(name)) return 'cow';
+        if (/lion/i.test(name)) return 'lion';
+        if (/peacock/i.test(name)) return 'peacock';
+        if (/gibbon/i.test(name)) return 'monkey';
+        return 'animal_generic';
+      case 'person': return 'person';
+      case 'institution': return 'building';
+      default: return 'generic';
+    }
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   2. QuestionParser — Splits raw file blocks into structured questions
+   ────────────────────────────────────────────────────────────────────────────── */
+
+class QuestionParser {
+  constructor() {
+    this.nlp = new NLPLite();
+  }
+
+  parse(text) {
+    const questions = [];
+    if (!text || !text.trim()) return questions;
+
+    const normalized = text.replace(/\r\n/g, '\n').replace(/\u200B/g, '');
+    const blocks = normalized.split(/(?=^Q\s*\d+\s*[.)]\s*)/mi);
+
+    for (const block of blocks) {
+      const trimmed = block.trim();
+      if (!trimmed) continue;
+
+      const headerMatch = trimmed.match(/^Q\s*(\d+)\s*[.)]\s*(.+)/i);
+      if (!headerMatch) continue;
+
+      const number = parseInt(headerMatch[1], 10);
+      let questionText = headerMatch[2];
+      const newlineIdx = questionText.indexOf('\n');
+      if (newlineIdx > 0) questionText = questionText.substring(0, newlineIdx);
+      
+      questionText = questionText.replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '').trim();
+
+      const title = this._shortenToTitle(questionText);
+
+      const exMatch = trimmed.match(/Ex(?:planation)?\s*:\s*([\s\S]*?)$/i);
+      let explanation = '';
+      if (exMatch) {
+        explanation = exMatch[1].trim();
+      }
+
+      if (!explanation) continue;
+
+      const keyTerms = this.nlp.extractKeyTerms(explanation);
+      const entities = this.nlp.extractEntities(explanation);
+
+      questions.push({
+        number,
+        title,
+        questionText: questionText.trim(),
+        explanation,
+        keyTerms,
+        entities
+      });
+    }
+
+    questions.sort((a, b) => a.number - b.number);
+    return questions;
+  }
+
+  _shortenToTitle(text) {
+    let t = text
+      .replace(/^(?:Which\s+of\s+the\s+following|Consider\s+the\s+following|With\s+reference\s+to|In\s+the\s+context\s+of|Regarding)\s*/i, '')
+      .replace(/^(?:statements?\s+(?:is|are)\s+(?:correct|incorrect|true|false))/i, '')
+      .replace(/[?:]+$/, '')
+      .trim();
+
+    const aboutMatch = t.match(/(?:about|regarding|related\s+to|with\s+respect\s+to|pertaining\s+to)\s+(.+)/i);
+    if (aboutMatch) {
+      t = aboutMatch[1].replace(/[,?.:]+$/, '').trim();
+    }
+
+    if (t.length > 40) {
+      const words = t.split(/\s+/).filter(w => !['the', 'a', 'an', 'is', 'are', 'of', 'in', 'to', 'for', 'and'].includes(w.toLowerCase()));
+      t = words.slice(0, 4).join(' ');
+    }
+
+    if (t.length > 0) {
+      t = t.charAt(0).toUpperCase() + t.slice(1);
+    }
+    return t || 'UPSC Concept';
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   3. SVGAssets — SVG silhouettes drawing outline vectors
+   ────────────────────────────────────────────────────────────────────────────── */
+
+const SVGAssets = {
+  map_india: `
+    <svg viewBox="0 0 300 350" class="entity-svg">
+      <path class="svg-draw" fill="none" stroke="#00CEC9" stroke-width="2.5"
+        d="M150,10 L170,15 L190,12 L210,20 L220,18 L235,25 L240,40
+           L250,50 L255,65 L260,80 L265,95 L270,105 L275,100 L285,110
+           L280,125 L275,140 L270,155 L265,165 L255,175 L250,190
+           L240,200 L230,215 L225,230 L220,245 L210,255 L200,265
+           L195,275 L185,285 L175,300 L165,310 L155,320 L150,330
+           L145,325 L140,315 L130,305 L120,295 L110,280 L100,265
+           L90,255 L80,240 L70,225 L65,210 L60,195 L55,180 L50,165
+           L48,150 L45,135 L42,120 L40,105 L45,90 L50,80 L60,70
+           L70,60 L80,50 L90,40 L100,32 L110,25 L120,20 L130,15
+           L140,12 Z"/>
+      <circle cx="170" cy="90" r="4" fill="#ff4d4d"/>
+    </svg>`,
+
+  globe: `
+    <svg viewBox="0 0 200 200" class="entity-svg">
+      <circle class="svg-draw" cx="100" cy="100" r="80" fill="none" stroke="#00CEC9" stroke-width="2"/>
+      <ellipse class="svg-draw" cx="100" cy="100" rx="35" ry="80" fill="none" stroke="#00CEC9" stroke-width="1.5"/>
+      <line class="svg-draw" x1="20" y1="100" x2="180" y2="100" stroke="#00CEC9" stroke-width="1"/>
+      <ellipse class="svg-draw" cx="100" cy="65" rx="70" ry="20" fill="none" stroke="#00CEC9" stroke-width="1" stroke-dasharray="4,3"/>
+      <ellipse class="svg-draw" cx="100" cy="135" rx="70" ry="20" fill="none" stroke="#00CEC9" stroke-width="1" stroke-dasharray="4,3"/>
+    </svg>`,
+
+  river: `
+    <svg viewBox="0 0 300 120" class="entity-svg">
+      <path class="svg-draw" fill="none" stroke="#74b9ff" stroke-width="3.5" stroke-linecap="round"
+        d="M10,60 C40,30 70,90 100,60 C130,30 160,90 190,60 C220,30 250,90 290,60"/>
+    </svg>`,
+
+  tiger: `
+    <svg viewBox="0 0 200 180" class="entity-svg">
+      <path class="svg-draw" fill="none" stroke="#FDCB6E" stroke-width="2"
+        d="M40,60 L30,30 L50,50 L70,25 L75,55 L100,45 L125,55 L130,25 L150,50 L170,30 L160,60
+           L170,80 L165,110 L160,130 L140,145 L100,150 L60,145 L40,130 M95,95 L100,100 L105,95"/>
+    </svg>`,
+
+  elephant: `
+    <svg viewBox="0 0 250 200" class="entity-svg">
+      <path class="svg-draw" fill="none" stroke="#a29bfe" stroke-width="2"
+        d="M60,80 C60,50 90,30 120,30 C150,30 170,50 175,70 L190,50 L200,65 L185,80
+           C195,90 200,110 200,130 L200,170 L185,170 L185,140
+           C175,150 155,155 140,155 L130,170 L115,170 L120,150
+           L90,155 L80,170 L65,170 L75,145 Z"/>
+    </svg>`,
+
+  cow: `
+    <svg viewBox="0 0 220 180" class="entity-svg">
+      <path class="svg-draw" fill="none" stroke="#E6EDF3" stroke-width="2"
+        d="M40,70 L30,50 L45,60 L55,40 L60,60 L90,55 L140,55 L170,60 L175,40 L180,60 M140,135 L130,160 M95,135 L90,160 M55,160 L50,130 Z"/>
+    </svg>`,
+
+  lion: `
+    <svg viewBox="0 0 200 200" class="entity-svg">
+      <circle class="svg-draw" cx="100" cy="80" r="50" fill="none" stroke="#FDCB6E" stroke-width="2"/>
+      <circle class="svg-draw" cx="100" cy="80" r="35" fill="none" stroke="#FD79A8" stroke-width="1.5"/>
+    </svg>`,
+
+  peacock: `
+    <svg viewBox="0 0 250 200" class="entity-svg">
+      <path class="svg-draw" fill="none" stroke="#00CEC9" stroke-width="2.5"
+        d="M125,150 C115,140 110,120 115,100 C120,80 130,75 135,80 M125,100 C80,60 40,30 30,50 C20,70 50,90 80,95"/>
+    </svg>`,
+
+  monkey: `
+    <svg viewBox="0 0 160 200" class="entity-svg">
+      <circle class="svg-draw" cx="80" cy="55" r="30" fill="none" stroke="#a29bfe" stroke-width="2"/>
+      <path class="svg-draw" fill="none" stroke="#a29bfe" stroke-width="2"
+        d="M80,85 L80,130 M80,100 L55,120 M80,100 L105,120"/>
+    </svg>`,
+
+  animal_generic: `
+    <svg viewBox="0 0 200 150" class="entity-svg">
+      <path class="svg-draw" fill="none" stroke="#E6EDF3" stroke-width="2"
+        d="M40,60 L35,40 L50,55 L65,35 L70,55 L130,50 M80,112 L85,130 M50,130 L45,110 Z"/>
+    </svg>`,
+
+  person: `
+    <svg viewBox="0 0 120 180" class="entity-svg">
+      <circle class="svg-draw" cx="60" cy="35" r="22" fill="none" stroke="#00CEC9" stroke-width="2"/>
+      <path class="svg-draw" fill="none" stroke="#00CEC9" stroke-width="2"
+        d="M60,57 L60,120 M60,75 L30,100 M60,75 L90,100 M60,120 L40,165 M60,120 L80,165"/>
+    </svg>`,
+
+  building: `
+    <svg viewBox="0 0 250 200" class="entity-svg">
+      <path class="svg-draw" fill="none" stroke="#00CEC9" stroke-width="2"
+        d="M125,20 L200,60 L200,170 L50,170 L50,60 Z"/>
+      <line class="svg-draw" x1="50" y1="60" x2="200" y2="60" stroke="#00CEC9" stroke-width="2"/>
+      <rect class="svg-draw" x="105" y="120" width="40" height="50" fill="none" stroke="#00CEC9" stroke-width="1.5" rx="3"/>
+    </svg>`,
+
+  generic: `
+    <svg viewBox="0 0 150 150" class="entity-svg">
+      <circle class="svg-draw" cx="75" cy="75" r="50" fill="none" stroke="#a29bfe" stroke-width="2"/>
+      <text x="75" y="82" text-anchor="middle" fill="#a29bfe" font-size="36" font-family="sans-serif">?</text>
+    </svg>`
+};
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   4. SlideGenerator — Hierarchical progressive SVG mindmaps with neon colors
+   ────────────────────────────────────────────────────────────────────────────── */
+
+class SlideGenerator {
+  constructor() {
+    this.nlp = new NLPLite();
+  }
+
+  generateSlides(questionData) {
+    const slides = [];
+    const { number, title, explanation, keyTerms, entities } = questionData;
+
+    // 1. TITLE SLIDE
+    slides.push(this.createTitleSlide(questionData));
+
+    // 2. PROGRESSIVE MINDMAP SLIDES — Replace plain text slides completely
+    const branches = this._extractMindmapBranches(explanation);
+    for (let i = 0; i < branches.length; i++) {
+      slides.push(this.createMindmapSlide(number, title, branches, i));
+    }
+
+    // 3. STICKY NOTES SLIDE — Important summary facts
+    const facts = this._extractFacts(explanation);
+    if (facts.length > 0) {
+      slides.push(this.createStickyNotesSlide(facts.slice(0, 4)));
+    }
+
+    // 4. ENTITY VISUAL SLIDE — Context-aware SVGs
+    let visualEntities = entities.filter(e => e.svgTemplate !== 'generic').slice(0, 1);
+    if (visualEntities.length === 0) {
+      let template = 'globe';
+      let entityType = 'Conceptual';
+      const lowerText = explanation.toLowerCase();
+
+      if (/court|judge|law|act|article|constitution|legal|justice/i.test(lowerText)) {
+        template = 'building';
+        entityType = 'Legal Reference';
+      } else if (/commission|committee|council|body|board|upsc|cbi|lokpal/i.test(lowerText)) {
+        template = 'building';
+        entityType = 'Institution';
+      } else if (/gandhi|nehru|ambedkar|patel/i.test(lowerText)) {
+        template = 'person';
+        entityType = 'Historical Figure';
+      } else if (/river|ganga|yamuna|narmada|sea/i.test(lowerText)) {
+        template = 'river';
+        entityType = 'Geography';
+      } else if (/tiger|elephant|lion|peacock|animal/i.test(lowerText)) {
+        template = 'tiger';
+        entityType = 'Fauna';
+      }
+      visualEntities.push({ name: title, type: entityType, svgTemplate: template });
+    }
+    for (const entity of visualEntities) {
+      slides.push(this.createEntitySlide(entity));
+    }
+
+    // 5. SUMMARY SLIDE — Key takeaways
+    const summaryPoints = this._extractSummaryPoints(explanation, keyTerms);
+    slides.push(this.createSummarySlide(summaryPoints));
+
+    // Calculate duration for all slides
+    for (const slide of slides) {
+      slide.duration = this._calculateDuration(slide.speakText);
+    }
+
+    return slides;
+  }
+
+  createTitleSlide(questionData) {
+    const { number, title } = questionData;
+    const speakText = `Question ${number}. ${title}.`;
+    const html = `
+      <div class="slide slide-title" data-type="title">
+        <div class="slide-question-badge">Question ${number}</div>
+        <h1 class="slide-title-text">${this._escapeHtml(title)}</h1>
+        <div class="slide-title-underline"></div>
+        <p class="slide-subtitle">Let's study the details</p>
+      </div>`;
+    return { type: 'title', html, speakText, duration: 0 };
+  }
+
+  createMindmapSlide(number, topic, branches, activeIndex) {
+    const viewW = 960, viewH = 540;
+    const centerX = 480, centerY = 270;
+    
+    // Parent card coordinates layout
+    const radiusX = 240, radiusY = 120;
+    
+    // Sub-branch pill coordinates layout
+    const subRadiusX = 350, subRadiusY = 190;
+
+    const totalNodes = branches.length;
+
+    const branchColors = ['#00CEC9', '#FD79A8', '#FDCB6E', '#a29bfe', '#e17055', '#74b9ff', '#55E6C1'];
+    const glowColors = [
+      'rgba(0, 206, 201, 0.4)', 'rgba(253, 121, 168, 0.4)', 'rgba(253, 203, 110, 0.4)',
+      'rgba(162, 155, 254, 0.4)', 'rgba(225, 112, 85, 0.4)', 'rgba(116, 185, 255, 0.4)', 'rgba(85, 230, 193, 0.4)'
+    ];
+
+    let svgContent = `<svg viewBox="0 0 ${viewW} ${viewH}" class="mindmap-svg" xmlns="http://www.w3.org/2000/svg">`;
+
+    // Render branch curves
+    for (let j = 0; j < totalNodes; j++) {
+      const angle = (2 * Math.PI * j) / totalNodes - Math.PI / 2;
+      const bx = centerX + radiusX * Math.cos(angle);
+      const by = centerY + radiusY * Math.sin(angle);
+      const color = branchColors[j % branchColors.length];
+
+      // Bending Bezier control point
+      const dx = bx - centerX;
+      const dy = by - centerY;
+      const mx = centerX + dx * 0.5;
+      const my = centerY + dy * 0.5;
+      const cpx = mx - dy * 0.12;
+      const cpy = my + dx * 0.12;
+
+      let lineClass = 'mm-line future';
+      if (j === activeIndex) lineClass = 'mm-line active';
+      else if (j < activeIndex) lineClass = 'mm-line visited';
+
+      svgContent += `
+        <path d="M${centerX},${centerY} Q${cpx},${cpy} ${bx},${by}"
+              fill="none" stroke="${color}" stroke-width="2.5"
+              class="${lineClass}" style="--color: ${color};" />`;
+
+      // Render hierarchical sub-branch lines
+      const subBranches = branches[j].subBranches;
+      const subCount = subBranches.length;
+      if (subCount > 0) {
+        for (let k = 0; k < subCount; k++) {
+          let subAngle = angle;
+          if (subCount > 1) {
+            subAngle = angle - 0.22 + (0.44 * k) / (subCount - 1);
+          }
+          const sbx = centerX + subRadiusX * Math.cos(subAngle);
+          const sby = centerY + subRadiusY * Math.sin(subAngle);
+
+          // Connect bx,by to sbx,sby
+          const sdx = sbx - bx;
+          const sdy = sby - by;
+          const smx = bx + sdx * 0.5;
+          const smy = by + sdy * 0.5;
+          const scpx = smx - sdy * 0.1;
+          const scpy = smy + sdx * 0.1;
+
+          let subLineClass = 'mm-sub-line future';
+          if (j === activeIndex) subLineClass = 'mm-sub-line active';
+          else if (j < activeIndex) subLineClass = 'mm-sub-line visited';
+
+          svgContent += `
+            <path d="M${bx},${by} Q${scpx},${scpy} ${sbx},${sby}"
+                  fill="none" stroke="${color}" stroke-width="1.8" stroke-dasharray="4,4"
+                  class="${subLineClass}" style="--color: ${color};" />`;
+        }
+      }
+    }
+
+    // Render outer cards inside foreignObject
+    for (let j = 0; j < totalNodes; j++) {
+      const angle = (2 * Math.PI * j) / totalNodes - Math.PI / 2;
+      const bx = centerX + radiusX * Math.cos(angle);
+      const by = centerY + radiusY * Math.sin(angle);
+      const color = branchColors[j % branchColors.length];
+      const glow = glowColors[j % glowColors.length];
+      const node = branches[j];
+
+      let cardClass = 'mm-card future';
+      if (j === activeIndex) cardClass = 'mm-card active';
+      else if (j < activeIndex) cardClass = 'mm-card visited';
+
+      svgContent += `
+        <foreignObject x="${bx - 90}" y="${by - 35}" width="180" height="70" class="mm-fo">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="${cardClass}"
+               style="--border-color: ${color}; --glow-color: ${glow};">
+            <div class="mm-card-text">${this._escapeHtml(node.text)}</div>
+          </div>
+        </foreignObject>`;
+
+      // Render child pills fanned-out around parent
+      const subBranches = node.subBranches;
+      const subCount = subBranches.length;
+      if (subCount > 0) {
+        for (let k = 0; k < subCount; k++) {
+          let subAngle = angle;
+          if (subCount > 1) {
+            subAngle = angle - 0.22 + (0.44 * k) / (subCount - 1);
+          }
+          const sbx = centerX + subRadiusX * Math.cos(subAngle);
+          const sby = centerY + subRadiusY * Math.sin(subAngle);
+          const subText = subBranches[k];
+
+          let subCardClass = 'mm-sub-card future';
+          if (j === activeIndex) subCardClass = 'mm-sub-card active';
+          else if (j < activeIndex) subCardClass = 'mm-sub-card visited';
+
+          svgContent += `
+            <foreignObject x="${sbx - 55}" y="${sby - 20}" width="110" height="40" class="mm-fo">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="${subCardClass}"
+                   style="--border-color: ${color}; --glow-color: ${glow};">
+                <div class="mm-sub-card-text">${this._escapeHtml(subText)}</div>
+              </div>
+            </foreignObject>`;
+        }
+      }
+    }
+
+    // Render Center Node Card
+    const topicTrunc = topic.length > 24 ? topic.substring(0, 22) + '…' : topic;
+    svgContent += `
+      <foreignObject x="${centerX - 100}" y="${centerY - 35}" width="200" height="70" class="mm-fo">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="mm-center-card">
+          <div class="mm-center-q">Q${number} Topic</div>
+          <div class="mm-center-title">${this._escapeHtml(topicTrunc)}</div>
+        </div>
+      </foreignObject>`;
+
+    svgContent += '</svg>';
+
+    // Build spoken text: read parent and children sequentially
+    let speakText = branches[activeIndex].text;
+    if (branches[activeIndex].subBranches.length > 0) {
+      speakText += `. These include: ${branches[activeIndex].subBranches.join(', ')}.`;
+    }
+
+    const html = `
+      <div class="slide slide-mindmap" data-type="mindmap">
+        <div class="mindmap-container">${svgContent}</div>
+      </div>`;
+
+    return { type: 'mindmap', html, speakText, duration: 0 };
+  }
+
+  createStickyNotesSlide(facts) {
+    const colors = ['#ffeaa7', '#81ecec', '#fab1a0', '#a29bfe'];
+    const rotations = [-2, 3, -1, 2];
+    const speakText = facts.join('. ');
+
+    const notesHtml = facts.map((fact, i) => `
+      <div class="sticky-note" style="
+        background: ${colors[i % colors.length]};
+        transform: rotate(${rotations[i % rotations.length]}deg);
+        animation-delay: ${i * 0.1}s;
+      ">
+        <div class="sticky-pin"></div>
+        <p class="sticky-text">${this._escapeHtml(fact)}</p>
+      </div>`).join('');
+
+    const html = `
+      <div class="slide slide-stickynotes" data-type="stickynotes">
+        <div class="stickynotes-grid">
+          ${notesHtml}
+        </div>
+      </div>`;
+    return { type: 'stickynotes', html, speakText, duration: 0 };
+  }
+
+  createEntitySlide(entity) {
+    const svgHtml = SVGAssets[entity.svgTemplate] || SVGAssets.generic;
+    const speakText = `${entity.name}. Reference category is: ${entity.type}.`;
+
+    const html = `
+      <div class="slide slide-entity" data-type="entity">
+        <div class="entity-card">
+          <div class="entity-visual">
+            ${svgHtml}
+          </div>
+          <div class="entity-info">
+            <span class="entity-type-badge">${this._escapeHtml(entity.type.toUpperCase())}</span>
+            <h2 class="entity-name">${this._escapeHtml(entity.name)}</h2>
+          </div>
+        </div>
+      </div>`;
+    return { type: 'entity', html, speakText, duration: 0 };
+  }
+
+  createSummarySlide(points) {
+    const speakText = points.join('. ');
+    const pointsHtml = points.map((p, i) => `
+      <li class="summary-item" style="animation-delay: ${i * 0.1}s">
+        <span class="summary-check">✅</span>
+        <span class="summary-text">${this._escapeHtml(p)}</span>
+      </li>`).join('');
+
+    const html = `
+      <div class="slide slide-summary" data-type="summary">
+        <ul class="summary-list">
+          ${pointsHtml}
+        </ul>
+      </div>`;
+    return { type: 'summary', html, speakText, duration: 0 };
+  }
+
+  _calculateDuration(speakText, wpm = 140) {
+    if (!speakText) return 3000;
+    const wordCount = speakText.split(/\s+/).length;
+    return Math.max(3200, (wordCount / wpm) * 60 * 1000);
+  }
+
+  _extractMindmapBranches(explanation) {
+    const sentences = explanation.split(/(?<=[.!?])\s+/)
+      .map(s => s.trim())
+      .filter(s => s.length > 15 &amp;&amp; !/Hence|Therefore|Thus|So,|statement\s+\d/i.test(s));
+
+    const branches = [];
+    for (const s of sentences) {
+      // 1. Check for colon list format
+      const colonMatch = s.match(/^([^:]+):\s*(.+)$/);
+      if (colonMatch &amp;&amp; colonMatch[1].split(/\s+/).length <= 6) {
+        const parent = colonMatch[1].trim();
+        const rest = colonMatch[2].trim();
+        
+        const listItems = rest.split(/, | and | or /)
+          .map(item => item.trim().replace(/\.$/, ''))
+          .filter(item => item.length > 3 &amp;&amp; item.split(/\s+/).length <= 5);
+
+        if (listItems.length >= 2) {
+          branches.push({
+            text: parent,
+            subBranches: listItems
+          });
+          continue;
+        }
+      }
+      
+      // 2. Check for "consists of/includes X, Y, and Z" format
+      const includesMatch = s.match(/(.+?)\s+(?:includes|consists of|namely)\s+(.+)$/i);
+      if (includesMatch &amp;&amp; includesMatch[1].split(/\s+/).length <= 6) {
+        const parent = includesMatch[1].trim();
+        const rest = includesMatch[2].trim();
+        const listItems = rest.split(/, | and | or /)
+          .map(item => item.trim().replace(/\.$/, ''))
+          .filter(item => item.length > 3 &amp;&amp; item.split(/\s+/).length <= 5);
+
+        if (listItems.length >= 2) {
+          branches.push({
+            text: parent,
+            subBranches: listItems
+          });
+          continue;
+        }
+      }
+
+      // Default: single branch node
+      branches.push({
+        text: s,
+        subBranches: []
+      });
+    }
+
+    if (branches.length === 0) {
+      branches.push({
+        text: "Analyze the factual statements carefully.",
+        subBranches: ["Legal background", "Precedents"]
+      });
+      branches.push({
+        text: "Verify based on constitutional context.",
+        subBranches: ["Articles", "Amending acts"]
+      });
+    }
+
+    return branches.slice(0, 6);
+  }
+
+  _extractFacts(explanation) {
+    const sentences = explanation.split(/(?<=[.!?])\s+/);
+    const facts = [];
+    for (const s of sentences) {
+      const trimmed = s.trim();
+      if (trimmed.length > 15 &amp;&amp; trimmed.length < 120 &amp;&amp; trimmed.endsWith('.')) {
+        if (/Hence|Therefore|Thus|statement/i.test(trimmed)) continue;
+        facts.push(trimmed);
+      }
+    }
+    if (facts.length < 2) {
+      for (const s of sentences) {
+        const trimmed = s.trim();
+        if (trimmed.length > 15 &amp;&amp; trimmed.length < 150 &amp;&amp; !facts.includes(trimmed)) {
+          facts.push(trimmed);
+          if (facts.length >= 3) break;
+        }
+      }
+    }
+    return facts.slice(0, 4);
+  }
+
+  _extractSummaryPoints(explanation, keyTerms) {
+    const points = [];
+    const sentences = explanation.split(/(?<=[.!?])\s+/);
+    const termSet = new Set(keyTerms.map(kt => kt.term.toLowerCase()));
+
+    for (const s of sentences) {
+      const trimmed = s.trim();
+      if (trimmed.length < 15 || trimmed.length > 140) continue;
+      if (/Hence|Therefore|Thus/i.test(trimmed)) continue;
+
+      const hasKeyTerm = [...termSet].some(t => trimmed.toLowerCase().includes(t));
+      if (hasKeyTerm) {
+        points.push(trimmed.replace(/\.$/, ''));
+      }
+    }
+
+    if (points.length < 3) {
+      for (const s of sentences) {
+        const trimmed = s.trim().replace(/\.$/, '');
+        if (trimmed.length >= 20 &amp;&amp; trimmed.length <= 150 &amp;&amp; !points.includes(trimmed)) {
+          points.push(trimmed);
+          if (points.length >= 4) break;
+        }
+      }
+    }
+
+    while (points.length < 3) {
+      points.push("Understand statutory and constitutional links");
+      points.push("Review key terms and context facts");
+    }
+
+    return points.slice(0, 4);
+  }
+
+  _escapeHtml(text) {
+    if (!text) return '';
+    return text.replace(/&amp;/g, '&amp;amp;').replace(/</g, '&amp;lt;').replace(/>/g, '&amp;gt;').replace(/"/g, '&amp;quot;').replace(/'/g, '&amp;#39;');
+  }
+
+  _stripHtml(text) {
+    if (!text) return '';
+    return text.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   5. TTSEngine — Real-time Speech synthesis and Dynamic bubble
+   ────────────────────────────────────────────────────────────────────────────── */
+
+class TTSEngine {
+  constructor() {
+    this.synth = window.speechSynthesis;
+    this.currentUtterance = null;
+    this.isPaused = false;
+    this.isSpeaking = false;
+    this.rate = 1;
+    this.volume = 0.8;
+    this.voice = null;
+    this.onWordCallback = null;
+    this.onEndCallback = null;
+    this._chunks = [];
+    this._chunkIndex = 0;
+    this._globalCharOffset = 0;
+    this._cancelRequested = false;
+    this._resumeTimer = null;
+  }
+
+  getVoices() {
+    return this.synth.getVoices();
+  }
+
+  setVoice(voice) {
+    this.voice = voice;
+  }
+
+  setRate(rate) {
+    this.rate = Math.max(0.5, Math.min(3, rate));
+  }
+
+  setVolume(vol) {
+    this.volume = Math.max(0, Math.min(1, vol));
+  }
+
+  speak(text) {
+    this.stop();
+    this._cancelRequested = false;
+
+    if (!text || !text.trim()) return Promise.resolve();
+
+    this._chunks = this._splitIntoChunks(text, 140);
+    this._chunkIndex = 0;
+    this._globalCharOffset = 0;
+    this.isSpeaking = true;
+
+    return new Promise((resolve) => {
+      this._speakNextChunk(resolve);
+    });
+  }
+
+  pause() {
+    if (!this.isSpeaking) return;
+    this.synth.pause();
+    this.isPaused = true;
+    if (this._resumeTimer) {
+      clearInterval(this._resumeTimer);
+      this._resumeTimer = null;
+    }
+  }
+
+  resume() {
+    if (!this.isPaused) return;
+    this.synth.resume();
+    this.isPaused = false;
+    this._startResumeTimer();
+  }
+
+  stop() {
+    this._cancelRequested = true;
+    this.synth.cancel();
+    this.isSpeaking = false;
+    this.isPaused = false;
+    this._chunks = [];
+    this._chunkIndex = 0;
+    this.currentUtterance = null;
+    if (this._resumeTimer) {
+      clearInterval(this._resumeTimer);
+      this._resumeTimer = null;
+    }
+
+    const bubble = document.getElementById('teacherBubble');
+    if (bubble) {
+      bubble.classList.remove('visible');
+      bubble.textContent = '';
+    }
+  }
+
+  _speakNextChunk(resolveAll) {
+    if (this._cancelRequested || this._chunkIndex >= this._chunks.length) {
+      this.isSpeaking = false;
+      if (this.onEndCallback) this.onEndCallback();
+      const bubble = document.getElementById('teacherBubble');
+      if (bubble) bubble.classList.remove('visible');
+      resolveAll();
+      return;
+    }
+
+    const chunkText = this._chunks[this._chunkIndex];
+
+    const bubble = document.getElementById('teacherBubble');
+    if (bubble) {
+      bubble.textContent = chunkText;
+      bubble.classList.add('visible');
+    }
+
+    const utt = new SpeechSynthesisUtterance(chunkText);
+    this.currentUtterance = utt;
+
+    if (this.voice) utt.voice = this.voice;
+    utt.rate = this.rate;
+    utt.volume = this.volume;
+
+    const chunkOffset = this._globalCharOffset;
+
+    utt.onboundary = (event) => {
+      if (event.name === 'word' &amp;&amp; this.onWordCallback) {
+        this.onWordCallback(chunkOffset + event.charIndex, event.charLength);
+      }
+    };
+
+    utt.onend = () => {
+      if (this._cancelRequested) {
+        resolveAll();
+        return;
+      }
+      this._globalCharOffset += chunkText.length + 1;
+      this._chunkIndex++;
+      this._speakNextChunk(resolveAll);
+    };
+
+    utt.onerror = () => {
+      this._globalCharOffset += chunkText.length + 1;
+      this._chunkIndex++;
+      this._speakNextChunk(resolveAll);
+    };
+
+    this.synth.speak(utt);
+    this._startResumeTimer();
+  }
+
+  _startResumeTimer() {
+    if (this._resumeTimer) clearInterval(this._resumeTimer);
+    this._resumeTimer = setInterval(() => {
+      if (this.synth.speaking &amp;&amp; !this.synth.paused) {
+        this.synth.pause();
+        this.synth.resume();
+      }
+    }, 7000);
+  }
+
+  _splitIntoChunks(text, maxLen) {
+    const chunks = [];
+    let remaining = text.trim();
+
+    while (remaining.length > 0) {
+      if (remaining.length <= maxLen) {
+        chunks.push(remaining);
+        break;
+      }
+
+      let breakIdx = -1;
+
+      for (let i = maxLen; i >= maxLen * 0.4; i--) {
+        const ch = remaining[i];
+        if (ch === '.' || ch === '!' || ch === '?') {
+          breakIdx = i + 1;
+          break;
+        }
+      }
+
+      if (breakIdx === -1) {
+        for (let i = maxLen; i >= maxLen * 0.4; i--) {
+          const ch = remaining[i];
+          if (ch === ',' || ch === ';' || ch === ':') {
+            breakIdx = i + 1;
+            break;
+          }
+        }
+      }
+
+      if (breakIdx === -1) {
+        for (let i = maxLen; i >= maxLen * 0.3; i--) {
+          if (remaining[i] === ' ') {
+            breakIdx = i;
+            break;
+          }
+        }
+      }
+
+      if (breakIdx === -1) breakIdx = maxLen;
+
+      chunks.push(remaining.substring(0, breakIdx).trim());
+      remaining = remaining.substring(breakIdx).trim();
+    }
+
+    return chunks.filter(c => c.length > 0);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   6. TeacherAvatar — Handles walking, pointing gestures, leg swings, and blinks
+   ────────────────────────────────────────────────────────────────────────────── */
+
+class TeacherAvatar {
+  constructor(element) {
+    this.el = element;
+    this.state = 'idle';
+  }
+
+  idle() {
+    this._clearStates();
+    this.state = 'idle';
+    this.el.classList.add('teacher-idle');
+  }
+
+  speak() {
+    this._clearStates();
+    this.state = 'speaking';
+    this.el.classList.add('teacher-speaking');
+  }
+
+  point() {
+    this._clearStates();
+    this.state = 'pointing';
+    this.el.classList.add('teacher-pointing');
+  }
+
+  walk(direction = 'in') {
+    this._clearStates();
+    this.state = 'walking';
+    this.el.classList.add('teacher-walking');
+    if (direction === 'in') {
+      this.el.style.left = '-120px';
+      void this.el.offsetWidth;
+      this.el.style.left = '30px';
+    } else {
+      this.el.style.left = '-120px';
+    }
+  }
+
+  celebrate() {
+    this._clearStates();
+    this.state = 'celebrating';
+    this.el.classList.add('teacher-celebrating');
+    setTimeout(() => {
+      if (this.state === 'celebrating') this.idle();
+    }, 2200);
+  }
+
+  setState(slideType) {
+    switch (slideType) {
+      case 'title':
+        this.walk('in');
+        setTimeout(() => {
+          if (this.state === 'walking') this.idle();
+        }, 1200);
+        break;
+      case 'mindmap':
+        this.point();
+        break;
+      case 'stickynotes':
+      case 'entity':
+      case 'summary':
+        this.speak();
+        break;
+      default:
+        this.idle();
+    }
+  }
+
+  onSlideEnd(slideType) {
+    if (slideType === 'summary') {
+      this.celebrate();
+    } else {
+      this.idle();
+    }
+  }
+
+  _clearStates() {
+    if (!this.el) return;
+    this.el.classList.remove(
+      'teacher-idle', 'teacher-speaking', 'teacher-pointing',
+      'teacher-walking', 'teacher-celebrating'
+    );
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   7. ParticleSystem — Decorative background for drop zone upload page
+   ────────────────────────────────────────────────────────────────────────────── */
+
+class ParticleSystem {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.particles = [];
+    this.running = false;
+    this._resizeBound = this.resize.bind(this);
+    window.addEventListener('resize', this._resizeBound);
+    this.resize();
+  }
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  createParticle() {
+    const colors = ['#00CEC9', '#6C5CE7', '#FD79A8'];
+    return {
+      x: Math.random() * this.canvas.width,
+      y: Math.random() * this.canvas.height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      radius: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.4 + 0.1,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    };
+  }
+
+  init(count = 70) {
+    this.particles = [];
+    for (let i = 0; i < count; i++) {
+      this.particles.push(this.createParticle());
+    }
+    this.running = true;
+    this.animate();
+  }
+
+  stop() {
+    this.running = false;
+  }
+
+  animate() {
+    if (!this.running) return;
+
+    const ctx = this.ctx;
+    const w = this.canvas.width;
+    const h = this.canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    for (const p of this.particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0) p.x = w;
+      if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h;
+      if (p.y > h) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.opacity;
+      ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+    const maxDistSq = 100 * 100;
+
+    for (let i = 0; i < this.particles.length; i++) {
+      for (let j = i + 1; j < this.particles.length; j++) {
+        const a = this.particles[i];
+        const b = this.particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const distSq = dx * dx + dy * dy;
+
+        if (distSq < maxDistSq) {
+          const alpha = (1 - Math.sqrt(distSq) / 100) * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = a.color;
+          ctx.globalAlpha = alpha;
+          ctx.stroke();
+        }
+      }
+    }
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   8. VideoPlayer — Direct preloaded slides playback and HTML compilation
+   ────────────────────────────────────────────────────────────────────────────── */
+
+class VideoPlayer {
+  constructor() {
+    this.questions = [];
+    this.currentQuestionIndex = 0;
+    this.currentSlideIndex = 0;
+    this.slides = [];
+    this.isPlaying = false;
+    this.autoPlay = true;
+    this.speed = 1;
+
+    this.parser = new QuestionParser();
+    this.slideGen = new SlideGenerator();
+    this.tts = new TTSEngine();
+    this.teacher = null;
+
+    this.stageEl = null;
+    this.progressBarEl = null;
+    this.progressFillEl = null;
+    this.progressTextEl = null;
+    this.playBtnEl = null;
+    this.questionListEl = null;
+
+    this._slideTransitioning = false;
+    this._slideCache = new Map();
+  }
+
+  loadPreloaded() {
+    this.questions = window.PRELOADED_QUESTIONS;
+    this.stageEl = document.getElementById('stage');
+    this.progressBarEl = document.getElementById('progressBar');
+    this.progressFillEl = document.getElementById('progressFill');
+    this.progressTextEl = document.getElementById('progressText');
+    this.playBtnEl = document.getElementById('playBtn');
+    this.questionListEl = document.getElementById('questionList');
+
+    const teacherEl = document.getElementById('teacher');
+    if (teacherEl) {
+      this.teacher = new TeacherAvatar(teacherEl);
+    }
+
+    this._slideCache.clear();
+    this.buildQuestionList();
+    this.isPlaying = true;
+    this._updatePlayButton();
+    this.goToQuestion(0);
+  }
+
+  loadFile(text) {
+    this.questions = this.parser.parse(text);
+    if (this.questions.length === 0) {
+      alert('No questions with explanations found in this file.');
+      return;
+    }
+
+    this.stageEl = document.getElementById('stage');
+    this.progressBarEl = document.getElementById('progressBar');
+    this.progressFillEl = document.getElementById('progressFill');
+    this.progressTextEl = document.getElementById('progressText');
+    this.playBtnEl = document.getElementById('playBtn');
+    this.questionListEl = document.getElementById('questionList');
+
+    const teacherEl = document.getElementById('teacher');
+    if (teacherEl) {
+      this.teacher = new TeacherAvatar(teacherEl);
+    }
+
+    this._slideCache.clear();
+    this.buildQuestionList();
+    this._updatePlayButton();
+    this.goToQuestion(0);
+  }
+
+  goToQuestion(index) {
+    if (index < 0 || index >= this.questions.length) return;
+
+    this.tts.stop();
+    this.currentQuestionIndex = index;
+    this.currentSlideIndex = 0;
+
+    if (!this._slideCache.has(index)) {
+      const slides = this.slideGen.generateSlides(this.questions[index]);
+      this._slideCache.set(index, slides);
+    }
+    this.slides = this._slideCache.get(index);
+
+    this._updateQuestionListActive();
+    this._updatePlayButton();
+    this.playSlide(0);
+  }
+
+  async playSlide(index) {
+    if (index < 0 || index >= this.slides.length) return;
+    if (this._slideTransitioning) return;
+
+    this.tts.stop();
+    this.currentSlideIndex = index;
+    this._slideTransitioning = true;
+
+    const slide = this.slides[index];
+
+    await this._transitionOut();
+    if (this.stageEl) {
+      this.stageEl.innerHTML = slide.html;
+    }
+    await this._transitionIn();
+
+    this._slideTransitioning = false;
+    this.updateProgress();
+
+    if (this.teacher) {
+      this.teacher.setState(slide.type);
+    }
+
+    if (slide.speakText &amp;&amp; this.isPlaying) {
+      this.tts.onEndCallback = () => {
+        if (this.teacher) this.teacher.onSlideEnd(slide.type);
+      };
+
+      this.tts.setRate(this.speed);
+
+      try {
+        await this.tts.speak(slide.speakText);
+      } catch (e) {
+        console.warn('TTS narration error:', e);
+      }
+
+      if (this.autoPlay &amp;&amp; this.isPlaying &amp;&amp; !this.tts._cancelRequested) {
+        await this._delay(800);
+        this.nextSlide();
+      }
+    }
+  }
+
+  nextSlide() {
+    if (this.currentSlideIndex < this.slides.length - 1) {
+      this.playSlide(this.currentSlideIndex + 1);
+    } else {
+      if (this.currentQuestionIndex < this.questions.length - 1) {
+        this.goToQuestion(this.currentQuestionIndex + 1);
+      } else {
+        this.isPlaying = false;
+        this._updatePlayButton();
+        if (this.teacher) this.teacher.celebrate();
+      }
+    }
+  }
+
+  prevSlide() {
+    this.tts.stop();
+    if (this.currentSlideIndex > 0) {
+      this.playSlide(this.currentSlideIndex - 1);
+    } else {
+      if (this.currentQuestionIndex > 0) {
+        this.goToQuestion(this.currentQuestionIndex - 1);
+        setTimeout(() => {
+          const lastIdx = this.slides.length - 1;
+          if (lastIdx > 0) this.playSlide(lastIdx);
+        }, 800);
+      }
+    }
+  }
+
+  play() {
+    this.isPlaying = true;
+    this._updatePlayButton();
+    if (this.tts.isPaused) {
+      this.tts.resume();
+    } else {
+      this.playSlide(this.currentSlideIndex);
+    }
+  }
+
+  pause() {
+    this.isPlaying = false;
+    this._updatePlayButton();
+    this.tts.pause();
+  }
+
+  togglePlay() {
+    if (this.isPlaying) {
+      this.pause();
+    } else {
+      this.play();
+    }
+  }
+
+  setSpeed(speed) {
+    this.speed = Math.max(0.5, Math.min(3, speed));
+    this.tts.setRate(this.speed);
+  }
+
+  setVolume(vol) {
+    this.tts.setVolume(vol);
+  }
+
+  updateProgress() {
+    const totalSlides = this.slides.length;
+    const current = this.currentSlideIndex + 1;
+    const pct = totalSlides > 0 ? (current / totalSlides) * 100 : 0;
+
+    if (this.progressFillEl) {
+      this.progressFillEl.style.width = pct + '%';
+    }
+    if (this.progressTextEl) {
+      this.progressTextEl.textContent =
+        `Q${this.questions[this.currentQuestionIndex]?.number || '?'} • Slide ${current}/${totalSlides}`;
+    }
+  }
+
+  buildQuestionList() {
+    if (!this.questionListEl) return;
+    this.questionListEl.innerHTML = '';
+
+    for (let i = 0; i < this.questions.length; i++) {
+      const q = this.questions[i];
+      const item = document.createElement('div');
+      item.className = 'question-item';
+      item.dataset.index = i;
+
+      item.innerHTML = `
+        <span class="question-item-number">Q${q.number}</span>
+        <span class="question-item-title">${this._escapeHtml(q.title)}</span>
+      `;
+
+      item.addEventListener('click', () => {
+        this.goToQuestion(i);
+      });
+
+      this.questionListEl.appendChild(item);
+    }
+  }
+
+  _updateQuestionListActive() {
+    if (!this.questionListEl) return;
+    const items = this.questionListEl.querySelectorAll('.question-item');
+    items.forEach((item, i) => {
+      item.classList.toggle('active', i === this.currentQuestionIndex);
+    });
+
+    const activeItem = this.questionListEl.querySelector('.question-item.active');
+    if (activeItem) {
+      activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  _transitionOut() {
+    return new Promise((resolve) => {
+      if (!this.stageEl || !this.stageEl.firstElementChild) {
+        resolve();
+        return;
+      }
+      const el = this.stageEl.firstElementChild;
+      el.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+      el.style.opacity = '0';
+      el.style.transform = 'scale(0.97)';
+      setTimeout(resolve, 210);
+    });
+  }
+
+  _transitionIn() {
+    return new Promise((resolve) => {
+      if (!this.stageEl || !this.stageEl.firstElementChild) {
+        resolve();
+        return;
+      }
+      const el = this.stageEl.firstElementChild;
+      el.style.opacity = '0';
+      el.style.transform = 'scale(0.97)';
+      void el.offsetWidth;
+      el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'scale(1)';
+      setTimeout(resolve, 310);
+    });
+  }
+
+  _updatePlayButton() {
+    if (!this.playBtnEl) return;
+    this.playBtnEl.textContent = this.isPlaying ? '⏸' : '▶';
+  }
+
+  _delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  _escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   9. Initialization &amp; DOM Bindings
+   ────────────────────────────────────────────────────────────────────────────── */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const player = new VideoPlayer();
+
+  // Check if preloaded mode is enabled
+  if (window.PRELOADED_QUESTIONS &amp;&amp; window.PRELOADED_QUESTIONS.length > 0) {
+    const uploadScreen = document.getElementById('uploadScreen');
+    const playerScreen = document.getElementById('playerScreen');
+    const downloadHtmlBtn = document.getElementById('downloadHtmlBtn');
+
+    if (uploadScreen) uploadScreen.style.display = 'none';
+    if (playerScreen) playerScreen.style.display = 'grid';
+    if (downloadHtmlBtn) downloadHtmlBtn.classList.add('hidden'); // Hide download button on preloaded files
+
+    player.loadPreloaded();
+  } else {
+    // Show upload canvas background particles
+    const particleCanvas = document.getElementById('particleCanvas');
+    let particles = null;
+    if (particleCanvas) {
+      particles = new ParticleSystem(particleCanvas);
+      particles.init(80);
+    }
+
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const startBtn = document.getElementById('startBtn');
+
+    if (dropZone) {
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+      });
+
+      dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('drag-over');
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) {
+          handleFile(e.dataTransfer.files[0]);
+        }
+      });
+
+      dropZone.addEventListener('click', () => {
+        if (fileInput) fileInput.click();
+      });
+    }
+
+    if (fileInput) {
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+          handleFile(e.target.files[0]);
+        }
+      });
+    }
+
+    let parsedQuestionsData = null;
+
+    function handleFile(file) {
+      if (!file) return;
+
+      if (!file.name.toLowerCase().endsWith('.txt')) {
+        alert('Please upload a .txt file');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target.result;
+
+        const fileNameEl = document.getElementById('fileName');
+        const questionCountEl = document.getElementById('questionCount');
+        const fileInfoEl = document.getElementById('fileInfo');
+
+        const tempParser = new QuestionParser();
+        parsedQuestionsData = tempParser.parse(text);
+
+        if (fileNameEl) fileNameEl.textContent = file.name;
+        if (questionCountEl) questionCountEl.textContent = parsedQuestionsData.length + ' questions found';
+        if (fileInfoEl) fileInfoEl.classList.remove('hidden');
+
+        if (parsedQuestionsData.length === 0) {
+          if (questionCountEl) questionCountEl.textContent = 'No valid questions found!';
+          if (startBtn) startBtn.disabled = true;
+          return;
+        }
+
+        if (startBtn) {
+          startBtn.disabled = false;
+        }
+      };
+
+      reader.readAsText(file, 'UTF-8');
+    }
+
+    if (startBtn) {
+      startBtn.onclick = () => {
+        if (!parsedQuestionsData || parsedQuestionsData.length === 0) return;
+        
+        // Hide upload screen background animation
+        if (particles) particles.stop();
+
+        // Package and trigger direct HTML Video download
+        packageAndDownloadHTML(parsedQuestionsData);
+      };
+    }
+  }
+
+  // Packager and file download utility
+  function packageAndDownloadHTML(questions) {
+    const docHtml = document.documentElement.innerHTML;
+    const outerHtml = "<!DOCTYPE html>\n<html lang=\"en\">\n" + docHtml + "\n</html>";
+
+    // Inject parsed questions JSON into PRELOADED_QUESTIONS global variable
+    const searchString = 'window.PRELOADED_QUESTIONS = null;';
+    const replaceString = 'window.PRELOADED_QUESTIONS = ' + JSON.stringify(questions) + ';';
+    const finalHtml = outerHtml.replace(searchString, replaceString);
+
+    const blob = new Blob([finalHtml], { type: 'text/html;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `UniGram_Video_Lecture.html`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // Playback Control Bindings
+  const playBtn = document.getElementById('playBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const speedSelect = document.getElementById('speedSelect');
+  const langSelect = document.getElementById('langSelect');
+  const downloadHtmlBtn = document.getElementById('downloadHtmlBtn');
+
+  if (playBtn) playBtn.addEventListener('click', () => player.togglePlay());
+  if (prevBtn) prevBtn.addEventListener('click', () => player.prevSlide());
+  if (nextBtn) nextBtn.addEventListener('click', () => player.nextSlide());
+
+  if (speedSelect) {
+    speedSelect.addEventListener('change', (e) => {
+      player.setSpeed(parseFloat(e.target.value));
+    });
+  }
+
+  if (langSelect) {
+    langSelect.addEventListener('change', (e) => {
+      const voices = player.tts.getVoices();
+      const idx = parseInt(e.target.value, 10);
+      if (voices[idx]) {
+        player.tts.setVoice(voices[idx]);
+      }
+    });
+  }
+
+  if (downloadHtmlBtn) {
+    downloadHtmlBtn.addEventListener('click', () => {
+      if (player.questions &amp;&amp; player.questions.length > 0) {
+        packageAndDownloadHTML(player.questions);
+      }
+    });
+  }
+
+  // Seek bar clicks
+  const progressBar = document.getElementById('progressBar');
+  if (progressBar) {
+    progressBar.addEventListener('click', (e) => {
+      if (player.slides.length === 0) return;
+      const rect = progressBar.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const slideIndex = Math.floor(pct * player.slides.length);
+      player.playSlide(Math.min(slideIndex, player.slides.length - 1));
+    });
+  }
+
+  function populateVoices() {
+    const voices = speechSynthesis.getVoices();
+    if (!langSelect || voices.length === 0) return;
+
+    langSelect.innerHTML = '';
+    let defaultIdx = 0;
+
+    voices.forEach((v, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `${v.name} (${v.lang})`;
+
+      if (v.lang.startsWith('en') &amp;&amp; defaultIdx === 0) {
+        opt.selected = true;
+        defaultIdx = i;
+        player.tts.setVoice(v);
+      }
+      langSelect.appendChild(opt);
+    });
+
+    if (defaultIdx === 0 &amp;&amp; voices.length > 0) {
+      player.tts.setVoice(voices[0]);
+      langSelect.querySelector('option').selected = true;
+    }
+  }
+
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoices;
+  }
+  populateVoices();
+
+  // Keyboard Shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+    switch (e.code) {
+      case 'Space':
+        e.preventDefault();
+        player.togglePlay();
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        player.nextSlide();
+        break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        player.prevSlide();
+        break;
+    }
+  });
+
+  window.__player = player;
+});
+
+</script>
+</body>
+</html>
+</textarea>
 
 </body>
 </html>
