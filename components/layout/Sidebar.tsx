@@ -1,4 +1,4 @@
-import { Menu, Settings, Info, Calendar, BarChart2 } from "lucide-react";
+import { Menu, Settings, BarChart2 } from "lucide-react";
 
 export default function Sidebar() {
   return (
