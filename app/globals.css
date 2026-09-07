@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --telegram-blue: #ff6b9d;
+    --telegram-dark-blue: #e05284;
+    --bg-dark: #0d0820;
+    --chat-bg: #130a28;
+    --card-bg: #1e1030;
+    --text-main: #fff0f8;
+    --text-muted: #9f8ba8;
+    --success: #00ffcc;
+    --danger: #d14e4e;
+    --gold: #ffee44;
+    --bubble-user: #2a0850;
+    --bubble-bot: #130a28;
+    --glass-border: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--telegram-blue);
+}
